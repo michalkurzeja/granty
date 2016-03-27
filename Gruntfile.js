@@ -25,12 +25,13 @@ module.exports = function (grunt) {
             scripts: {
                 files: {
                     'js/jquery.js': 'jquery/dist/jquery.min.js',
-                    'js/bootstrap.js': 'bootstrap/dist/js/bootstrap.min.js'
+                    'js/what-input.js': 'what-input/what-input.min.js',
+                    'js/foundation.js': 'foundation-sites/dist/foundation.min.js'
                 }
             },
             stylesheets: {
                 files: {
-                    'css/bootstrap.css': 'bootswatch/flatly/bootstrap.min.css',
+                    'css/foundation.css': 'foundation-sites/dist/foundation.min.css',
                     'css/font-awesome.css': 'font-awesome/css/font-awesome.min.css'
                 }
             },
@@ -46,7 +47,7 @@ module.exports = function (grunt) {
             },
             css: {
                 src: [
-                    'web/assets/css/bootstrap.css',
+                    'web/assets/css/foundation.css',
                     'web/assets/css/font-awesome.css',
                     'web/assets/css/main.css'
                 ],
@@ -55,7 +56,8 @@ module.exports = function (grunt) {
             js : {
                 src : [
                     'web/assets/js/jquery.js',
-                    'web/assets/js/bootstrap.js',
+                    'web/assets/js/what-input.js',
+                    'web/assets/js/foundation.js',
                     'web/assets/js/main.js'
                 ],
                 dest: 'web/assets/js/bundled.js'
