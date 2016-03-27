@@ -1,0 +1,5 @@
+user:
+    username:
+        taken: Nazwa użytkownika jest już zajęta
+    email:
+        taken: Adres email jest już zajęty

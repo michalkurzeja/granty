@@ -1,0 +1,5 @@
+services:
+    app.registration.user_password_manager:
+        class: AppBundle\Service\Util\UserPasswordManager\UserPasswordManager
+        arguments:
+            - "@security.password_encoder"
