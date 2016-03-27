@@ -1,8 +1,16 @@
-{{ form_start(form) }}
-    {{ form_row(form.username) }}
-    {{ form_row(form.email) }}
-    {{ form_row(form.plainPassword.first) }}
-    {{ form_row(form.plainPassword.second) }}
+{% extends 'layout/base.html.twig' %}
 
-    <button type="submit">{{ 'form.register' | trans({}, 'forms') }}</button>
-{{ form_end(form) }}
+{% block body %}
+    {{ form_start(form) }}
+        {{ form_row(form.username) }}
+        {{ form_row(form.email) }}
+        {{ form_row(form.plainPassword.first) }}
+        {{ form_row(form.plainPassword.second) }}
+
+        <div class="row">
+            <div class="large-12 columns">
+                <button type="submit" class="button">{{ 'form.register' | trans({}, 'forms') }}</button>
+            </div>
+        </div>
+    {{ form_end(form) }}
+{% endblock %}

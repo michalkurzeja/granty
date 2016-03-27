@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>{%- block title -%}{%- endblock -%}</title>
+        {%- block stylesheets -%}
+            <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/bundled.min.css') }}">
+        {%- endblock -%}
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+    </head>
+    <body>
+        {%- block top_nav -%}
+            {% include 'layout/top_nav.html.twig' %}
+        {%- endblock -%}
+
+        {%- block body -%}{%- endblock -%}
+
+        {%- block javascripts -%}
+            <script type="application/javascript" src="{{ asset('assets/js/bundled.min.js') }}"></script>
+        {%- endblock -%}
+    </body>
+</html>

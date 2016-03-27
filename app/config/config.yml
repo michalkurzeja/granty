@@ -32,7 +32,7 @@ twig:
     debug:            "%kernel.debug%"
     strict_variables: "%kernel.debug%"
     form_themes:
-        - form/fields.html.twig
+        - layout/form/fields.html.twig
 
 doctrine:
     dbal:
