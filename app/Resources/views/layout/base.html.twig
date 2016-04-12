@@ -16,9 +16,11 @@
         {%- block flash_messages -%}
             {% for type, messages in app.session.flashBag.all %}
                 {% for message in messages %}
-                    <div class="{{ type }}">
+                <div class="row">
+                    <div class="callout {{ type }}">
                         {{ message|trans({}, 'flash_messages') }}
                     </div>
+                </div>
                 {% endfor %}
             {% endfor %}
         {%- endblock -%}
@@ -26,6 +28,10 @@
         <main>
             {%- block body -%}{%- endblock -%}
         </main>
+
+        <footer>
+            <small>AGH University of Science and Technology</small>
+        </footer>
 
         {%- block javascripts -%}
             <script type="application/javascript" src="{{ asset('assets/js/bundled.min.js') }}"></script>

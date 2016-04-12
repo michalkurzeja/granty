@@ -1,0 +1,7 @@
+app:
+    name: Granty
+
+actions:
+    login: Zaloguj
+    logout: Wyloguj
+    register: Załóż konto

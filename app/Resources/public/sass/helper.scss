@@ -1,0 +1,17 @@
+@import "variables";
+
+/* Margin classes */
+.margin-right-small {
+  margin-right: $defaultMarginSmall;
+}
+
+.margin-right {
+  margin-right: $defaultMargin;
+}
+/* ------------------- */
+
+/* Display classes */
+.inline-block {
+  display: inline-block;
+}
+/* ------------------- */

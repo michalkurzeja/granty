@@ -1,3 +1,28 @@
+nav.top-bar {
+  margin-bottom: 1.5rem; }
 
+footer {
+  text-align: center; }
+
+/* Margin classes */
+.margin-right-small {
+  margin-right: 1rem; }
+
+.margin-right {
+  margin-right: 1.5rem; }
+
+/* ------------------- */
+/* Display classes */
+.inline-block {
+  display: inline-block; }
+
+/* ------------------- */
+form#form-login .row.last button, form#form-login .row.last input {
+  margin-bottom: 0;
+  vertical-align: middle; }
+
+.remember-me {
+  display: inline-block;
+  margin-left: 1rem; }
 
 /*# sourceMappingURL=main.css.map */

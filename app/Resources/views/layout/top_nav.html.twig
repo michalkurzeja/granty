@@ -1,7 +1,22 @@
 <nav class="top-bar">
-    <div class="top-bar-left">
-        <ul class="dropdown menu" data-dropdown-menu>
-            <li class="menu-text">Granty</li>
+    <div class="top-bar-title">
+        <span data-responsive-toggle="responsive-menu" data-hide-for="medium">
+            <button class="menu-icon dark" type="button" data-toggle></button>
+        </span>
+        <strong>
+            <i class="fa fa-trophy" aria-hidden="true"></i>
+            {{ 'app.name' | trans }}
+        </strong>
+    </div>
+    <div class="top-bar-right">
+        <ul class="menu">
+            <li>
+            {% if app.user %}
+                <a href="{{ path('fos_user_security_logout') }}">{{ 'actions.logout' | trans }} <i class="fa fa-sign-out"></i></a>
+            {% else %}
+                <a href="{{ path('fos_user_security_login') }}">{{ 'actions.login' | trans }} <i class="fa fa-sign-in"></i></a>
+            {% endif %}
+            </li>
         </ul>
     </div>
 </nav>
