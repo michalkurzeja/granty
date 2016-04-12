@@ -1,0 +1,16 @@
+{% extends "FOSUserBundle::layout.html.twig" %}
+
+{% block title %}Rejestracja{% endblock %}
+
+{% block fos_user_content %}
+    {% trans_default_domain 'FOSUserBundle' %}
+
+    {{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register'), 'attr': {'class': 'fos_user_registration_register'}}) }}
+        {{ form_widget(form) }}
+        <div class="row">
+            <div class="large-12 columns">
+                <button type="submit" class="button">{{ 'registration.submit'|trans }} <i class="fa fa-angle-right" aria-hidden="true"></i></button>
+            </div>
+        </div>
+    {{ form_end(form) }}
+{% endblock %}
