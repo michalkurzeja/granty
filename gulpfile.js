@@ -59,7 +59,7 @@ gulp.task('default', ['clean'], function () {
 });
 
 gulp.task('watch', function () {
-    gulp.watch('app/Resources/public/sass/main.scss', ['compile-sass']);
+    gulp.watch(['app/Resources/public/sass/*.scss', 'app/Resources/public/sass/components/*.scss'], ['compile-sass']);
     gulp.watch('app/Resources/public/js/main.js', ['compile-js']);
 });
 
