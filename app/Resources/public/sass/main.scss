@@ -1,4 +1,10 @@
-@import "variables";
-@import "general";
-@import "helper";
-@import "specific";
+// Libraries
+@import "../../../../bower_components/foundation-sites/scss/foundation";
+@include foundation-everything;
+@import "../../../../bower_components/font-awesome/scss/font-awesome";
+
+// Project components
+@import "components/variables";
+@import "components/general";
+@import "components/helper";
+@import "components/specific";
