@@ -5,8 +5,8 @@ var gulp = require('gulp'),
     clean = require('gulp-clean'),
     rename = require('gulp-rename'),
     sourcemaps = require('gulp-sourcemaps'),
-    concatJs = require('gulp-concat'),
-    minifyJs = require('gulp-uglify'),
+    concat = require('gulp-concat'),
+    uglify = require('gulp-uglify'),
     merge = require('merge2');
 
 gulp.task('compile-sass', function() {
@@ -29,14 +29,14 @@ gulp.task('compile-js', function() {
             minifyJsInline(['app/Resources/public/js/main.js'])
         )
         .pipe(sourcemaps.init({loadMaps: true}))
-        .pipe(concatJs('bundled.min.js'))
+        .pipe(concat('bundled.min.js'))
         .pipe(sourcemaps.write())
         .pipe(gulp.dest('web/assets/js'));
 });
 
 gulp.task('fonts', function () {
     return gulp
-        .src(['bower_components/font-awesome/fonts/*'])
+        .src(['bower_components/font-awesome/fonts/*'], { nodir: true })
         .pipe(gulp.dest('web/assets/fonts'));
 });
 
@@ -67,6 +67,6 @@ function minifyJsInline(src) {
     return gulp
         .src(src)
         .pipe(sourcemaps.init())
-            .pipe(minifyJs())
+            .pipe(uglify())
         .pipe(sourcemaps.write());
 }

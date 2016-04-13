@@ -2,6 +2,8 @@
 
 {% trans_default_domain 'FOSUserBundle' %}
 
+{% block title %}{{ 'security.login.submit'|trans }}{% endblock %}
+
 {% block fos_user_content %}
 {% if error %}
     <div class="row">
