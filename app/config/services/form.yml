@@ -1,2 +1,3 @@
 imports:
     - { resource: form/extension.yml }
+    - { resource: form/type.yml }

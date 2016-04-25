@@ -1,0 +1,17 @@
+{% extends 'knp_menu.html.twig' %}
+{% import _self as knp_menu %}
+
+{% block label %}
+    {{ item.label|trans(
+        item.getExtra('translation_params', {}),
+        item.getExtra('translation_domain', 'menu')
+    ) }}
+{% endblock %}
+
+{% block linkElement %}
+    <a href="{{ item.uri }}"{{ knp_menu.attributes(item.linkAttributes) }}>
+        {% if item.attribute('icon-pre', false) %}<i class="{{ item.attribute('icon-pre') }}"></i>{% endif %}
+        <span class="title">{{ block('label') }}</span>
+        {% if item.attribute('icon-post', false) %}<i class="{{ item.attribute('icon-post') }}"></i>{% endif %}
+    </a>
+{% endblock %}

@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta charset="UTF-8" />
-        <title>Granty - {% block title %}{% endblock %}</title>
+        <title>{{ 'app.name'|trans }} - {% block title %}{% endblock %}</title>
         {%- block stylesheets -%}
             <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/bundled.min.css') }}">
         {%- endblock -%}

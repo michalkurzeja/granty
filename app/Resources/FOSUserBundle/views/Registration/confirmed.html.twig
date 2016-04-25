@@ -2,13 +2,15 @@
 
 {% trans_default_domain 'FOSUserBundle' %}
 
+{% block title %}{{ 'register.finished'|trans({}, 'page_title') }}{% endblock %}
+
 {% block fos_user_content %}
-<div class="row">
-    <div class="callout success">
-        <p>{{ 'registration.confirmed'|trans({'%username%': user.username}) }}</p>
-        {% if targetUrl %}
-            <p><a href="{{ targetUrl }}">{{ 'registration.back'|trans }}</a></p>
-        {% endif %}
+    <div class="row">
+        <div class="callout success">
+            <p>{{ 'registration.confirmed'|trans({'%username%': user.username}) }}</p>
+            {% if targetUrl %}
+                <p><a href="{{ targetUrl }}">{{ 'registration.back'|trans }}</a></p>
+            {% endif %}
+        </div>
     </div>
-</div>
 {% endblock fos_user_content %}

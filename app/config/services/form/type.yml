@@ -1,0 +1,10 @@
+services:
+    app.form_type.registration:
+        class: AppBundle\Form\Type\RegistrationType
+        tags:
+            - { name: form.type }
+
+    app.form_type.profile:
+        class: AppBundle\Form\Type\RegistrationType
+        tags:
+            - { name: form.type }

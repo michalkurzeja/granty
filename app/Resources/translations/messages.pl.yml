@@ -5,3 +5,10 @@ actions:
     login: Zaloguj
     logout: Wyloguj
     register: Załóż konto
+
+text:
+    registration:
+        noAccountQuestion: Nie posiadasz konta?
+    profile:
+        submittedApplications: Złożone wnioski
+

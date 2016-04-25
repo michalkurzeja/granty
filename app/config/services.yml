@@ -1,3 +1,4 @@
 imports:
     - { resource: services/form.yml }
+    - { resource: services/menu.yml }
     - { resource: services/util.yml }

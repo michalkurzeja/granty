@@ -1,5 +1,5 @@
 form:
     register: Zarejestruj
 
-user_type:
+registration_type:
     repeat_password: Powtórz hasło

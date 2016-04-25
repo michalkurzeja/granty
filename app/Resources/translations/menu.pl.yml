@@ -1,0 +1,11 @@
+main:
+    home: Strona domowa
+
+user:
+    profile: Profil
+    logout: Wyloguj
+    login: Zaloguj
+
+profile:
+    edit: Edytuj profil
+    changePassword: Zmień hasło

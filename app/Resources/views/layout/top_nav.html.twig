@@ -8,15 +8,10 @@
             {{ 'app.name' | trans }}
         </strong>
     </div>
+    <div class="top-bar-left">
+        {{ knp_menu_render('main') }}
+    </div>
     <div class="top-bar-right">
-        <ul class="menu">
-            <li>
-            {% if app.user %}
-                <a href="{{ path('fos_user_security_logout') }}">{{ 'actions.logout' | trans }} <i class="fa fa-sign-out"></i></a>
-            {% else %}
-                <a href="{{ path('fos_user_security_login') }}">{{ 'actions.login' | trans }} <i class="fa fa-sign-in"></i></a>
-            {% endif %}
-            </li>
-        </ul>
+        {{ knp_menu_render('user') }}
     </div>
 </nav>

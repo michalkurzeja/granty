@@ -1,4 +1,14 @@
 user:
     username: Nazwa użytkownika
     password: Hasło
-    email: Adres email
+    email: E-mail
+    firstName: Imię
+    lastName: Nazwisko
+    degree: Stopień naukowy
+    dateOfBirth: Data urodzenia
+
+misc:
+    selectValue: Wybierz wartość
+    day: Dzień
+    month: Miesiąc
+    year: Rok

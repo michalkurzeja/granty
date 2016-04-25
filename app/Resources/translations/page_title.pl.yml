@@ -1,0 +1,4 @@
+register: Rejestracja
+register.finished: Zarejestrowano
+profile: Profil
+profile.edit: Edytuj profil
