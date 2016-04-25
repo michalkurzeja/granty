@@ -78,11 +78,11 @@ class Application
     private $scheduleOfWork;
 
     /**
-     * @var string
+     * @var bool
      *
-     * @ORM\Column(type="text", nullable=true)
+     * @ORM\Column(type="boolean")
      */
-    private $financialSources;
+    private $externalFinancing;
 
     /**
      * @var float
@@ -266,19 +266,19 @@ class Application
     }
 
     /**
-     * @return string
+     * @return boolean
      */
-    public function getFinancialSources()
+    public function isExternalFinancing()
     {
-        return $this->financialSources;
+        return $this->externalFinancing;
     }
 
     /**
-     * @param string $financialSources
+     * @param boolean $externalFinancing
      */
-    public function setFinancialSources($financialSources)
+    public function setExternalFinancing($externalFinancing)
     {
-        $this->financialSources = $financialSources;
+        $this->externalFinancing = $externalFinancing;
     }
 
     /**

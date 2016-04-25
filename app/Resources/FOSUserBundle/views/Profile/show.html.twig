@@ -1,7 +1,26 @@
 {% extends "FOSUserBundle::layout.html.twig" %}
 
+{% trans_default_domain 'entities' %}
+
 {% block title %}{{ 'profile.view'|trans({}, 'page_title') }}{% endblock %}
 
-{% block fos_user_content %}
-{% include "FOSUserBundle:Profile:show_content.html.twig" %}
-{% endblock fos_user_content %}
+{% block body_callout_title %}{{ 'profile.view' | trans({}, 'page_title') }}{% endblock %}
+
+{% block body_callout %}
+    <div class="callout primary">
+        <p>{{ 'user.username'|trans }}: {{ user.username }}</p>
+        <p>{{ 'user.email'|trans }}: {{ user.email }}</p>
+    </div>
+    <div class="callout secondary">
+        <p>{{ 'user.firstName'|trans }}: {{ user.firstName }}</p>
+        <p>{{ 'user.lastName'|trans }}: {{ user.lastName }}</p>
+        <p>{{ 'user.degree'|trans }}: {{ user.degree }}</p>
+        <p>{{ 'user.dateOfBirth'|trans }}: {{ user.dateOfBirth | date('j F Y') }}</p>
+    </div>
+    <div class="callout success">
+        <p>{{ 'text.profile.submittedApplications'|trans({}, 'messages') }}: <strong>0</strong></p>
+    </div>
+    <div class="callout warning">
+        {{ knp_menu_render('profile') }}
+    </div>
+{% endblock body_callout %}

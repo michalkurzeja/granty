@@ -4,11 +4,11 @@
 
 {% block title %}{{ 'register.finished'|trans({}, 'page_title') }}{% endblock %}
 
-{% block fos_user_content %}
-    <div class="callout success">
-        <p>{{ 'registration.confirmed'|trans({'%username%': user.username}) }}</p>
-        {% if targetUrl %}
-            <p><a href="{{ targetUrl }}">{{ 'registration.back'|trans }}</a></p>
-        {% endif %}
-    </div>
-{% endblock fos_user_content %}
+{% block body_callout_class %}success{% endblock %}
+
+{% block body_callout %}
+    <p>{{ 'registration.confirmed'|trans({'%username%': user.username}) }}</p>
+    {% if targetUrl %}
+        <p><a href="{{ targetUrl }}">{{ 'registration.back'|trans }}</a></p>
+    {% endif %}
+{% endblock body_callout %}

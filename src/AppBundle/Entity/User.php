@@ -61,6 +61,7 @@ class User extends BaseUser
      * @var Collection
      *
      * @ORM\OneToMany(targetEntity="Application", mappedBy="user", orphanRemoval=true)
+     * @ORM\OrderBy({"id": "asc"})
      */
     private $applications;
 

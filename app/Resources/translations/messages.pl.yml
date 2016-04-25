@@ -7,6 +7,10 @@ actions:
     register: Załóż konto
     clickHere: Kliknij tutaj
 
+buttons:
+    application:
+        add: Utwórz wniosek
+
 text:
     registration:
         noAccountQuestion: Nie posiadasz konta?

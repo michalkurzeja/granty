@@ -3,12 +3,21 @@
 {% block title %}{{ 'application.index'|trans({}, 'page_title') }}{% endblock %}
 
 {% block body %}
+    <div class="row">
+        <div class="column">
+            <a href="{{ path('application_add') }}" class="button success">
+                <i class="fa fa-plus" aria-hidden="true"></i>
+                {{ 'buttons.application.add'|trans }}
+            </a>
+        </div>
+    </div>
+
     {% if not applications.empty %}
     <table class="hover">
         <thead>
             <tr>
                 <th>#</th>
-                <th>Title</th>
+                <th>Topic</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -16,7 +25,7 @@
             {% for application in applications %}
                 <tr>
                     <td>{{ application.id }}</td>
-                    <td>{{ application.title }}</td>
+                    <td>{{ application.topic }}</td>
                     <td>-</td>
                 </tr>
             {% endfor %}
@@ -26,7 +35,7 @@
         <div class="callout secondary">
             <i class="fa fa-info-circle" aria-hidden="true"></i>
             {{ 'text.application.noItems'|trans }}
-            <a href="#">{{ 'actions.clickHere'|trans }}</a>
+            <a href="{{ path('application_add') }}">{{ 'actions.clickHere'|trans }}</a>
             {{ 'text.application.toApply'|trans }}.
         </div>
     {% endif %}

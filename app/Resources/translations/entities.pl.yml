@@ -7,6 +7,22 @@ user:
     degree: Stopień naukowy
     dateOfBirth: Data urodzenia
 
+application:
+    year: Wniosek o grant na rok
+    topic: Temat pracy
+    meritoricJustification: Uzasadnienie merytoryczne
+    currentKnowledge: Obecny stan wiedzy
+    scientificAchievements: Ostatnie osiągnięcia naukowe
+    applicantsProjects: Poprzednie projekty wnioskodawcy
+    forseeableGoals: Przewidywane osiągnięcia
+    scheduleOfWork: Harmonogram pracy
+    externalFinancing: Czy praca jest finansowana z innych źródeł?
+    plannedExpensesTotal: Całkowite planowane nakłady finansowe
+    plannedExpensesInCurrentYear: Bieżące planowane nakłady finansowe
+    expensesExplanation: Uzasadnienie kosztorysu
+    projectDirector: Kierownik pracy
+    organizationDirector: Kierownik jednostki organizacyjnej
+
 misc:
     selectValue: Wybierz wartość
     day: Dzień

@@ -6,15 +6,6 @@
   }
 }
 
-form#form-login {
-  .row.last {
-    button, input {
-      margin-bottom: 0;
-      vertical-align: middle;
-    }
-  }
-}
-
 .remember-me {
   display: inline-block;
   margin-left: $defaultMarginSmall;

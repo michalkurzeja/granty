@@ -4,10 +4,8 @@
 
 {% block title %}{{ 'profile.reset'|trans({}, 'page_title') }}{% endblock %}
 
-{% block fos_user_content %}
-<div class="callout primary">
-    <p>
-    {{ 'resetting.check_email'|trans({'%email%': email}) }}
-    </p>
-</div>
-{% endblock %}
+{% block body_callout_class %}primary{% endblock %}
+
+{% block body_callout %}
+    <p>{{ 'resetting.check_email'|trans({'%email%': email}) }}</p>
+{% endblock body_callout %}

@@ -14,6 +14,15 @@
 
 nav.top-bar {
   margin-bottom: $defaultMargin;
+  color: $topbar-text-color;
+
+  a {
+    color: $topbar-text-color;
+
+    &:hover {
+      color: $topbar-text-color-hover;
+    }
+  }
 }
 
 footer {
@@ -23,6 +32,17 @@ footer {
 label.required::after {
   content: ' *';
   color: map-get($foundation-palette, alert);
+}
+
+.row:last-child {
+  button, input {
+    margin-bottom: 0;
+    vertical-align: middle;
+  }
+}
+
+.callout > :last-child {
+  margin-bottom: 0;
 }
 
 @include contextual-classes;

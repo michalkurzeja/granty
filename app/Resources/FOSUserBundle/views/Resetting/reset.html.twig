@@ -1,7 +1,20 @@
 {% extends "FOSUserBundle::layout.html.twig" %}
 
+{% trans_default_domain 'FOSUserBundle' %}
+
 {% block title %}{{ 'profile.reset'|trans({}, 'page_title') }}{% endblock %}
 
-{% block fos_user_content %}
-{% include "FOSUserBundle:Resetting:reset_content.html.twig" %}
-{% endblock fos_user_content %}
+{% block body_callout %}
+    {{ form_start(form, { 'action': path('fos_user_resetting_reset', {'token': token}), 'attr': { 'class': 'fos_user_resetting_reset' } }) }}
+        <div class="row">
+            <div class="column">
+                {{ form_widget(form) }}
+            </div>
+        </div>
+        <div class="row">
+            <div class="column">
+                <button class="button" type="submit">{{ 'resetting.reset.submit'|trans }}</button>
+            </div>
+        </div>
+    {{ form_end(form) }}
+{% endblock body_callout %}

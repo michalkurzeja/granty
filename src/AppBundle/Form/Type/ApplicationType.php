@@ -8,6 +8,7 @@ use AppBundle\Service\AssociationSetter\AssociationSetterInterface;
 use AppBundle\Service\Util\CurrentUserProvider\CurrentUserProvider;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -40,20 +41,57 @@ class ApplicationType extends AbstractType implements EventSubscriberInterface
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('year', NumberType::class)
-            ->add('topic', TextType::class)
-            ->add('meritoricJustification', TextareaType::class, ['required' => false])
-            ->add('currentKnowledge', TextareaType::class, ['required' => false])
-            ->add('scientificAchievements', TextareaType::class, ['required' => false])
-            ->add('applicantsProjects', TextareaType::class, ['required' => false])
-            ->add('forseeableGoals', TextareaType::class, ['required' => false])
-            ->add('scheduleOfWork', TextareaType::class, ['required' => false])
-            ->add('financialSources', TextareaType::class, ['required' => false])
-            ->add('plannedExpensesTotal', NumberType::class)
-            ->add('plannedExpensesInCurrentYear', NumberType::class)
-            ->add('expensesExplanation', TextareaType::class)
-            ->add('projectDirector', TextType::class)
-            ->add('organizationDirector', TextType::class)
+            ->add('year', NumberType::class, [
+                'label' => 'application.year',
+            ])
+            ->add('topic', TextType::class, [
+                'label' => 'application.topic',
+            ])
+            ->add('meritoricJustification', TextareaType::class, [
+                'required' => false,
+                'label' => 'application.meritoricJustification',
+            ])
+            ->add('currentKnowledge', TextareaType::class, [
+                'required' => false,
+                'label' => 'application.currentKnowledge',
+            ])
+            ->add('scientificAchievements', TextareaType::class, [
+                'required' => false,
+                'label' => 'application.scientificAchievements',
+            ])
+            ->add('applicantsProjects', TextareaType::class, [
+                'required' => false,
+                'label' => 'application.applicantsProjects',
+            ])
+            ->add('forseeableGoals', TextareaType::class, [
+                'required' => false,
+                'label' => 'application.forseeableGoals',
+            ])
+            ->add('scheduleOfWork', TextareaType::class, [
+                'required' => false,
+                'label' => 'application.scheduleOfWork',
+            ])
+            ->add('externalFinancing', CheckboxType::class, [
+                'required' => false,
+                'label' => 'application.externalFinancing',
+            ])
+            ->add('plannedExpensesTotal', NumberType::class, [
+                'label' => 'application.plannedExpensesTotal',
+            ])
+            ->add('plannedExpensesInCurrentYear', NumberType::class, [
+                'label' => 'application.plannedExpensesInCurrentYear',
+            ])
+            ->add('expensesExplanation', TextareaType::class, [
+                'required' => false,
+                'label' => 'application.expensesExplanation',
+            ])
+            ->add('projectDirector', TextType::class, [
+                'label' => 'application.projectDirector',
+            ])
+            ->add('organizationDirector', TextType::class, [
+                'required' => false,
+                'label' => 'application.organizationDirector',
+            ])
         ;
 
         $builder->addEventSubscriber($this);
@@ -71,7 +109,9 @@ class ApplicationType extends AbstractType implements EventSubscriberInterface
      */
     public static function getSubscribedEvents()
     {
-        return [FormEvents::POST_SUBMIT => 'postSubmit'];
+        return [
+            FormEvents::POST_SUBMIT => 'postSubmit'
+        ];
     }
 
     /**

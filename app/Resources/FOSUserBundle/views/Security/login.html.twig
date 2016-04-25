@@ -4,15 +4,17 @@
 
 {% block title %}{{ 'security.login.submit'|trans }}{% endblock %}
 
-{% block fos_user_content %}
+{% block pre_body %}
     {% if error %}
         <div class="callout alert">
             <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
         </div>
     {% endif %}
+{% endblock %}
 
-    <div class="callout">
-        <h4>{{ 'security.login.submit' | trans }}</h4>
+{% block body_callout_title %}{{ 'security.login.submit' | trans }}{% endblock %}
+
+{% block body_callout %}
         <form id="form-login" action="{{ path("fos_user_security_check") }}" method="post">
             <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
             <div class="row">
@@ -37,16 +39,17 @@
                     </div>
                 </div>
             </div>
-            <div class="row last">
+            <div class="row">
                 <div class="column">
                     <a href="{{ path('fos_user_resetting_request') }}">{{ 'text.profile.forgotPassword'|trans({}, 'messages') }}</a>
                 </div>
             </div>
         </form>
-    </div>
+{% endblock body_callout %}
 
+{% block post_body %}
     <div class="callout secondary">
         <h4>{{ 'text.registration.noAccountQuestion'|trans({}, 'messages') }}</h4>
         <a href="{{ path('fos_user_registration_register') }}" class="button expanded">{{ 'actions.register' | trans({}, 'messages') }}</a>
     </div>
-{% endblock fos_user_content %}
+{% endblock %}
