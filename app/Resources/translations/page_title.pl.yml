@@ -1,4 +1,10 @@
-register: Rejestracja
-register.finished: Zarejestrowano
-profile: Profil
-profile.edit: Edytuj profil
+register:
+    register: Rejestracja
+    confirm: Potwierdź rejestrację
+    finished: Zarejestrowano
+
+profile:
+    view: Profil
+    edit: Edytuj profil
+    changePassword: Zmień hasło
+    reset: Reset hasła

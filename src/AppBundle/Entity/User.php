@@ -5,6 +5,7 @@ namespace AppBundle\Entity;
 use DateTime;
 use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity
@@ -25,6 +26,7 @@ class User extends BaseUser
      * @var string
      *
      * @ORM\Column(type="string")
+     * @Assert\NotBlank
      */
     protected $firstName;
 
@@ -32,6 +34,7 @@ class User extends BaseUser
      * @var string
      *
      * @ORM\Column(type="string")
+     * @Assert\NotBlank
      */
     protected $lastName;
 
@@ -39,6 +42,7 @@ class User extends BaseUser
      * @var string
      *
      * @ORM\Column(type="string")
+     * @Assert\NotBlank
      */
     protected $degree;
 
@@ -46,13 +50,10 @@ class User extends BaseUser
      * @var DateTime
      *
      * @ORM\Column(type="date")
+     * @Assert\NotBlank
+     * @Assert\Date
      */
     protected $dateOfBirth;
-
-    public function __construct()
-    {
-        parent::__construct();
-    }
 
     /**
      * @return int

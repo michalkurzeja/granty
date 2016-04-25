@@ -30,7 +30,7 @@
                     <input type="password" id="password" name="_password" required="required" />
                 </div>
             </div>
-            <div class="row last">
+            <div class="row">
                 <div class="column">
                     <button type="submit" class="button inline-block" id="_submit" name="_submit">{{ 'security.login.submit'|trans }} <i class="fa fa-angle-right"></i></button>
 
@@ -38,6 +38,11 @@
                         <input type="checkbox" id="remember_me" name="_remember_me" value="on" />
                         <label for="remember_me">{{ 'security.login.remember_me'|trans }}</label>
                     </div>
+                </div>
+            </div>
+            <div class="row last">
+                <div class="column">
+                    <a href="{{ path('fos_user_resetting_request') }}">{{ 'text.profile.forgotPassword'|trans({}, 'messages') }}</a>
                 </div>
             </div>
         </form>

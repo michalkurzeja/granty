@@ -60,9 +60,18 @@ fos_user:
     db_driver: orm
     firewall_name: main
     user_class: AppBundle\Entity\User
+    from_email:
+        address:        noreply@granty.agh.edu.pl
+        sender_name:    Granty
+    profile:
+        form:
+            type: AppBundle\Form\Type\ProfileType
     registration:
+        confirmation:
+            enabled: true
         form:
             type: AppBundle\Form\Type\RegistrationType
+
 knp_menu:
     twig:
         template: layout/menu/menu.html.twig
