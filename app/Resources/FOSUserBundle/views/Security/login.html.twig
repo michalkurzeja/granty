@@ -5,15 +5,12 @@
 {% block title %}{{ 'security.login.submit'|trans }}{% endblock %}
 
 {% block fos_user_content %}
-{% if error %}
-    <div class="row">
+    {% if error %}
         <div class="callout alert">
             <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
         </div>
-    </div>
-{% endif %}
+    {% endif %}
 
-<div class="row">
     <div class="callout">
         <h4>{{ 'security.login.submit' | trans }}</h4>
         <form id="form-login" action="{{ path("fos_user_security_check") }}" method="post">
@@ -47,12 +44,9 @@
             </div>
         </form>
     </div>
-</div>
 
-<div class="row">
     <div class="callout secondary">
         <h4>{{ 'text.registration.noAccountQuestion'|trans({}, 'messages') }}</h4>
         <a href="{{ path('fos_user_registration_register') }}" class="button expanded">{{ 'actions.register' | trans({}, 'messages') }}</a>
     </div>
-</div>
 {% endblock fos_user_content %}

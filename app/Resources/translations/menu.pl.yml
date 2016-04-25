@@ -1,5 +1,6 @@
 main:
     home: Strona domowa
+    applications: Wnioski
 
 user:
     profile: Profil

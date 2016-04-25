@@ -8,3 +8,6 @@ profile:
     edit: Edytuj profil
     changePassword: Zmień hasło
     reset: Reset hasła
+
+application:
+    index: Wnioski

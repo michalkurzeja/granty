@@ -3,12 +3,14 @@
 namespace AppBundle\Entity;
 
 use DateTime;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="UserRepository")
  * @ORM\Table(name="app_user")
  */
 class User extends BaseUser
@@ -28,7 +30,7 @@ class User extends BaseUser
      * @ORM\Column(type="string")
      * @Assert\NotBlank
      */
-    protected $firstName;
+    private $firstName;
 
     /**
      * @var string
@@ -36,7 +38,7 @@ class User extends BaseUser
      * @ORM\Column(type="string")
      * @Assert\NotBlank
      */
-    protected $lastName;
+    private $lastName;
 
     /**
      * @var string
@@ -44,7 +46,7 @@ class User extends BaseUser
      * @ORM\Column(type="string")
      * @Assert\NotBlank
      */
-    protected $degree;
+    private $degree;
 
     /**
      * @var DateTime
@@ -53,7 +55,21 @@ class User extends BaseUser
      * @Assert\NotBlank
      * @Assert\Date
      */
-    protected $dateOfBirth;
+    private $dateOfBirth;
+
+    /**
+     * @var Collection
+     *
+     * @ORM\OneToMany(targetEntity="Application", mappedBy="user", orphanRemoval=true)
+     */
+    private $applications;
+
+    public function __construct()
+    {
+        $this->applications = new ArrayCollection;
+
+        parent::__construct();
+    }
 
     /**
      * @return int
@@ -125,5 +141,39 @@ class User extends BaseUser
     public function setDateOfBirth(DateTime $dateOfBirth)
     {
         $this->dateOfBirth = $dateOfBirth;
+    }
+
+    /**
+     * @return Collection
+     */
+    public function getApplications()
+    {
+        return $this->applications;
+    }
+
+    /**
+     * @param Application $application
+     */
+    public function addApplication(Application $application)
+    {
+        if (!$this->applications->contains($application)) {
+            $this->applications->add($application);
+        }
+    }
+
+    /**
+     * @param Application $application
+     */
+    public function removeApplication(Application $application)
+    {
+        $this->applications->removeElement($application);
+    }
+
+    /**
+     * @param Collection $applications
+     */
+    public function setApplications(Collection $applications)
+    {
+        $this->applications = $applications;
     }
 }

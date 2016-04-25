@@ -1,25 +1,23 @@
 {% trans_default_domain 'entities' %}
 
-<div class="row">
-    <div class="callout">
-        <h4>{{ 'profile.view' | trans({}, 'page_title') }}</h4>
-        <div class="fos_user_user_show">
-            <div class="callout primary">
-                <p>{{ 'user.username'|trans }}: {{ user.username }}</p>
-                <p>{{ 'user.email'|trans }}: {{ user.email }}</p>
-            </div>
-            <div class="callout secondary">
-                <p>{{ 'user.firstName'|trans }}: {{ user.firstName }}</p>
-                <p>{{ 'user.lastName'|trans }}: {{ user.lastName }}</p>
-                <p>{{ 'user.degree'|trans }}: {{ user.degree }}</p>
-                <p>{{ 'user.dateOfBirth'|trans }}: {{ user.dateOfBirth | date('j F Y') }}</p>
-            </div>
-            <div class="callout success">
-                <p>{{ 'text.profile.submittedApplications'|trans({}, 'messages') }}: <strong>0</strong></p>
-            </div>
-            <div class="callout warning">
-                {{ knp_menu_render('profile') }}
-            </div>
+<div class="callout">
+    <h4>{{ 'profile.view' | trans({}, 'page_title') }}</h4>
+    <div class="fos_user_user_show">
+        <div class="callout primary">
+            <p>{{ 'user.username'|trans }}: {{ user.username }}</p>
+            <p>{{ 'user.email'|trans }}: {{ user.email }}</p>
+        </div>
+        <div class="callout secondary">
+            <p>{{ 'user.firstName'|trans }}: {{ user.firstName }}</p>
+            <p>{{ 'user.lastName'|trans }}: {{ user.lastName }}</p>
+            <p>{{ 'user.degree'|trans }}: {{ user.degree }}</p>
+            <p>{{ 'user.dateOfBirth'|trans }}: {{ user.dateOfBirth | date('j F Y') }}</p>
+        </div>
+        <div class="callout success">
+            <p>{{ 'text.profile.submittedApplications'|trans({}, 'messages') }}: <strong>0</strong></p>
+        </div>
+        <div class="callout warning">
+            {{ knp_menu_render('profile') }}
         </div>
     </div>
 </div>

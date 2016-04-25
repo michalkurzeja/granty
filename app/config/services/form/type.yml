@@ -8,3 +8,8 @@ services:
         class: AppBundle\Form\Type\ProfileType
         tags:
             - { name: form.type }
+
+    app.form_type.application:
+        class: AppBundle\Form\Type\ApplicationType
+        tags:
+            - { name: form.type }

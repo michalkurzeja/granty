@@ -1,4 +1,5 @@
 @import "variables";
+@import "../../../../../bower_components/foundation-sites/scss/global";
 
 nav.top-bar {
   margin-bottom: $defaultMargin;
@@ -6,4 +7,9 @@ nav.top-bar {
 
 footer {
   text-align: center;
+}
+
+label.required::after {
+  content: ' *';
+  color: map_get($foundation-palette, alert);
 }

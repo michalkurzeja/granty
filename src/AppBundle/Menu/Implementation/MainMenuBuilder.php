@@ -20,6 +20,7 @@ class MainMenuBuilder extends MenuBuilder
         $menu = $this->createRootItem();
 
         $menu->addChild('main.home', ['route' => 'homepage']);
+        $menu->addChild('main.applications', ['route' => 'application_index']);
 
         return $menu;
     }

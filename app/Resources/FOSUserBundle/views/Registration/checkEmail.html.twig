@@ -5,9 +5,7 @@
 {% block title %}{{ 'register.confirm'|trans({}, 'page_title') }}{% endblock %}
 
 {% block fos_user_content %}
-<div class="row">
     <div class="callout primary">
         <p>{{ 'registration.check_email'|trans({'%email%': user.email}) }}</p>
     </div>
-</div>
 {% endblock fos_user_content %}
