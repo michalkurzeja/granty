@@ -1,5 +1,16 @@
 @import "variables";
 @import "../../../../../bower_components/foundation-sites/scss/global";
+@import "../../../../../bower_components/foundation-sites/scss/components/callout";
+
+@mixin contextual-classes {
+  @each $name, $color in $foundation-palette {
+    tr, td {
+      &.#{$name} {
+        @include callout-style($color);
+      }
+    }
+  }
+}
 
 nav.top-bar {
   margin-bottom: $defaultMargin;
@@ -11,5 +22,7 @@ footer {
 
 label.required::after {
   content: ' *';
-  color: map_get($foundation-palette, alert);
+  color: map-get($foundation-palette, alert);
 }
+
+@include contextual-classes;

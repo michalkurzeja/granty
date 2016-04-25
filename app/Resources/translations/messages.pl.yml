@@ -5,6 +5,7 @@ actions:
     login: Zaloguj
     logout: Wyloguj
     register: Załóż konto
+    clickHere: Kliknij tutaj
 
 text:
     registration:
@@ -12,3 +13,6 @@ text:
     profile:
         submittedApplications: Złożone wnioski
         forgotPassword: Zapomniałeś hasła?
+    application:
+        noItems: Nie złożyłeś jescze żadnego wniosku!
+        toApply: aby złożyć wniosek

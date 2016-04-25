@@ -3,7 +3,7 @@ services:
         class: AppBundle\Menu\MenuBuilder
         arguments:
             - "@knp_menu.factory"
-            - "@security.token_storage"
+            - "@app.util.current_user_provider"
 
     app.menu.builder.main:
         class: AppBundle\Menu\Implementation\MainMenuBuilder

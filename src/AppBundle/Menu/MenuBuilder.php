@@ -2,6 +2,7 @@
 
 namespace AppBundle\Menu;
 
+use AppBundle\Service\Util\CurrentUserProvider\CurrentUserProvider;
 use Knp\Menu\FactoryInterface;
 use Knp\Menu\ItemInterface;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
@@ -18,17 +19,17 @@ abstract class MenuBuilder
 
     /** @var FactoryInterface */
     private $factory;
-    /** @var TokenStorageInterface */
-    private $tokenStorage;
+    /** @var CurrentUserProvider */
+    private $currentUserProvider;
 
     /**
      * @param FactoryInterface $factory
-     * @param TokenStorageInterface $tokenStorage
+     * @param CurrentUserProvider $currentUserProvider
      */
-    public function __construct(FactoryInterface $factory, TokenStorageInterface $tokenStorage)
+    public function __construct(FactoryInterface $factory, CurrentUserProvider $currentUserProvider)
     {
         $this->factory = $factory;
-        $this->tokenStorage = $tokenStorage;
+        $this->currentUserProvider = $currentUserProvider;
     }
 
     /**
@@ -44,10 +45,9 @@ abstract class MenuBuilder
      */
     protected function isUserLogged()
     {
-        $token = $this->tokenStorage->getToken();
+        $user = $this->currentUserProvider->getCurrentUser();
 
-        return $token instanceof TokenInterface
-            && $token->getUser() instanceof UserInterface;
+        return $user instanceof UserInterface;
     }
 
     /**

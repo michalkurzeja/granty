@@ -1,5 +1,5 @@
 services:
-    app.registration.user_password_manager:
-        class: AppBundle\Service\Util\UserPasswordManager\UserPasswordManager
+    app.util.current_user_provider:
+        class: AppBundle\Service\Util\CurrentUserProvider\CurrentUserProvider
         arguments:
-            - "@security.password_encoder"
+            - "@security.token_storage"

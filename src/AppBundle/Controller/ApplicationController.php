@@ -17,6 +17,8 @@ class ApplicationController extends Controller
      */
     public function indexAction()
     {
-        return $this->render('application/index.html.twig');
+        return $this->render('application/index.html.twig', [
+            'applications' => $this->getUser()->getApplications()
+        ]);
     }
 }

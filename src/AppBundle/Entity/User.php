@@ -10,7 +10,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * @ORM\Entity(repositoryClass="UserRepository")
+ * @ORM\Entity
  * @ORM\Table(name="app_user")
  */
 class User extends BaseUser

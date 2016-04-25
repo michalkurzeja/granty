@@ -1,4 +1,5 @@
 imports:
+    - { resource: services/association_setter.yml }
     - { resource: services/form.yml }
     - { resource: services/menu.yml }
     - { resource: services/util.yml }

@@ -11,5 +11,8 @@ services:
 
     app.form_type.application:
         class: AppBundle\Form\Type\ApplicationType
+        arguments:
+            - "@app.util.current_user_provider"
+            - "@app.association_setter.user_applications"
         tags:
             - { name: form.type }
