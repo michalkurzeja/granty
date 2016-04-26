@@ -1,4 +1,5 @@
 @import "../../../../../bower_components/foundation-sites/scss/global";
+@import "../../../../../bower_components/foundation-sites/scss/util/color";
 @import "../../../../../bower_components/foundation-sites/scss/components/callout";
 @import "variables";
 
@@ -14,9 +15,21 @@
   }
 }
 
+@mixin status-colors {
+  @each $name, $class in $application-status-class-map {
+    .#{$name} {
+      $color: map-get($foundation-palette, $class);
+
+      background: $color;
+      color: foreground($color);
+    }
+  }
+}
+
 /** Includes **/
 
 @include contextual-classes;
+@include status-colors;
 
 /** Rules **/
 

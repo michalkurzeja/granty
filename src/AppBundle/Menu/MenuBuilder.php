@@ -60,4 +60,14 @@ abstract class MenuBuilder
 
         return $menu;
     }
+
+    /**
+     * @return ItemInterface
+     */
+    protected function createRootListItem()
+    {
+        $menu = $this->getFactory()->createItem('root');
+
+        return $menu;
+    }
 }

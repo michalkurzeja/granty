@@ -2,6 +2,14 @@ $defaultMarginSmall: 1rem;
 $defaultMargin: 1.5rem;
 $defaultMarginLarge: 2rem;
 
+$application-status-class-map: (
+  created: primary,
+  submitted: secondary,
+  accepted: success,
+  rejected: alert,
+  appealed: warning,
+) !default;
+
 // ** Overrides ** //
 
 $tooltip-padding: 0.5rem;

@@ -1,2 +1,6 @@
+general:
+    saved: Zapisano zmiany!
+
 application:
     added: Utworzono wniosek!
+    removed: Usunięto wniosek!

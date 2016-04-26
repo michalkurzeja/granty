@@ -49,4 +49,43 @@ class ApplicationController extends Controller
             'form' => $form->createView()
         ]);
     }
+
+    /**
+     * @param Application $application
+     * @param Request $request
+     * @return Response
+     *
+     * @Route("/{application}/edit", name="application_edit")
+     */
+    public function editAction(Application $application, Request $request)
+    {
+        $form = $this->createForm(ApplicationType::class, $application);
+
+        if ($form->handleRequest($request)->isValid()) {
+            $this->flush();
+
+            $this->addSuccessFlash('general.saved');
+
+            return $this->redirectToRoute('application_index');
+        }
+
+        return $this->render('application/edit.html.twig', [
+            'form' => $form->createView()
+        ]);
+    }
+
+    /**
+     * @param Application $application
+     * @return Response
+     *
+     * @Route("/{application}/remove", name="application_remove")
+     */
+    public function removeAction(Application $application)
+    {
+        $this->removeAndFlush($application);
+
+        $this->addInfoFlash('application.removed');
+
+        return $this->redirectToRoute('application_index');
+    }
 }

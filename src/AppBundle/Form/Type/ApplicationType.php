@@ -132,7 +132,7 @@ class ApplicationType extends AbstractType implements EventSubscriberInterface
     {
         /** @var Application $application */
         $application = $event->getData();
-        $user = $this->currentUserProvider->getCurrentUser();
+        $user = $this->getCurrentUser();
 
         $this->associationSetter->set($user, $application);
     }

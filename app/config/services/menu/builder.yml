@@ -1,0 +1,30 @@
+services:
+    app.menu.builder:
+        class: AppBundle\Menu\MenuBuilder
+        arguments:
+            - "@knp_menu.factory"
+            - "@app.util.current_user_provider"
+
+    app.menu.builder.main:
+        class: AppBundle\Menu\Implementation\MainMenuBuilder
+        parent: app.menu.builder
+        tags:
+            - { name: knp_menu.menu_builder, method: build, alias: main }
+
+    app.menu.builder.user:
+        class: AppBundle\Menu\Implementation\UserMenuBuilder
+        parent: app.menu.builder
+        tags:
+            - { name: knp_menu.menu_builder, method: build, alias: user }
+
+    app.menu.builder.profile:
+        class: AppBundle\Menu\Implementation\ProfileMenuBuilder
+        parent: app.menu.builder
+        tags:
+            - { name: knp_menu.menu_builder, method: build, alias: profile }
+
+    app.menu.builder.actions.application:
+        class: AppBundle\Menu\Implementation\Actions\ApplicationActionsMenuBuilder
+        parent: app.menu.builder
+        tags:
+            - { name: knp_menu.menu_builder, method: build, alias: actions.application }

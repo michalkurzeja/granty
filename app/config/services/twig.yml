@@ -1,0 +1,5 @@
+services:
+    app.twig.extension.menu:
+        class: AppBundle\Twig\MenuExtension
+        tags:
+            - { name: twig.extension }

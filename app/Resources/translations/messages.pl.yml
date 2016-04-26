@@ -8,6 +8,8 @@ actions:
     clickHere: Kliknij tutaj
 
 buttons:
+    general:
+        save: Zapisz zmiany
     application:
         add: Utwórz wniosek
 

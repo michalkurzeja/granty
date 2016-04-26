@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use AppBundle\Enums\ApplicationStatus;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -123,11 +124,23 @@ class Application
     private $organizationDirector;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(type="string", length=10)
+     */
+    private $status;
+
+    /**
      * @var User
      *
      * @ORM\ManyToOne(targetEntity="User", inversedBy="applications")
      */
     private $user;
+
+    public function __construct()
+    {
+        $this->setStatus(ApplicationStatus::CREATED());
+    }
 
     /**
      * @return int
@@ -359,6 +372,30 @@ class Application
     public function setOrganizationDirector($organizationDirector)
     {
         $this->organizationDirector = $organizationDirector;
+    }
+
+    /**
+     * @return ApplicationStatus
+     */
+    public function getStatus()
+    {
+        return new ApplicationStatus($this->status);
+    }
+
+    /**
+     * @param ApplicationStatus $status
+     */
+    public function setStatus(ApplicationStatus $status)
+    {
+        $this->status = $status->getValue();
+    }
+
+    /**
+     * @return bool
+     */
+    public function isEditable()
+    {
+        return $this->getStatus() == ApplicationStatus::CREATED;
     }
 
     /**

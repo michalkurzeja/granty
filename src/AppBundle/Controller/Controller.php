@@ -55,9 +55,26 @@ class Controller extends BaseController
     /**
      * @param $entity
      */
+    protected function removeAndFlush($entity)
+    {
+        $this->remove($entity);
+        $this->flush();
+    }
+
+    /**
+     * @param $entity
+     */
     protected function persist($entity)
     {
         $this->getManager()->persist($entity);
+    }
+
+    /**
+     * @param $entity
+     */
+    protected function remove($entity)
+    {
+        $this->getManager()->remove($entity);
     }
 
     protected function flush()

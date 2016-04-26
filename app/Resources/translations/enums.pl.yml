@@ -1,0 +1,6 @@
+applicationStatus:
+    created: Utworzony
+    submitted: Złożony
+    accepted: Przyjęty
+    rejected: Odrzucony
+    appealed: Odwołany

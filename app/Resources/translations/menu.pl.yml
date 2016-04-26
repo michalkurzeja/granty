@@ -1,6 +1,6 @@
 main:
     home: Strona domowa
-    applications: Wnioski
+    applications: Moje wnioski
 
 user:
     profile: Profil
@@ -10,3 +10,8 @@ user:
 profile:
     edit: Edytuj profil
     changePassword: Zmień hasło
+
+actions:
+    application:
+        edit: Zmień
+        remove: Usuń

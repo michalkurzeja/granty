@@ -13,29 +13,35 @@
     </div>
 
     {% if not applications.empty %}
-    <table class="hover">
-        <thead>
-            <tr>
-                <th>#</th>
-                <th>Topic</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for application in applications %}
-                <tr>
-                    <td>{{ application.id }}</td>
-                    <td>{{ application.topic }}</td>
-                    <td>-</td>
-                </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+    <div class="row">
+        <div class="column">
+            <table class="hover">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Topic</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for application in applications %}
+                        <tr>
+                            <td>{{ application.id }}</td>
+                            <td>{{ application.topic }}</td>
+                            <td><span class="label {{ application.status }}">{{ application.status }}</span></td>
+                            <td>{{ menu('actions.application', {'application': application}) }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
     {% else %}
         <div class="callout secondary">
             <i class="fa fa-info-circle" aria-hidden="true"></i>
             {{ 'text.application.noItems'|trans }}
-            <a href="{{ path('application_add') }}">{{ 'actions.clickHere'|trans }}</a>
+            <a href="{{ path('application_add') }}" data-confirm data-confirm-text="Jesteś pewien?">{{ 'actions.clickHere'|trans }}</a>
             {{ 'text.application.toApply'|trans }}.
         </div>
     {% endif %}

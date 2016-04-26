@@ -26,7 +26,8 @@ gulp.task('compile-js', function() {
                 'bower_components/what-input/what-input.min.js',
                 'bower_components/foundation-sites/dist/foundation.min.js'
             ]),
-            minifyJsInline(['app/Resources/public/js/main.js'])
+            minifyJsInline(['app/Resources/public/js/main.js']),
+            minifyJsInline(['app/Resources/public/js/reveal-confirm.js'])
         )
         .pipe(sourcemaps.init({loadMaps: true}))
         .pipe(concat('bundled.min.js'))
@@ -60,7 +61,7 @@ gulp.task('default', ['clean'], function () {
 
 gulp.task('watch', function () {
     gulp.watch(['app/Resources/public/sass/*.scss', 'app/Resources/public/sass/components/*.scss'], ['compile-sass']);
-    gulp.watch('app/Resources/public/js/main.js', ['compile-js']);
+    gulp.watch('app/Resources/public/js/*.js', ['compile-js']);
 });
 
 function minifyJsInline(src) {
