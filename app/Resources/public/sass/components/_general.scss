@@ -1,6 +1,8 @@
-@import "variables";
 @import "../../../../../bower_components/foundation-sites/scss/global";
 @import "../../../../../bower_components/foundation-sites/scss/components/callout";
+@import "variables";
+
+/** Mixin definitions **/
 
 @mixin contextual-classes {
   @each $name, $color in $foundation-palette {
@@ -11,6 +13,12 @@
     }
   }
 }
+
+/** Includes **/
+
+@include contextual-classes;
+
+/** Rules **/
 
 nav.top-bar {
   margin-bottom: $defaultMargin;
@@ -29,11 +37,16 @@ footer {
   text-align: center;
 }
 
-label.required::after {
-  content: ' *';
-  color: map-get($foundation-palette, alert);
-}
+label {
+  display: inline-block;
 
+  &.required {
+    &::after {
+      content: ' *';
+      color: map-get($foundation-palette, alert);
+    }
+  }
+}
 .row:last-child {
   button, input {
     margin-bottom: 0;
@@ -45,4 +58,12 @@ label.required::after {
   margin-bottom: 0;
 }
 
-@include contextual-classes;
+.tooltip {
+  &.tooltip-icon {
+    max-width: 20rem !important;
+  }
+}
+
+.helper-text-icon {
+  margin-left: 0.2rem;
+}

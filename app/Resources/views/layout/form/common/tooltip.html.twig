@@ -1,0 +1,3 @@
+{% macro icon(iconClass, text, position, translationDomain) %}
+    <i class="fa {{ iconClass }} {{ position }} helper-text-icon" title="{{ text|trans({}, translationDomain) }}" data-tooltip data-tooltip-class="tooltip tooltip-icon" aria-hidden="true" aria-haspopup="true"></i>
+{% endmacro %}

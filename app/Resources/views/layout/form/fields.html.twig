@@ -1,1 +1,21 @@
 {% extends 'layout/form/foundation_5_layout.html.twig' %}
+
+{%- block form_label -%}
+    {%- import 'layout/form/common/tooltip.html.twig' as tooltip -%}
+
+    {{- parent() -}}
+
+    {%- if helper_text -%}
+        {{ tooltip.icon('fa-question-circle', helper_text, 'right', 'entities') }}
+    {%- endif -%}
+{%- endblock form_label -%}
+
+{% block checkbox_radio_label -%}
+    {%- import 'layout/form/common/tooltip.html.twig' as tooltip -%}
+
+    {{- parent() -}}
+
+    {%- if helper_text -%}
+        {{ tooltip.icon('fa-question-circle', helper_text, 'right', 'entities') }}
+    {%- endif -%}
+{% endblock checkbox_radio_label -%}

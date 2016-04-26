@@ -43,6 +43,7 @@ class ApplicationType extends AbstractType implements EventSubscriberInterface
         $builder
             ->add('year', NumberType::class, [
                 'label' => 'application.year',
+                'helper_text' => 'description.application.year',
             ])
             ->add('topic', TextType::class, [
                 'label' => 'application.topic',
@@ -50,40 +51,50 @@ class ApplicationType extends AbstractType implements EventSubscriberInterface
             ->add('meritoricJustification', TextareaType::class, [
                 'required' => false,
                 'label' => 'application.meritoricJustification',
+                'helper_text' => 'description.application.meritoricJustification',
             ])
             ->add('currentKnowledge', TextareaType::class, [
                 'required' => false,
                 'label' => 'application.currentKnowledge',
+                'helper_text' => 'description.application.currentKnowledge',
             ])
             ->add('scientificAchievements', TextareaType::class, [
                 'required' => false,
                 'label' => 'application.scientificAchievements',
+                'helper_text' => 'description.application.scientificAchievements',
             ])
             ->add('applicantsProjects', TextareaType::class, [
                 'required' => false,
                 'label' => 'application.applicantsProjects',
+                'helper_text' => 'description.application.applicantsProjects',
             ])
             ->add('forseeableGoals', TextareaType::class, [
                 'required' => false,
                 'label' => 'application.forseeableGoals',
+                'helper_text' => 'description.application.forseeableGoals',
             ])
             ->add('scheduleOfWork', TextareaType::class, [
                 'required' => false,
                 'label' => 'application.scheduleOfWork',
+                'helper_text' => 'description.application.scheduleOfWork',
             ])
             ->add('externalFinancing', CheckboxType::class, [
                 'required' => false,
                 'label' => 'application.externalFinancing',
+                'helper_text' => 'description.application.externalFinancing',
             ])
             ->add('plannedExpensesTotal', NumberType::class, [
                 'label' => 'application.plannedExpensesTotal',
+                'helper_text' => 'description.application.plannedExpensesTotal',
             ])
             ->add('plannedExpensesInCurrentYear', NumberType::class, [
                 'label' => 'application.plannedExpensesInCurrentYear',
+                'helper_text' => 'description.application.plannedExpensesInCurrentYear',
             ])
             ->add('expensesExplanation', TextareaType::class, [
                 'required' => false,
                 'label' => 'application.expensesExplanation',
+                'helper_text' => 'description.application.expensesExplanation',
             ])
             ->add('projectDirector', TextType::class, [
                 'label' => 'application.projectDirector',
