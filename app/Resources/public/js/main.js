@@ -1,7 +1,12 @@
 (function($) {
     $(function() {
         $(document).foundation();
-        $(document).confirm();
+        $(document).confirm({
+            label: {
+                confirm: 'Tak',
+                cancel: 'Anuluj'
+            }
+        });
     });
 })(jQuery);
 

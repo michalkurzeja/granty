@@ -37,14 +37,19 @@
                         '</button>' +
                         '<div class="row">' +
                             '<div class="column">' +
+                                '<h4>' + settings.title + '</h4>' +
+                            '</div>' +
+                        '</div>' +
+                        '<div class="row">' +
+                            '<div class="column">' +
                                 '<p>' + settings.text + '</p>' +
                                 '<hr>' +
                             '</div>' +
                         '</div>' +
                         '<div class="row">' +
-                            '<div class="column">' +
-                                '<button class="button warning" data-button-confirm="1">' + settings.label.confirm + '</button>' +
-                                '<button class="button" data-button-confirm="0">' + settings.label.cancel + '</button>' +
+                            '<div class="column button-group">' +
+                                '<button class="button alert" data-button-confirm="1">' + settings.label.confirm + '</button>' +
+                                '<button class="button secondary hollow" data-button-confirm="0">' + settings.label.cancel + '</button>' +
                             '</div>' +
                         '</div>' +
                     '</div>' +
@@ -64,6 +69,7 @@
                 var options = {};
 
                 options['text'] = $element.data('confirm-text');
+                options['title'] = $element.data('confirm-title');
 
                 return options;
             }
@@ -71,6 +77,7 @@
             function resolvePluginSettings(pluginSettings) {
                 return resolveSettings({
                     text: 'Are you sure?',
+                    title: '',
                     label: {
                         confirm: 'Confirm',
                         cancel: 'Cancel'
