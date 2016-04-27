@@ -61,6 +61,14 @@ label {
     }
   }
 }
+
+ul {
+  &.unsigned {
+    list-style-type: none;
+    margin-left: 0;
+  }
+}
+
 .row:last-child {
   button, input {
     margin-bottom: 0;
@@ -90,8 +98,13 @@ label {
 
 .menu {
   > li {
+    &.unsigned {
+      list-style-type: none;
+      margin-left: 0;
+    }
+
     > form {
-      padding: $menu-item-padding;
+      padding: 0 $global-padding;
     }
   }
   &.separated {

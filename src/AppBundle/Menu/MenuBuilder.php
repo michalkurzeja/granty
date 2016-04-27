@@ -63,7 +63,7 @@ abstract class MenuBuilder
      */
     protected function createRootListItem()
     {
-        return $this->createRootItem();
+        return $this->createRootItem('unsigned');
     }
 
     /**
@@ -86,7 +86,7 @@ abstract class MenuBuilder
     {
         return isset($options['class'])
             ? $options['class']
-            : '';
+            : 'unsigned';
     }
 
     /**

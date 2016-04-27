@@ -20,7 +20,8 @@
     <div class="callout success">
         <p>{{ 'text.profile.submittedApplications'|trans({}, 'messages') }}: <strong>0</strong></p>
     </div>
-    <div class="callout warning">
-        {{ menu('profile') }}
-    </div>
 {% endblock body_callout %}
+
+{% block actions %}
+    {{ callout_menu('profile') }}
+{% endblock %}

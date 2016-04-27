@@ -13,7 +13,7 @@ class ProfileMenuBuilder extends MenuBuilder
      */
     public function build(array $options)
     {
-        $menu = $this->createRootMenuItem();
+        $menu = $this->createRootItem($this->getMenuClass($options));
 
         $menu
             ->addChild('profile.edit', ['route' => 'fos_user_profile_edit'])
