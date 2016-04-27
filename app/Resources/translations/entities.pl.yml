@@ -22,6 +22,10 @@ application:
     expensesExplanation: Uzasadnienie kosztorysu
     projectDirector: Kierownik pracy
     organizationDirector: Kierownik jednostki organizacyjnej
+    attachment: Załącznik
+
+attachment:
+    file: Wybierz plik
 
 description:
     application:

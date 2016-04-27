@@ -5,6 +5,8 @@ namespace AppBundle\Form\Type;
 use AppBundle\Entity\Application;
 use AppBundle\Entity\User;
 use AppBundle\Service\AssociationSetter\AssociationSetterInterface;
+use AppBundle\Service\AssociationSetter\Implementation\ApplicationAttachmentsSetter;
+use AppBundle\Service\AssociationSetter\Implementation\UserApplicationsSetter;
 use AppBundle\Service\Util\CurrentUserProvider\CurrentUserProvider;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\Form\AbstractType;
@@ -21,17 +23,24 @@ class ApplicationType extends AbstractType implements EventSubscriberInterface
 {
     /** @var CurrentUserProvider */
     private $currentUserProvider;
-    /** @var AssociationSetterInterface */
-    private $associationSetter;
+    /** @var UserApplicationsSetter */
+    private $userApplicationsSetter;
+    /** @var ApplicationAttachmentsSetter */
+    private $applicationAttachmentsSetter;
 
     /**
      * @param CurrentUserProvider $currentUserProvider
-     * @param AssociationSetterInterface $associationSetter
+     * @param UserApplicationsSetter $userApplicationsSetter
+     * @param ApplicationAttachmentsSetter $applicationAttachmentsSetter
      */
-    public function __construct(CurrentUserProvider $currentUserProvider, AssociationSetterInterface $associationSetter)
-    {
+    public function __construct(
+        CurrentUserProvider $currentUserProvider,
+        UserApplicationsSetter $userApplicationsSetter,
+        ApplicationAttachmentsSetter $applicationAttachmentsSetter
+    ) {
         $this->currentUserProvider = $currentUserProvider;
-        $this->associationSetter = $associationSetter;
+        $this->userApplicationsSetter = $userApplicationsSetter;
+        $this->applicationAttachmentsSetter = $applicationAttachmentsSetter;
     }
 
     /**
@@ -103,6 +112,10 @@ class ApplicationType extends AbstractType implements EventSubscriberInterface
                 'required' => false,
                 'label' => 'application.organizationDirector',
             ])
+            ->add('attachment', AttachmentType::class, [
+                'required' => false,
+                'label' => 'application.attachment'
+            ])
         ;
 
         $builder->addEventSubscriber($this);
@@ -134,7 +147,8 @@ class ApplicationType extends AbstractType implements EventSubscriberInterface
         $application = $event->getData();
         $user = $this->getCurrentUser();
 
-        $this->associationSetter->set($user, $application);
+        $this->userApplicationsSetter->set($user, $application);
+        $this->applicationAttachmentsSetter->set($application, $application->getAttachment());
     }
 
     /**

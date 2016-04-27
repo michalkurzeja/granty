@@ -1,0 +1,12 @@
+services:
+    app.listener.attachment.file_remove:
+        class: AppBundle\Listener\Attachment\AttachmentFileRemoveListener
+        arguments:
+            - "@doctrine.orm.entity_manager"
+        tags:
+            - { name: kernel.event_listener, event: vich_uploader.pre_remove, method: removeAttachment }
+
+    app.listener.attachment.original_name:
+        class: AppBundle\Listener\Attachment\AttachmentOriginalNameListener
+        tags:
+            - { name: kernel.event_listener, event: vich_uploader.pre_upload, method: saveOriginalName }

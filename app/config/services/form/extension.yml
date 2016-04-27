@@ -3,3 +3,10 @@ services:
         class: AppBundle\Form\Extension\FormTypeExtension
         tags:
             - { name: form.type_extension, extended_type: Symfony\Component\Form\Extension\Core\Type\FormType }
+
+    app.form_extension.vic_file:
+        class: AppBundle\Form\Extension\VicFileTypeExtension
+        arguments:
+            - "@router"
+        tags:
+            - { name: form.type_extension, extended_type: Vich\UploaderBundle\Form\Type\VichFileType }

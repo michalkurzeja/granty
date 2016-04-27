@@ -34,7 +34,7 @@
 /** Rules **/
 
 nav.top-bar {
-  margin-bottom: $defaultMargin;
+  margin-bottom: $global-margin-large;
   color: $topbar-text-color;
 
   a {
@@ -79,4 +79,10 @@ label {
 
 .helper-text-icon {
   margin-left: 0.2rem;
+}
+
+.selected-file-name {
+  display: inline-block;
+  vertical-align: middle;
+  margin: 0 0 $global-margin $global-margin;
 }

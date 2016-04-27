@@ -14,5 +14,11 @@ services:
         arguments:
             - "@app.util.current_user_provider"
             - "@app.association_setter.user_applications"
+            - "@app.association_setter.application_attachments"
+        tags:
+            - { name: form.type }
+
+    app.form_type.attachment:
+        class: AppBundle\Form\Type\AttachmentType
         tags:
             - { name: form.type }

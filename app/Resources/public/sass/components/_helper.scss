@@ -1,17 +1,30 @@
+@import "../../../../../bower_components/foundation-sites/scss/global";
 @import "variables";
 
-/* Margin classes */
-.margin-right-small {
-  margin-right: $defaultMarginSmall;
+@mixin margin-classes {
+  @each $side in $sides {
+    .margin-#{$side} {
+      margin-#{$side}: $global-margin;
+    }
+
+    .margin-#{$side}-large {
+      margin-#{$side}: $global-margin-large;
+    }
+  }
 }
 
-.margin-right {
-  margin-right: $defaultMargin;
-}
+/* Margin classes */
+
+@include margin-classes;
+
 /* ------------------- */
 
 /* Display classes */
 .inline-block {
   display: inline-block;
+}
+
+.middle {
+  vertical-align: middle;
 }
 /* ------------------- */

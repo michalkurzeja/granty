@@ -1,0 +1,24 @@
+{% use '@VichUploader/Form/fields.html.twig' %}
+
+{% block vich_file_label %}{% endblock %} {# don't display label here, file label takes care of that for us #}
+
+{% block vich_file_widget %}
+    {% spaceless %}
+        <div class="vich-file callout">
+            {{ form_row(form.file) }}
+
+            <div class="row">
+                <div class="column">
+                    {% if download_uri is defined and download_uri %}
+                        <a href="{{ download_uri }}" class="inline-block middle"><i class="fa fa-floppy-o" aria-hidden="true"></i> {{ original_name }}</a>
+                    {% endif %}
+                    {% if form.delete is defined %}
+                        <div class="inline-block middle margin-left">
+                        {{ form_row(form.delete) }}
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    {% endspaceless %}
+{% endblock %}

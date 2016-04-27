@@ -1,3 +1,4 @@
+@import "../../../../../bower_components/foundation-sites/scss/global";
 @import "variables";
 
 .top-bar {
@@ -8,5 +9,9 @@
 
 .remember-me {
   display: inline-block;
-  margin-left: $defaultMarginSmall;
+  margin-left: $global-margin;
+}
+
+.vich-file {
+  margin-bottom: $global-margin;
 }

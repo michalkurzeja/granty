@@ -1,6 +1,4 @@
-$defaultMarginSmall: 1rem;
-$defaultMargin: 1.5rem;
-$defaultMarginLarge: 2rem;
+$global-margin-large: 1.5rem;
 
 $application-status-class-map: (
   created: primary,
@@ -8,6 +6,13 @@ $application-status-class-map: (
   accepted: success,
   rejected: alert,
   appealed: warning,
+) !default;
+
+$sides: (
+  top,
+  right,
+  bottom,
+  left
 ) !default;
 
 // ** Overrides ** //

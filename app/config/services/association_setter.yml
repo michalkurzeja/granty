@@ -1,3 +1,6 @@
 services:
+    app.association_setter.application_attachments:
+        class: AppBundle\Service\AssociationSetter\Implementation\ApplicationAttachmentsSetter
+
     app.association_setter.user_applications:
         class: AppBundle\Service\AssociationSetter\Implementation\UserApplicationsSetter

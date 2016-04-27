@@ -131,6 +131,13 @@ class Application
     private $status;
 
     /**
+     * @var Attachment
+     *
+     * @ORM\OneToOne(targetEntity="Attachment", mappedBy="application", cascade={"persist", "remove"})
+     */
+    private $attachment;
+
+    /**
      * @var User
      *
      * @ORM\ManyToOne(targetEntity="User", inversedBy="applications")
@@ -396,6 +403,27 @@ class Application
     public function isEditable()
     {
         return $this->getStatus() == ApplicationStatus::CREATED;
+    }
+
+    /**
+     * @return Attachment
+     */
+    public function getAttachment()
+    {
+        return $this->attachment;
+    }
+
+    /**
+     * @param Attachment $attachment
+     */
+    public function setAttachment(Attachment $attachment = null)
+    {
+        $this->attachment = $attachment;
+    }
+
+    public function clearAttachments()
+    {
+        $this->setAttachment(null);
     }
 
     /**

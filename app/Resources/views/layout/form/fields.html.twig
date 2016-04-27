@@ -1,5 +1,7 @@
 {% extends 'layout/form/foundation_5_layout.html.twig' %}
 
+{% use 'layout/form/fields/vic_fileupload_fields.html.twig' %}
+
 {%- block form_label -%}
     {%- import 'layout/form/common/tooltip.html.twig' as tooltip -%}
 
@@ -19,3 +21,10 @@
         {{ tooltip.icon('fa-question-circle', helper_text, 'right', 'entities') }}
     {%- endif -%}
 {% endblock checkbox_radio_label -%}
+
+{% block file_row %}
+    {{- form_label(form, label, { 'label_attr': {'class': 'button hollow small'} }) -}}
+    <span class="selected-file-name"></span>
+    {{- form_widget(form, { 'attr': {'class': 'show-for-sr'} }) -}}
+    {{- form_errors(form) -}}
+{% endblock %}
