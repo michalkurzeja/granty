@@ -19,9 +19,9 @@
                 <thead>
                     <tr>
                         <th>#</th>
-                        <th>Topic</th>
-                        <th>Status</th>
-                        <th>Actions</th>
+                        <th>{{ 'application.topic'|trans({}, 'entities') }}</th>
+                        <th>{{ 'application.status'|trans({}, 'entities') }}</th>
+                        <th>{{ 'actions.actions'|trans() }}</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -29,7 +29,7 @@
                         <tr>
                             <td>{{ application.id }}</td>
                             <td>{{ application.topic }}</td>
-                            <td><span class="label {{ application.status }}">{{ application.status }}</span></td>
+                            <td><span class="label {{ application.status }}">{{ ('applicationStatus.' ~ application.status)|trans({}, 'enums') }}</span></td>
                             <td>{{ menu('actions.application', {'application': application}) }}</td>
                         </tr>
                     {% endfor %}

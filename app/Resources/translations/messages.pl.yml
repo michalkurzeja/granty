@@ -6,6 +6,7 @@ actions:
     logout: Wyloguj
     register: Załóż konto
     clickHere: Kliknij tutaj
+    actions: Akcje
 
 buttons:
     general:
@@ -14,6 +15,7 @@ buttons:
         add: Utwórz wniosek
 
 text:
+    agh: Akademia Górniczo-Hutnicza im. Stanisława Staszica w Krakowie
     registration:
         noAccountQuestion: Nie posiadasz konta?
     profile:
