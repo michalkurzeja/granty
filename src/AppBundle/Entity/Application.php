@@ -441,4 +441,13 @@ class Application
     {
         $this->user = $user;
     }
+
+    /**
+     * @param User $user
+     * @return bool
+     */
+    public function isOwner(User $user)
+    {
+        return $this->user === $user;
+    }
 }

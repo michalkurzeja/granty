@@ -4,6 +4,7 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\Application;
 use AppBundle\Form\Type\ApplicationType;
+use AppBundle\Voter\Actions\VoterActions;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -22,6 +23,19 @@ class ApplicationController extends Controller
     {
         return $this->render('application/index.html.twig', [
             'applications' => $this->getUser()->getApplications()
+        ]);
+    }
+
+    /**
+     * @param Application $application
+     * @return Response
+     *
+     * @Route("/{application}/view", name="application_view")
+     */
+    public function viewAction(Application $application)
+    {
+        return $this->render('application/view.html.twig', [
+            'application' => $application,
         ]);
     }
 
@@ -46,7 +60,7 @@ class ApplicationController extends Controller
         }
 
         return $this->render('application/add.html.twig', [
-            'form' => $form->createView()
+            'form' => $form->createView(),
         ]);
     }
 
@@ -59,6 +73,8 @@ class ApplicationController extends Controller
      */
     public function editAction(Application $application, Request $request)
     {
+        $this->denyAccessUnlessGranted(VoterActions::EDIT, $application);
+
         $form = $this->createForm(ApplicationType::class, $application);
 
         if ($form->handleRequest($request)->isValid()) {
@@ -70,7 +86,8 @@ class ApplicationController extends Controller
         }
 
         return $this->render('application/edit.html.twig', [
-            'form' => $form->createView()
+            'form' => $form->createView(),
+            'application' => $application,
         ]);
     }
 
@@ -82,6 +99,8 @@ class ApplicationController extends Controller
      */
     public function removeAction(Application $application)
     {
+        $this->denyAccessUnlessGranted(VoterActions::REMOVE, $application);
+
         $this->removeAndFlush($application);
 
         $this->addInfoFlash('application.removed');

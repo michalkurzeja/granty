@@ -30,7 +30,7 @@
                             <td>{{ application.id }}</td>
                             <td>{{ application.topic }}</td>
                             <td><span class="label {{ application.status }}">{{ ('applicationStatus.' ~ application.status)|trans({}, 'enums') }}</span></td>
-                            <td>{{ menu('actions.application', {'application': application}) }}</td>
+                            <td>{{ menu('actions.application', {'application': application, 'include_index': false}) }}</td>
                         </tr>
                     {% endfor %}
                 </tbody>

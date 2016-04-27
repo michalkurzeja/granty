@@ -13,5 +13,7 @@ profile:
 
 actions:
     application:
+        index: Wnioski
+        view: Zobacz
         edit: Zmień
         remove: Usuń

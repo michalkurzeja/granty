@@ -17,7 +17,7 @@ class MainMenuBuilder extends MenuBuilder
             return $this->getMenuForAnonymousUser();
         }
 
-        $menu = $this->createRootItem();
+        $menu = $this->createRootMenuItem();
 
         $menu->addChild('main.home', ['route' => 'homepage']);
         $menu->addChild('main.applications', ['route' => 'application_index']);
@@ -27,6 +27,6 @@ class MainMenuBuilder extends MenuBuilder
 
     private function getMenuForAnonymousUser()
     {
-        return $this->createRootItem();
+        return $this->createRootMenuItem();
     }
 }

@@ -1,0 +1,7 @@
+{% extends 'layout/base.html.twig' %}
+
+{% block title %}{{ 'application.view'|trans({}, 'page_title') }}: {{ application.topic }}{% endblock %}
+
+{% block actions %}
+    {{ callout_menu('actions.application', {'application': application, 'include_view': false}) }}
+{% endblock %}

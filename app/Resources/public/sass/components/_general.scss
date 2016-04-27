@@ -1,6 +1,7 @@
 @import "../../../../../bower_components/foundation-sites/scss/global";
 @import "../../../../../bower_components/foundation-sites/scss/util/color";
 @import "../../../../../bower_components/foundation-sites/scss/components/callout";
+@import "../../../../../bower_components/foundation-sites/scss/components/menu";
 @import "variables";
 
 /** Mixin definitions **/
@@ -85,4 +86,17 @@ label {
   display: inline-block;
   vertical-align: middle;
   margin: 0 0 $global-margin $global-margin;
+}
+
+.menu {
+  > li {
+    > form {
+      padding: $menu-item-padding;
+    }
+  }
+  &.separated {
+    li + li {
+      border-left: $callout-border;
+    }
+  }
 }

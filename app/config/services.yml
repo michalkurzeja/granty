@@ -5,3 +5,4 @@ imports:
     - { resource: services/menu.yml }
     - { resource: services/twig.yml }
     - { resource: services/util.yml }
+    - { resource: services/voter.yml }

@@ -53,12 +53,9 @@ abstract class MenuBuilder
     /**
      * @return ItemInterface
      */
-    protected function createRootItem()
+    protected function createRootMenuItem()
     {
-        $menu = $this->getFactory()->createItem('root');
-        $menu->setChildrenAttribute('class', 'menu');
-
-        return $menu;
+        return $this->createRootItem('menu');
     }
 
     /**
@@ -66,8 +63,55 @@ abstract class MenuBuilder
      */
     protected function createRootListItem()
     {
+        return $this->createRootItem();
+    }
+
+    /**
+     * @param string $class
+     * @return ItemInterface
+     */
+    protected function createRootItem($class = '')
+    {
         $menu = $this->getFactory()->createItem('root');
+        $menu->setChildrenAttribute('class', $class);
 
         return $menu;
+    }
+
+    /**
+     * @param array $options
+     * @return string
+     */
+    protected function getMenuClass(array $options)
+    {
+        return isset($options['class'])
+            ? $options['class']
+            : '';
+    }
+
+    /**
+     * @param array $options
+     * @param string $option
+     * @param mixed $default
+     * @return mixed
+     */
+    protected function getOption(array $options, $option, $default)
+    {
+        return isset($options[$option])
+            ? $options[$option]
+            : $default;
+    }
+
+    /**
+     * @param ItemInterface $menu
+     * @param $child
+     * @param array $options
+     * @param $condition
+     */
+    protected function addChildConditionally(ItemInterface $menu, $child, array $options = array(), $condition)
+    {
+        if ($condition) {
+            $menu->addChild($child, $options);
+        }
     }
 }

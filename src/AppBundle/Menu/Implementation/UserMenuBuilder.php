@@ -17,7 +17,7 @@ class UserMenuBuilder extends MenuBuilder
             return $this->getMenuForAnonymousUser();
         }
 
-        $menu = $this->createRootItem();
+        $menu = $this->createRootMenuItem();
 
         $menu
             ->addChild('user.profile', ['route' => 'fos_user_profile_show']);
@@ -31,7 +31,7 @@ class UserMenuBuilder extends MenuBuilder
 
     private function getMenuForAnonymousUser()
     {
-        $menu = $this->createRootItem();
+        $menu = $this->createRootMenuItem();
 
         $menu
             ->addChild('user.login', ['route' => 'fos_user_security_login'])

@@ -1,0 +1,6 @@
+services:
+    app.voter.application.view:
+        class: AppBundle\Voter\Application\ViewVoter
+        public: false
+        tags:
+            - { name: security.voter }
