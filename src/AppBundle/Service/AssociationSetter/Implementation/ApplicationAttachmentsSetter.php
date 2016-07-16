@@ -16,7 +16,12 @@ class ApplicationAttachmentsSetter implements AssociationSetterInterface
      */
     public function set($application, $attachment)
     {
-        $application->setAttachment($attachment);
-        $attachment->setApplication($application);
+        if ($application instanceof Application) {
+            $application->setAttachment($attachment);
+        }
+
+        if ($attachment instanceof Attachment) {
+            $attachment->setApplication($application);
+        }
     }
 }
