@@ -10,11 +10,14 @@
             <div class="row">
                 <div class="column">
                     {% if download_uri is defined and download_uri %}
-                        <a href="{{ download_uri }}" class="inline-block middle"><i class="fa fa-floppy-o" aria-hidden="true"></i> {{ original_name }}</a>
+                        <a href="{{ download_uri }}" class="inline-block middle">
+                            <i class="fa fa-save"></i>
+                            {{ original_name }}
+                        </a>
                     {% endif %}
                     {% if form.delete is defined %}
                         <div class="inline-block middle margin-left">
-                        {{ form_row(form.delete) }}
+                            {{ form_row(form.delete) }}
                         </div>
                     {% endif %}
                 </div>

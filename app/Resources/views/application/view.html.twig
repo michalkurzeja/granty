@@ -25,7 +25,9 @@
     {% if application.attachment %}
     <div class="callout">
         <h6><strong>{{ ('application.attachment') |trans({}, 'entities') }}:</strong></h6>
-        <p><a href="{{ attachment_link(application.attachment) }}">{{ application.attachment.originalName }}</a></p>
+        <p>
+            {{ attachment_download(application.attachment) }}
+        </p>
     </div>
     {% endif %}
 {%- endblock -%}

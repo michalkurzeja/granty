@@ -10,11 +10,13 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\UserRepository")
  * @ORM\Table(name="app_user")
  */
 class User extends BaseUser
 {
+    const ROLE_REVIEWER = 'ROLE_REVIEWER';
+
     /**
      * @var int
      *
@@ -176,5 +178,13 @@ class User extends BaseUser
     public function setApplications(Collection $applications)
     {
         $this->applications = $applications;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isReviewer()
+    {
+        return in_array(static::ROLE_REVIEWER, $this->getRoles());
     }
 }

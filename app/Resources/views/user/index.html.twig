@@ -1,0 +1,52 @@
+{% extends 'layout/base.html.twig' %}
+
+{% block title %}{{ 'user.index'|trans({}, 'page_title') }}{% endblock %}
+
+{% block body %}
+    <div class="row">
+        <div class="column">
+            <a href="{{ path('user_add') }}" class="button success">
+                <i class="fa fa-plus" aria-hidden="true"></i>
+                {{ 'buttons.user.add'|trans }}
+            </a>
+        </div>
+    </div>
+
+    {% if users | length %}
+        <div class="row">
+            <div class="column">
+                <table class="hover">
+                    <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>{{ 'user.username'|trans({}, 'entities') }}</th>
+                        <th>{{ 'user.email'|trans({}, 'entities') }}</th>
+                        <th>{{ 'user.firstName'|trans({}, 'entities') }}</th>
+                        <th>{{ 'user.lastName'|trans({}, 'entities') }}</th>
+                        <th>{{ 'actions.actions'|trans() }}</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for user in users %}
+                        <tr>
+                            <td>{{ user.id }}</td>
+                            <td>{{ user.username }}</td>
+                            <td>{{ user.email }}</td>
+                            <td>{{ user.firstName }}</td>
+                            <td>{{ user.lastName }}</td>
+                            <td>{{ menu('actions.user', {'user': user, 'include_index': false}) }}</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    {% else %}
+        <div class="callout secondary">
+            <i class="fa fa-info-circle" aria-hidden="true"></i>
+            {{ 'text.user.noItems'|trans }}
+            <a href="{{ path('user_add') }}">{{ 'actions.clickHere'|trans }}</a>
+            {{ 'text.user.toApply'|trans }}.
+        </div>
+    {% endif %}
+{% endblock %}

@@ -4,6 +4,7 @@ imports:
     - { resource: services/form.yml }
     - { resource: services/listener.yml }
     - { resource: services/menu.yml }
+    - { resource: services/repository.yml }
     - { resource: services/twig.yml }
     - { resource: services/util.yml }
     - { resource: services/voter.yml }

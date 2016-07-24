@@ -2,6 +2,7 @@
 
 namespace AppBundle\Menu;
 
+use AppBundle\Entity\User;
 use AppBundle\Service\Util\CurrentUserProvider\CurrentUserProvider;
 use Knp\Menu\FactoryInterface;
 use Knp\Menu\ItemInterface;
@@ -48,6 +49,14 @@ abstract class MenuBuilder
         $user = $this->currentUserProvider->getCurrentUser();
 
         return $user instanceof UserInterface;
+    }
+
+    /**
+     * @return User|null
+     */
+    protected function getCurrentUser()
+    {
+        return $this->currentUserProvider->getCurrentUser();
     }
 
     /**

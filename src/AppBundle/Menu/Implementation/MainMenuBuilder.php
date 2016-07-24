@@ -17,11 +17,19 @@ class MainMenuBuilder extends MenuBuilder
             return $this->getMenuForAnonymousUser();
         }
 
+        $isSuperAdmin = $this->getCurrentUser()->isSuperAdmin();
+
         $menu = $this->createRootMenuItem();
 
         $menu->addChild('main.home', ['route' => 'homepage']);
         $menu->addChild('main.applications', ['route' => 'application_index']);
-        $menu->addChild('main.users', ['route' => 'user_index']);
+
+        $this->addChildConditionally(
+            $menu,
+            'main.users',
+            ['route' => 'user_index'],
+            $isSuperAdmin
+        );
 
         return $menu;
     }

@@ -13,6 +13,8 @@ buttons:
         save: Zapisz zmiany
     application:
         add: Utwórz wniosek
+    user:
+        add: Dodaj użytkownika
 
 text:
     agh: Akademia Górniczo-Hutnicza im. Stanisława Staszica w Krakowie
@@ -24,3 +26,6 @@ text:
     application:
         noItems: Nie złożyłeś jescze żadnego wniosku!
         toApply: aby złożyć wniosek
+    user:
+        noItems: Poza Tobą nie ma jeszcze innych użytkowników!
+        toApply: aby utworzyć użytkownika

@@ -1,6 +1,6 @@
 main:
     home: Strona domowa
-    applications: Moje wnioski
+    applications: Wnioski
     users: Użytkownicy
 
 user:
@@ -17,4 +17,9 @@ actions:
         index: Wnioski
         view: Zobacz
         edit: Zmień
+        remove: Usuń
+    user:
+        index: Użytkownicy
+        view: Zobacz
+        edit: Zmeń
         remove: Usuń

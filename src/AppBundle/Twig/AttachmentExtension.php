@@ -3,6 +3,7 @@ namespace AppBundle\Twig;
 
 use AppBundle\Entity\Attachment;
 use AppBundle\Service\Attachment\AttachmentLinkProvider;
+use Twig_Environment;
 use Twig_Extension;
 use Twig_SimpleFunction;
 
@@ -21,10 +22,21 @@ class AttachmentExtension extends Twig_Extension
         $this->attachmentLinkProvider = $attachmentLinkProvider;
     }
 
+    /**
+     * @return array
+     */
     public function getFunctions()
     {
         return [
             new Twig_SimpleFunction('attachment_link', [$this, 'attachmentLink']),
+            new Twig_SimpleFunction(
+                'attachment_download',
+                [$this, 'attachmentDownload'],
+                [
+                    'needs_environment' => true,
+                    'is_safe'           => ['html'],
+                ]
+            ),
         ];
     }
 
@@ -35,6 +47,18 @@ class AttachmentExtension extends Twig_Extension
     public function attachmentLink(Attachment $attachment)
     {
         return $this->attachmentLinkProvider->getAttachmentLink($attachment);
+    }
+
+    /**
+     * @param Twig_Environment $env
+     * @param Attachment       $attachment
+     * @return string
+     */
+    public function attachmentDownload(Twig_Environment $env, Attachment $attachment)
+    {
+        return $env->render('layout/elements/attachment_download.html.twig', [
+            'attachment' => $attachment
+        ]);
     }
 
     /**

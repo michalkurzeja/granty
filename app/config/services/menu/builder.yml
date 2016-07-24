@@ -28,3 +28,9 @@ services:
         parent: app.menu.builder
         tags:
             - { name: knp_menu.menu_builder, method: build, alias: actions.application }
+
+    app.menu.builder.actions.user:
+        class: AppBundle\Menu\Implementation\Actions\UserActionsMenuBuilder
+        parent: app.menu.builder
+        tags:
+            - { name: knp_menu.menu_builder, method: build, alias: actions.user }

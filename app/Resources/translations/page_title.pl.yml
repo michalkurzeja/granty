@@ -14,3 +14,6 @@ application:
     view: Wniosek
     add: Utwórz wniosek
     edit: Zmień wniosek
+
+user:
+    index: Użytkownicy
