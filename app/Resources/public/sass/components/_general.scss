@@ -35,6 +35,14 @@
       }
     }
   }
+
+  @each $name, $padding in $label-padding-size-map {
+    .label {
+      &.#{$name} {
+        padding: $padding;
+      }
+    }
+  }
 }
 
 /** Includes **/
