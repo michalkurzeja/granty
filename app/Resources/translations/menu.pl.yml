@@ -1,6 +1,7 @@
 main:
     home: Strona domowa
     applications: Moje wnioski
+    users: Użytkownicy
 
 user:
     profile: Profil

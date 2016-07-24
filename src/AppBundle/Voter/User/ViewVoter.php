@@ -1,8 +1,8 @@
 <?php
 
-namespace AppBundle\Voter\Application;
+namespace AppBundle\Voter\User;
 
-use AppBundle\Entity\Application;
+use AppBundle\Entity\User;
 use AppBundle\Voter\Abstraction\Voter;
 use AppBundle\Voter\Actions\VoterActions;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
@@ -15,7 +15,7 @@ class ViewVoter extends Voter
     protected function getSupportedTypes()
     {
         return [
-            Application::class,
+            User::class,
         ];
     }
 
@@ -31,22 +31,12 @@ class ViewVoter extends Voter
 
     /**
      * @param string $attribute
-     * @param Application $application
+     * @param User $user
      * @param TokenInterface $token
      * @return bool
      */
-    protected function voteOnAttribute($attribute, $application, TokenInterface $token)
+    protected function voteOnAttribute($attribute, $user, TokenInterface $token)
     {
-        return $this->hasUserAccess($application, $token);
-    }
-
-    /**
-     * @param Application $application
-     * @param TokenInterface $token
-     * @return bool
-     */
-    private function hasUserAccess(Application $application, TokenInterface $token)
-    {
-        return $application->isOwner($token->getUser());
+        return false;
     }
 }

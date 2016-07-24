@@ -21,6 +21,7 @@ class MainMenuBuilder extends MenuBuilder
 
         $menu->addChild('main.home', ['route' => 'homepage']);
         $menu->addChild('main.applications', ['route' => 'application_index']);
+        $menu->addChild('main.users', ['route' => 'user_index']);
 
         return $menu;
     }

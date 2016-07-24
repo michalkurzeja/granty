@@ -1,2 +1,3 @@
 imports:
     - { resource: voter/application.yml }
+    - { resource: voter/user.yml }
