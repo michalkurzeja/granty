@@ -6,8 +6,6 @@ use AppBundle\Entity\User;
 use AppBundle\Service\Util\CurrentUserProvider\CurrentUserProvider;
 use Knp\Menu\FactoryInterface;
 use Knp\Menu\ItemInterface;
-use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
-use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 abstract class MenuBuilder
