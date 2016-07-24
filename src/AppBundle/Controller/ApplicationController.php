@@ -6,6 +6,7 @@ use AppBundle\Entity\Application;
 use AppBundle\Form\Type\ApplicationType;
 use AppBundle\Voter\Actions\VoterActions;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -56,7 +57,8 @@ class ApplicationController extends Controller
 
             $this->addSuccessFlash('application.added');
 
-            return $this->redirectToRoute('application_index');
+            return $this->redirectToView($application);
+
         }
 
         return $this->render('application/add.html.twig', [
@@ -82,7 +84,7 @@ class ApplicationController extends Controller
 
             $this->addSuccessFlash('general.saved');
 
-            return $this->redirectToRoute('application_index');
+            return $this->redirectToView($application);
         }
 
         return $this->render('application/edit.html.twig', [
@@ -106,5 +108,16 @@ class ApplicationController extends Controller
         $this->addInfoFlash('application.removed');
 
         return $this->redirectToRoute('application_index');
+    }
+
+    /**
+     * @param Application $application
+     * @return RedirectResponse
+     */
+    private function redirectToView(Application $application)
+    {
+        return $this->redirectToRoute('application_view', [
+            'application' => $application->getId(),
+        ]);
     }
 }

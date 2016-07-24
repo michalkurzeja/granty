@@ -15,6 +15,18 @@ $sides: (
   left
 ) !default;
 
+$sizes: (
+  small,
+  normal,
+  large
+) !default;
+
+$font-size-map: (
+  small: 0.5rem,
+  normal: 1rem,
+  large: 1.5rem
+) !default;
+
 // ** Overrides ** //
 
 $tooltip-padding: 0.5rem;

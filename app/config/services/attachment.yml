@@ -1,0 +1,5 @@
+services:
+    app.attachment.link_provider:
+        class: AppBundle\Service\Attachment\AttachmentLinkProvider
+        arguments:
+            - "@router"

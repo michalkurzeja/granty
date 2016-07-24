@@ -3,20 +3,26 @@
 namespace AppBundle\Form\Extension;
 
 use AppBundle\Entity\Attachment;
+use AppBundle\Service\Attachment\AttachmentLinkProvider;
 use Symfony\Component\Form\AbstractTypeExtension;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormView;
 use Symfony\Component\Routing\RouterInterface;
 use Vich\UploaderBundle\Form\Type\VichFileType;
 
-class VicFileTypeExtension extends AbstractTypeExtension
+class VichFileTypeExtension extends AbstractTypeExtension
 {
-    /** @var RouterInterface */
-    private $router;
+    /**
+     * @var AttachmentLinkProvider
+     */
+    private $attachmentLinkProvider;
 
-    public function __construct(RouterInterface $router)
+    /**
+     * @param AttachmentLinkProvider $attachmentLinkProvider
+     */
+    public function __construct(AttachmentLinkProvider $attachmentLinkProvider)
     {
-        $this->router = $router;
+        $this->attachmentLinkProvider = $attachmentLinkProvider;
     }
 
     public function buildView(FormView $view, FormInterface $form, array $options)
@@ -26,9 +32,7 @@ class VicFileTypeExtension extends AbstractTypeExtension
             $attachment = $form->getParent()->getData();
 
             $view->vars['original_name'] = $attachment->getOriginalName();
-            $view->vars['download_uri'] = $this->router->generate('attachment_download', [
-                'attachment' => $attachment->getId()
-            ]);
+            $view->vars['download_uri'] = $this->attachmentLinkProvider->getAttachmentLink($attachment);
         }
     }
 

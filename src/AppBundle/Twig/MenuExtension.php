@@ -3,17 +3,20 @@
 namespace AppBundle\Twig;
 
 use Knp\Menu\ItemInterface;
+use Twig_Environment;
+use Twig_Extension;
+use Twig_SimpleFunction;
 
-class MenuExtension extends \Twig_Extension
+class MenuExtension extends Twig_Extension
 {
     public function getFunctions()
     {
         return [
-            new \Twig_SimpleFunction('menu', [$this, 'menu'], [
+            new Twig_SimpleFunction('menu', [$this, 'menu'], [
                 'needs_environment' => true,
                 'is_safe' => ['html'],
             ]),
-            new \Twig_SimpleFunction('callout_menu', [$this, 'calloutMenu'], [
+            new Twig_SimpleFunction('callout_menu', [$this, 'calloutMenu'], [
                 'needs_environment' => true,
                 'is_safe' => ['html'],
             ]),
@@ -21,14 +24,14 @@ class MenuExtension extends \Twig_Extension
     }
 
     /**
-     * @param \Twig_Environment     $env
+     * @param Twig_Environment     $env
      * @param ItemInterface|string  $menu
      * @param array                 $options
      * @param string|null           $renderer
      *
      * @return string
      */
-    public function menu(\Twig_Environment $env, $menu, array $options = [], $renderer = null)
+    public function menu(Twig_Environment $env, $menu, array $options = [], $renderer = null)
     {
         $menuGet = $env->getFunction('knp_menu_get')->getCallable();
         $menuRender = $env->getFunction('knp_menu_render')->getCallable();
@@ -37,14 +40,14 @@ class MenuExtension extends \Twig_Extension
     }
 
     /**
-     * @param \Twig_Environment     $env
+     * @param Twig_Environment     $env
      * @param ItemInterface|string  $menu
      * @param array                 $options
      * @param string|null           $renderer
      *
      * @return string
      */
-    public function calloutMenu(\Twig_Environment $env, $menu, array $options = [], $renderer = null)
+    public function calloutMenu(Twig_Environment $env, $menu, array $options = [], $renderer = null)
     {
         if (!isset($options['class'])) {
             $options['class'] = 'menu separated';

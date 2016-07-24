@@ -3,3 +3,10 @@ services:
         class: AppBundle\Twig\MenuExtension
         tags:
             - { name: twig.extension }
+
+    app.twig.extension.attachent:
+        class: AppBundle\Twig\AttachmentExtension
+        arguments:
+            - "@app.attachment.link_provider"
+        tags:
+            - { name: twig.extension }

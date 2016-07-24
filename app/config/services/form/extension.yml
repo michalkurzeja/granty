@@ -4,9 +4,9 @@ services:
         tags:
             - { name: form.type_extension, extended_type: Symfony\Component\Form\Extension\Core\Type\FormType }
 
-    app.form_extension.vic_file:
-        class: AppBundle\Form\Extension\VicFileTypeExtension
+    app.form_extension.vich_file:
+        class: AppBundle\Form\Extension\VichFileTypeExtension
         arguments:
-            - "@router"
+            - "@app.attachment.link_provider"
         tags:
             - { name: form.type_extension, extended_type: Vich\UploaderBundle\Form\Type\VichFileType }

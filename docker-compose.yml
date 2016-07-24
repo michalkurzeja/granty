@@ -1,0 +1,18 @@
+version: '2'
+services:
+    php:
+        image: php:7.0.8-fpm-alpine
+    server:
+        image: nginx:alpine
+        ports:
+            - "80:80"
+        links:
+            - php
+    database:
+        image: postgres
+        ports:
+            - "5432:5432"
+        environment:
+            POSTGRES_USER: postgres
+            POSTGRES_PASSWORD: postgres
+            POSTGRES_DB: granty

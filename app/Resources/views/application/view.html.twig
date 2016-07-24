@@ -1,8 +1,34 @@
 {% extends 'layout/base.html.twig' %}
 
+{% set applicationProperties = ['year', 'topic', 'meritoricJustification', 'currentKnowledge', 'scientificAchievements', 'applicantsProjects', 'forseeableGoals', 'scheduleOfWork', 'externalFinancing', 'plannedExpensesTotal', 'plannedExpensesInCurrentYear', 'expensesExplanation', 'projectDirector', 'organizationDirector'] %}
+
 {% block title %}{{ 'application.view'|trans({}, 'page_title') }}: {{ application.topic }}{% endblock %}
 
-{% block body_callout_title %}{{ 'application.view'|trans({}, 'page_title') }}: {{ application.topic }}{% endblock %}
+{% block body_callout_class %}primary{% endblock %}
+
+{% block body_callout_title %}
+    {{ 'application.view'|trans({}, 'page_title') }}: <strong>{{ application.topic }}</strong>
+    <span class="label large {{ application.status }} float-right">{{ ('applicationStatus.' ~ application.status)|trans({}, 'enums') }}</span>
+{% endblock %}
+
+{%- block body_callout -%}
+    {% for property in applicationProperties %}
+        {% set propertyValue = attribute(application, property) %}
+        {% if propertyValue %}
+            <div class="callout">
+                <h6><strong>{{ ('application.' ~ property) |trans({}, 'entities') }}:</strong></h6>
+                <p> {{ attribute(application, property) | nl2br }}</p>
+            </div>
+        {% endif %}
+    {% endfor %}
+
+    {% if application.attachment %}
+    <div class="callout">
+        <h6><strong>{{ ('application.attachment') |trans({}, 'entities') }}:</strong></h6>
+        <p><a href="{{ attachment_link(application.attachment) }}">{{ application.attachment.originalName }}</a></p>
+    </div>
+    {% endif %}
+{%- endblock -%}
 
 {% block actions %}
     {{ callout_menu('actions.application', {'application': application, 'include_view': false}) }}

@@ -27,10 +27,21 @@
   }
 }
 
+@mixin sizes {
+  @each $name, $size in $font-size-map {
+    .label {
+      &.#{$name} {
+        font-size: $size;
+      }
+    }
+  }
+}
+
 /** Includes **/
 
 @include contextual-classes;
 @include status-colors;
+@include sizes;
 
 /** Rules **/
 
