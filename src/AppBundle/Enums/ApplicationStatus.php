@@ -18,4 +18,15 @@ class ApplicationStatus extends Enum
     const ACCEPTED  = 'accepted';
     const REJECTED  = 'rejected';
     const APPEALED  = 'appealed';
+
+    /**
+     * @return string[]
+     */
+    static public function reviewableStatuses()
+    {
+        return [
+            static::SUBMITTED,
+            static::APPEALED,
+        ];
+    }
 }

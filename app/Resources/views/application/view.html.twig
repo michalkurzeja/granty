@@ -1,19 +1,23 @@
 {% extends 'layout/base.html.twig' %}
 
-{% set applicationProperties = ['year', 'topic', 'meritoricJustification', 'currentKnowledge', 'scientificAchievements', 'applicantsProjects', 'forseeableGoals', 'scheduleOfWork', 'externalFinancing', 'plannedExpensesTotal', 'plannedExpensesInCurrentYear', 'expensesExplanation', 'projectDirector', 'organizationDirector'] %}
+{% set applicationProperties = ['topic', 'year', 'meritoricJustification', 'currentKnowledge', 'scientificAchievements', 'applicantsProjects', 'forseeableGoals', 'scheduleOfWork', 'externalFinancing', 'plannedExpensesTotal', 'plannedExpensesInCurrentYear', 'expensesExplanation', 'projectDirector', 'organizationDirector'] %}
 
 {% block title %}{{ 'application.view'|trans({}, 'page_title') }}: {{ application.topic }}{% endblock %}
 
-{% block body_callout_class %}primary{% endblock %}
-
 {% block body_callout_title %}
-    {{ 'application.view'|trans({}, 'page_title') }}: <strong>{{ application.topic }}</strong>
+    {{ 'application.view'|trans({}, 'page_title') }}: <em>{{ application.topic }}</em>
     <span class="label large {{ application.status }} float-right">{{ ('applicationStatus.' ~ application.status)|trans({}, 'enums') }}</span>
 {% endblock %}
 
 {%- block body_callout -%}
+    <div class="callout">
+        <h6><strong>{{ ('application.author') |trans({}, 'entities') }}:</strong></h6>
+        <p>{{ application.user }}</p>
+    </div>
+
     {% for property in applicationProperties %}
         {% set propertyValue = attribute(application, property) %}
+
         {% if propertyValue %}
             <div class="callout">
                 <h6><strong>{{ ('application.' ~ property) |trans({}, 'entities') }}:</strong></h6>
@@ -25,9 +29,7 @@
     {% if application.attachment %}
     <div class="callout">
         <h6><strong>{{ ('application.attachment') |trans({}, 'entities') }}:</strong></h6>
-        <p>
-            {{ attachment_download(application.attachment) }}
-        </p>
+        <p>{{ attachment_download(application.attachment) }}</p>
     </div>
     {% endif %}
 {%- endblock -%}

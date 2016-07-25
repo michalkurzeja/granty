@@ -1,25 +1,11 @@
 {% extends "FOSUserBundle::layout.html.twig" %}
 
-{% trans_default_domain 'entities' %}
-
 {% block title %}{{ 'profile.view'|trans({}, 'page_title') }}{% endblock %}
 
 {% block body_callout_title %}{{ 'profile.view' | trans({}, 'page_title') }}{% endblock %}
 
 {% block body_callout %}
-    <div class="callout primary">
-        <p>{{ 'user.username'|trans }}: {{ user.username }}</p>
-        <p>{{ 'user.email'|trans }}: {{ user.email }}</p>
-    </div>
-    <div class="callout secondary">
-        <p>{{ 'user.firstName'|trans }}: {{ user.firstName }}</p>
-        <p>{{ 'user.lastName'|trans }}: {{ user.lastName }}</p>
-        <p>{{ 'user.degree'|trans }}: {{ user.degree }}</p>
-        <p>{{ 'user.dateOfBirth'|trans }}: {{ user.dateOfBirth | date('j F Y') }}</p>
-    </div>
-    <div class="callout success">
-        <p>{{ 'text.profile.submittedApplications'|trans({}, 'messages') }}: <strong>0</strong></p>
-    </div>
+    {% include 'user/partial/user_data.html.twig' with {'user': user} %}
 {% endblock body_callout %}
 
 {% block actions %}

@@ -1,0 +1,15 @@
+{% extends 'layout/base.html.twig' %}
+
+{% block title %}{{ 'user.view'|trans({}, 'page_title') }}: {{ user.username }}{% endblock %}
+
+{% block body_callout_title %}
+    {{ 'user.view'|trans({}, 'page_title') }}: <em>{{ user.username }}</em>
+{% endblock %}
+
+{%- block body_callout -%}
+    {% include 'user/partial/user_data.html.twig' with {'user': user} %}
+{%- endblock -%}
+
+{% block actions %}
+    {{ callout_menu('actions.user', {'user': user, 'include_view': false}) }}
+{% endblock %}

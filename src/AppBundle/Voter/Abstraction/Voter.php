@@ -1,6 +1,7 @@
 <?php
 namespace AppBundle\Voter\Abstraction;
 
+use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\Authorization\Voter\Voter as BaseVoter;
 
 abstract class Voter extends BaseVoter
@@ -14,6 +15,24 @@ abstract class Voter extends BaseVoter
      * @return string[]
      */
     abstract protected function getSupportedAttributes();
+
+    /**
+     * @param string         $checkedRole
+     * @param TokenInterface $token
+     * @return bool
+     */
+    protected function userHasRole($checkedRole, TokenInterface $token)
+    {
+        $roles = $token->getRoles();
+
+        foreach ($roles as $role) {
+            if ($role->getRole() === $checkedRole) {
+                return true;
+            }
+        }
+
+        return false;
+    }
 
     /**
      * @param string $attribute

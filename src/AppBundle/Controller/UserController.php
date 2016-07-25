@@ -37,6 +37,8 @@ class UserController extends Controller
      */
     public function viewAction(User $user)
     {
+        $this->denyAccessUnlessGranted(VoterActions::VIEW, $user);
+
         return $this->render('user/view.html.twig', [
             'user' => $user,
         ]);

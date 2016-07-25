@@ -24,6 +24,8 @@ text:
         submittedApplications: Złożone wnioski
         forgotPassword: Zapomniałeś hasła?
     application:
+        review:
+            noItems: Nie ma żadnych wniosków do sprawdzenia!
         noItems: Nie złożyłeś jescze żadnego wniosku!
         toApply: aby złożyć wniosek
     user:

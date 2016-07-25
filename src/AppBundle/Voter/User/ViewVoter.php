@@ -6,6 +6,7 @@ use AppBundle\Entity\User;
 use AppBundle\Voter\Abstraction\Voter;
 use AppBundle\Voter\Actions\VoterActions;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
+use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
 
 class ViewVoter extends Voter
 {
@@ -37,6 +38,6 @@ class ViewVoter extends Voter
      */
     protected function voteOnAttribute($attribute, $user, TokenInterface $token)
     {
-        return false;
+        return $this->userHasRole(User::ROLE_SUPER_ADMIN, $token);
     }
 }

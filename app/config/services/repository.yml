@@ -1,6 +1,6 @@
 services:
     app.repository.application:
-        class: AppBundle\Repository\UserRepository
+        class: AppBundle\Repository\ApplicationRepository
         factory: ["@doctrine.orm.entity_manager", "getRepository"]
         arguments:
             - "AppBundle\\Entity\\Application"

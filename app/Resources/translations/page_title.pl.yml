@@ -17,3 +17,6 @@ application:
 
 user:
     index: Użytkownicy
+    view: Użytkownik
+    add: Dodaj użytkownika
+    edit: Zmień użytkownika

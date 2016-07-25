@@ -1,12 +1,18 @@
 services:
-    app.twig.extension.menu:
-        class: AppBundle\Twig\MenuExtension
-        tags:
-            - { name: twig.extension }
 
     app.twig.extension.attachent:
         class: AppBundle\Twig\AttachmentExtension
         arguments:
             - "@app.attachment.link_provider"
+        tags:
+            - { name: twig.extension }
+
+    app.twig.extension.collection:
+        class: AppBundle\Twig\CollectionExtension
+        tags:
+            - { name: twig.extension }
+
+    app.twig.extension.menu:
+        class: AppBundle\Twig\MenuExtension
         tags:
             - { name: twig.extension }

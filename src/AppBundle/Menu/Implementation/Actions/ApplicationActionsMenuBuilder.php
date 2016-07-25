@@ -3,6 +3,7 @@
 namespace AppBundle\Menu\Implementation\Actions;
 
 use AppBundle\Entity\Application;
+use AppBundle\Entity\User;
 use AppBundle\Menu\MenuBuilder;
 use Knp\Menu\ItemInterface;
 
@@ -33,7 +34,7 @@ class ApplicationActionsMenuBuilder extends MenuBuilder
             $this->getOption($options, 'include_view', true)
         );
 
-        if ($application->isEditable()) {
+        if ($application->isEditable() && $this->isOwnedByCurrentUser($application)) {
             $this->addChildConditionally(
                 $menu,
                 'actions.application.edit',
@@ -52,5 +53,14 @@ class ApplicationActionsMenuBuilder extends MenuBuilder
         }
 
         return $menu;
+    }
+
+    /**
+     * @param Application $application
+     * @return bool
+     */
+    private function isOwnedByCurrentUser(Application $application)
+    {
+        return $application->getUser() === $this->getCurrentUser();
     }
 }

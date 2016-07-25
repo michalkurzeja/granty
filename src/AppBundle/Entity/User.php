@@ -185,6 +185,22 @@ class User extends BaseUser
      */
     public function isReviewer()
     {
-        return in_array(static::ROLE_REVIEWER, $this->getRoles());
+        return in_array(static::ROLE_REVIEWER, $this->getRoles()) || $this->isSuperAdmin();
+    }
+
+    /**
+     * @return string
+     */
+    public function getFullName()
+    {
+        return sprintf('%s %s', $this->getFirstName(), $this->getLastName());
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->getFullName();
     }
 }

@@ -4,7 +4,9 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\Application;
 use AppBundle\Form\Type\ApplicationType;
+use AppBundle\Repository\ApplicationRepository;
 use AppBundle\Voter\Actions\VoterActions;
+use Doctrine\Common\Collections\Collection;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -23,8 +25,30 @@ class ApplicationController extends Controller
     public function indexAction()
     {
         return $this->render('application/index.html.twig', [
-            'applications' => $this->getUser()->getApplications()
+            'applications' => $this->getApplications()
         ]);
+    }
+
+    /**
+     * @return Application[]|Collection
+     */
+    private function getApplications()
+    {
+        $user = $this->getUser();
+
+        if ($user->isReviewer()) {
+            return $this->getApplicationRepository()->findAllReviewable();
+        }
+
+        return $user->getApplications();
+    }
+
+    /**
+     * @return ApplicationRepository
+     */
+    private function getApplicationRepository()
+    {
+        return $this->get('app.repository.application');
     }
 
     /**

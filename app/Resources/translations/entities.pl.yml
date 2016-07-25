@@ -8,6 +8,7 @@ user:
     dateOfBirth: Data urodzenia
 
 application:
+    author: Autor
     year: Rok
     topic: Temat pracy
     meritoricJustification: Uzasadnienie merytoryczne

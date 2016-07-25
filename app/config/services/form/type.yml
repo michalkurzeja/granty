@@ -22,3 +22,8 @@ services:
         class: AppBundle\Form\Type\AttachmentType
         tags:
             - { name: form.type }
+
+    app.form_type.user:
+        class: AppBundle\Form\Type\UserType
+        tags:
+            - { name: form.type }
