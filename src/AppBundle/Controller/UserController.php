@@ -2,6 +2,7 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\User;
+use AppBundle\Form\Type\UserType;
 use AppBundle\Repository\UserRepository;
 use AppBundle\Voter\Actions\VoterActions;
 use Doctrine\Common\Persistence\ObjectRepository;
@@ -81,7 +82,7 @@ class UserController extends Controller
     {
         $this->denyAccessUnlessGranted(VoterActions::EDIT, $user);
 
-        $form = $this->createForm(ApplicationType::class, $user);
+        $form = $this->createEditForm($user);
 
         if ($form->handleRequest($request)->isValid()) {
             $this->flush();
@@ -91,9 +92,16 @@ class UserController extends Controller
             return $this->redirectToView($user);
         }
 
-        return $this->render('application/edit.html.twig', [
+        return $this->render('user/edit.html.twig', [
             'form' => $form->createView(),
             'user' => $user,
+        ]);
+    }
+
+    private function createEditForm(User $user)
+    {
+        return $this->createForm(UserType::class,$user, [
+            'require_password' => !$this->getUser()->isSuperAdmin()
         ]);
     }
 
