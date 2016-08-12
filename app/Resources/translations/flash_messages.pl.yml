@@ -4,6 +4,7 @@ general:
 application:
     added: Utworzono wniosek!
     removed: Usunięto wniosek!
+    submitted: Wniosek został złożony!
 
 user:
     added: Utworzono użytkownika!

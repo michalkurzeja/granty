@@ -111,14 +111,17 @@ abstract class MenuBuilder
 
     /**
      * @param ItemInterface $menu
-     * @param $child
-     * @param array $options
-     * @param $condition
+     * @param string        $child
+     * @param array         $options
+     * @param bool         $condition
+     * @return ItemInterface | null
      */
     protected function addChildConditionally(ItemInterface $menu, $child, array $options = array(), $condition)
     {
         if ($condition) {
-            $menu->addChild($child, $options);
+            return $menu->addChild($child, $options);
         }
+
+        return null;
     }
 }

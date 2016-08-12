@@ -18,6 +18,7 @@ actions:
         view: Zobacz
         edit: Zmień
         remove: Usuń
+        submit: Złóż wniosek
     user:
         index: Użytkownicy
         view: Zobacz

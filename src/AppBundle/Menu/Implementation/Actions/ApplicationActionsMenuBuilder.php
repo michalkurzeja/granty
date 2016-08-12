@@ -43,6 +43,14 @@ class ApplicationActionsMenuBuilder extends MenuBuilder
             );
 
             $menu
+                ->addChild('actions.application.submit', [
+                    'route' => 'application_submit',
+                    'routeParameters' => ['application' => $application->getId()],
+                ])
+                ->setAttribute('form', true)
+                ->setAttribute('form_btn_type', 'warning');
+
+            $menu
                 ->addChild('actions.application.remove', [
                     'route' => 'application_remove',
                     'routeParameters' => ['application' => $application->getId()],

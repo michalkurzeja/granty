@@ -3,6 +3,7 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Application;
+use AppBundle\Enums\ApplicationStatus;
 use AppBundle\Form\Type\ApplicationType;
 use AppBundle\Repository\ApplicationRepository;
 use AppBundle\Voter\Actions\VoterActions;
@@ -121,7 +122,7 @@ class ApplicationController extends Controller
      * @param Application $application
      * @return Response
      *
-     * @Route("/{application}/remove", name="application_remove")
+     * @Route("/{application}/remove", name="application_remove", methods={"post"})
      */
     public function removeAction(Application $application)
     {
@@ -132,6 +133,27 @@ class ApplicationController extends Controller
         $this->addInfoFlash('application.removed');
 
         return $this->redirectToRoute('application_index');
+    }
+
+    /**
+     * @param Application $application
+     * @return Response
+     *
+     * @Route("/{application}/submit", name="application_submit", methods={"post"})
+     */
+    public function submitAction(Application $application)
+    {
+        $this->denyAccessUnlessGranted(VoterActions::EDIT, $application);
+
+        $application->setStatus(ApplicationStatus::SUBMITTED());
+
+        $this->flush();
+
+        $this->addInfoFlash('application.submitted');
+
+        return $this->redirectToRoute('application_view', [
+            'application' => $application->getId()
+        ]);
     }
 
     /**
