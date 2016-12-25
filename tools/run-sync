@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+unison . socket://localhost:5000/ -ignore 'Path .git' -ignore 'Path var/*' -ignore 'Path .idea' -auto -batch -silent -perms 0
+
+docker exec -it granty_php_fpm /set-acl.sh
+
+echo 'All files have been synced. Server is ready...'
+
+fswatch -o . | xargs -n1 -I{} unison . socket://localhost:5000/ -ignore 'Path .git' -ignore 'Path var' -ignore 'Path .idea' -auto -batch -silent -perms 0

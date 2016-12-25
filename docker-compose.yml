@@ -31,5 +31,19 @@ services:
             - "9000"
         links:
             - database
+#        volumes:
+#            - .:/usr/share/nginx/granty
+#        depends_on:
+#            - app_code
+        volumes_from:
+            - code_data
+
+    code_data:
+        container_name: granty_code_data
+        build: docker/code_data
+        ports:
+            - "5000:5000"
+        environment:
+            - UNISON_WORKING_DIR=/usr/share/nginx/granty
         volumes:
-            - .:/usr/share/nginx/granty
+            - /usr/share/nginx/granty
