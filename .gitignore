@@ -27,3 +27,7 @@ vendor
 
 # IDE
 .idea
+
+# other
+run
+supervise
