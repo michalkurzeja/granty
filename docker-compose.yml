@@ -1,18 +1,35 @@
 version: '2'
+
 services:
-    php:
-        image: php:7.0.8-fpm-alpine
-    server:
-        image: nginx:alpine
-        ports:
-            - "80:80"
-        links:
-            - php
     database:
-        image: postgres
+        container_name: granty_database
+        build: docker/database
         ports:
             - "5432:5432"
         environment:
+            POSTGRES_PASSWORD: root
             POSTGRES_USER: postgres
-            POSTGRES_PASSWORD: postgres
             POSTGRES_DB: granty
+
+    server:
+        container_name: granty_server
+        build: docker/nginx
+        ports:
+            - "80:80"
+            - "443:443"
+        links:
+            - php-fpm
+        volumes_from:
+            - php-fpm
+        volumes:
+            - ./var/logs/nginx:/var/log/nginx
+
+    php-fpm:
+        container_name: granty_php_fpm
+        build: docker/php-fpm
+        expose:
+            - "9000"
+        links:
+            - database
+        volumes:
+            - .:/usr/share/nginx/granty

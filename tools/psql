@@ -1,2 +1,2 @@
 #!/bin/bash
-PGPASSWORD=postgres docker exec -it granty_database_1 psql -U postgres
+PGPASSWORD=root docker exec -it granty_database psql -U postgres

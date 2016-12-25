@@ -1,34 +1,29 @@
 # env-dependant files
-/app/config/parameters.yml
-/build/
-/phpunit.xml
+app/config/parameters.yml
+phpunit.xml
 
-/var/*
+var/*
 !var/SymfonyRequirements.php
 
 # cache
-!/var/cache
-/var/cache/*
 !var/cache/.gitkeep
 
 # logs
-!/var/logs
-/var/logs/*
 !var/logs/.gitkeep
 
 #sessions
-!/var/sessions
-/var/sessions/*
 !var/sessions/.gitkeep
 
 # assets
-/vendor/
-/bower_components/
-/node_modules/
+bower_components/
+node_modules/
 
 # web
-/web/bundles/
-/web/assets/
+web/bundles/
+web/assets/
+
+# vendors
+vendor
 
 # IDE
 .idea

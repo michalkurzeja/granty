@@ -24,10 +24,10 @@ gulp.task('compile-js', function() {
             gulp.src([
                 'bower_components/jquery/dist/jquery.min.js',
                 'bower_components/what-input/what-input.min.js',
-                'bower_components/foundation-sites/dist/foundation.min.js'
+                'bower_components/foundation-sites/dist/js/foundation.min.js'
             ]),
-            minifyJsInline(['app/Resources/public/js/main.js']),
-            minifyJsInline(['app/Resources/public/js/reveal-confirm.js'])
+            minifyJsInline(['app/Resources/public/js/reveal-confirm.js']),
+            minifyJsInline(['app/Resources/public/js/main.js'])
         )
         .pipe(sourcemaps.init({loadMaps: true}))
         .pipe(concat('bundled.min.js'))

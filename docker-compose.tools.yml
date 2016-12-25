@@ -1,0 +1,26 @@
+version: '2'
+
+services:
+    composer:
+        container_name: granty_composer
+        build: docker/composer
+        command: install
+        links:
+            - database
+        volumes_from:
+            - php-fpm
+
+    php-cli:
+        container_name: granty_php_cli
+        build: docker/php-cli
+        links:
+            - php-fpm
+            - database
+        volumes_from:
+            - php-fpm
+
+    node:
+        container_name: granty_node
+        build: docker/node
+        volumes_from:
+            - php-fpm
