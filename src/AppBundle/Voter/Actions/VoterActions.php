@@ -6,8 +6,8 @@ use MyCLabs\Enum\Enum;
 
 class VoterActions extends Enum
 {
-    const VIEW = 'view';
-    const CREATE = 'create';
-    const EDIT = 'edit';
-    const REMOVE = 'remove';
+    public const VIEW = 'view';
+    public const CREATE = 'create';
+    public const EDIT = 'edit';
+    public const REMOVE = 'remove';
 }

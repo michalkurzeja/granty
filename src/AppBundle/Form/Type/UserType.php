@@ -10,15 +10,14 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 class UserType extends AbstractType
 {
     /**
-     * @param FormBuilderInterface $builder
-     * @param array                $options
+     * {@inheritdoc}
      */
-    public function buildForm(FormBuilderInterface $builder, array $options)
+    public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder->add(
             $builder->create('roles', CheckboxType::class, [
                 'required' => false,
-                'label' => 'Is reviewer?'
+                'label' => 'user.reviewer'
             ])
             ->addModelTransformer(new RolesToReviewerBoolTransformer)
         );
@@ -32,26 +31,25 @@ class UserType extends AbstractType
      * @param array $options
      * @return bool
      */
-    private function isPasswordRequired(array $options)
+    private function isPasswordRequired(array $options): bool
     {
         return $options['require_password'];
     }
 
     /**
-     * @param OptionsResolver $resolver
+     * {@inheritdoc}
      */
-    public function configureOptions(OptionsResolver $resolver)
+    public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver
             ->setDefault('require_password', true)
-            //->setDefault('action', 'user_edit')
             ->setAllowedTypes('require_password', 'bool');
     }
 
     /**
      * @return string
      */
-    public function getParent()
+    public function getParent(): string
     {
         return ProfileType::class;
     }

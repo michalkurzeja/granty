@@ -14,7 +14,7 @@ class ApplicationAttachmentsSetter implements AssociationSetterInterface
      * @param Attachment $attachment
      * @return void
      */
-    public function set($application, $attachment)
+    public function set($application, $attachment): void
     {
         if ($application instanceof Application) {
             $application->setAttachment($attachment);

@@ -8,5 +8,15 @@ services:
     app.voter.application.modify:
         class: AppBundle\Voter\Application\ModifyVoter
         public: false
+        arguments:
+            - "@app.workflow.application"
+        tags:
+            - { name: security.voter }
+
+    app.voter.application.transition:
+        class: AppBundle\Voter\Application\TransitionVoter
+        public: false
+        arguments:
+            - "@app.workflow.application"
         tags:
             - { name: security.voter }

@@ -1,0 +1,50 @@
+parameters:
+    locale: pl
+
+framework:
+    #esi:             ~
+    translator:      { fallbacks: ["%locale%"] }
+    secret:          "%secret%"
+    router:
+        resource: "%kernel.root_dir%/config/routing.yml"
+        strict_requirements: ~
+    form:            ~
+    csrf_protection: ~
+    validation:      { enable_annotations: true }
+    templating:
+        engines: ['twig']
+    default_locale:  "%locale%"
+    trusted_hosts:   ~
+    trusted_proxies: ~
+    session:
+        handler_id:  session.handler.native_file
+        save_path:   "%kernel.root_dir%/../var/sessions/%kernel.environment%"
+        cookie_lifetime: 604800 # 1 week
+        gc_maxlifetime: 604800  # 1 week
+    fragments:       ~
+    http_method_override: true
+    assets: ~
+    workflows:
+        application:
+            type: state_machine
+            marking_store:
+                type: single_state
+                arguments:
+                    - workflowStatus
+            supports:
+                - AppBundle\Entity\Application
+            places:
+                - draft
+                - submitted
+                - accepted
+                - rejected
+            transitions:
+                submit:
+                    from: [draft, rejected]
+                    to: submitted
+                accept:
+                    from: submitted
+                    to: accepted
+                reject:
+                    from: submitted
+                    to: rejected

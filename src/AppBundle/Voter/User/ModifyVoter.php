@@ -12,7 +12,7 @@ class ModifyVoter extends Voter
     /**
      * @return string[]
      */
-    protected function getSupportedTypes()
+    protected function getSupportedTypes(): array
     {
         return [
             User::class,
@@ -22,7 +22,7 @@ class ModifyVoter extends Voter
     /**
      * @return string[]
      */
-    protected function getSupportedAttributes()
+    protected function getSupportedAttributes(): array
     {
         return [
             VoterActions::EDIT,
@@ -36,7 +36,7 @@ class ModifyVoter extends Voter
      * @param TokenInterface $token
      * @return bool
      */
-    protected function voteOnAttribute($attribute, $user, TokenInterface $token)
+    protected function voteOnAttribute($attribute, $user, TokenInterface $token): bool
     {
         return $user === $token->getUser() || $token->getUser()->isSuperAdmin();
     }

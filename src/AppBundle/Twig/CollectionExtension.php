@@ -10,7 +10,7 @@ class CollectionExtension extends Twig_Extension
     /**
      * @return Twig_SimpleFunction[]
      */
-    public function getFunctions()
+    public function getFunctions(): array
     {
         return [
             new Twig_SimpleFunction('is_empty', [$this, 'isEmpty']),
@@ -21,7 +21,7 @@ class CollectionExtension extends Twig_Extension
      * @param mixed $value
      * @return bool
      */
-    public function isEmpty($value)
+    public function isEmpty($value): bool
     {
         if ($value instanceof Collection) {
             return $value->isEmpty();
@@ -30,7 +30,7 @@ class CollectionExtension extends Twig_Extension
         return empty($value);
     }
 
-    public function getName()
+    public function getName(): string
     {
         return 'collection';
     }

@@ -1,6 +1,5 @@
 applicationStatus:
-    created: Nowy
+    draft: Szkic
     submitted: Złożony
-    accepted: Przyjęty
+    accepted: Zaakceptowany
     rejected: Odrzucony
-    appealed: Odwołany

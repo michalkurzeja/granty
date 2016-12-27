@@ -1,0 +1,5 @@
+services:
+    app.application.submitted_retriever:
+        class: AppBundle\Service\Application\SubmittedApplicationsRetriever
+        arguments:
+            - "@app.repository.application"

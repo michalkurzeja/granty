@@ -1,3 +1,6 @@
+'true': Tak
+'false': Nie
+
 app:
     name: Granty
 
@@ -30,4 +33,3 @@ text:
         toApply: aby złożyć wniosek
     user:
         noItems: Poza Tobą nie ma jeszcze innych użytkowników!
-        toApply: aby utworzyć użytkownika

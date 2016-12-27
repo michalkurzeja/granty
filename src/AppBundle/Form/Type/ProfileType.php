@@ -11,14 +11,13 @@ use FOS\UserBundle\Form\Type\ProfileFormType;
 
 class ProfileType extends AbstractType
 {
-    const YEAR_MIN = 1900;
-    const YEAR_OFFSET = 150;
+    private const YEAR_MIN = 1900;
+    private const YEAR_OFFSET = 150;
 
     /**
-     * @param FormBuilderInterface $builder
-     * @param array $options
+     * {@inheritdoc}
      */
-    public function buildForm(FormBuilderInterface $builder, array $options)
+    public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
             ->add('firstName', TextType::class, ['label' => 'user.firstName'])
@@ -35,7 +34,7 @@ class ProfileType extends AbstractType
     /**
      * @return string
      */
-    public function getParent()
+    public function getParent(): string
     {
         return ProfileFormType::class;
     }
@@ -43,7 +42,7 @@ class ProfileType extends AbstractType
     /**
      * @return int[]
      */
-    private function getYears()
+    private function getYears(): array
     {
         $currentYear = $this->getCurrentYear();
         $range = range($this->getStartingYear($currentYear), $currentYear);
@@ -54,16 +53,16 @@ class ProfileType extends AbstractType
     /**
      * @return int
      */
-    private function getCurrentYear()
+    private function getCurrentYear(): int
     {
-        return (int)(new DateTime)->format('Y');
+        return (int) (new DateTime)->format('Y');
     }
 
     /**
-     * @param $currentYear
+     * @param int $currentYear
      * @return int
      */
-    private function getStartingYear($currentYear)
+    private function getStartingYear(int $currentYear): int
     {
         $start = $currentYear - self::YEAR_OFFSET;
 

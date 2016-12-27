@@ -9,5 +9,5 @@ interface AssociationSetterInterface
      * @param object $second
      * @return void
      */
-    public function set($first, $second);
+    public function set($first, $second): void;
 }

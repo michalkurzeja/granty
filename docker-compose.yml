@@ -29,12 +29,11 @@ services:
         build: docker/php-fpm
         expose:
             - "9000"
+            - "9001"
         links:
             - database
-#        volumes:
-#            - .:/usr/share/nginx/granty
-#        depends_on:
-#            - app_code
+        depends_on:
+            - code_data
         volumes_from:
             - code_data
 

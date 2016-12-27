@@ -26,6 +26,8 @@ services:
     app.menu.builder.actions.application:
         class: AppBundle\Menu\Implementation\Actions\ApplicationActionsMenuBuilder
         parent: app.menu.builder
+        arguments:
+            - "@state_machine.application"
         tags:
             - { name: knp_menu.menu_builder, method: build, alias: actions.application }
 

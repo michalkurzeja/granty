@@ -6,9 +6,7 @@ use Symfony\Component\Routing\RouterInterface;
 
 class AttachmentLinkProvider
 {
-    /**
-     * @var RouterInterface
-     */
+    /** @var RouterInterface */
     private $router;
 
     /**
@@ -23,7 +21,7 @@ class AttachmentLinkProvider
      * @param Attachment $attachment
      * @return string
      */
-    public function getAttachmentLink(Attachment $attachment)
+    public function getAttachmentLink(Attachment $attachment): string
     {
         return $this->router->generate('attachment_download', [
             'attachment' => $attachment->getId()

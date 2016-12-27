@@ -15,7 +15,7 @@ class ApplicationAssociationHandler implements RemoveHandler
      * @param Attachment $attachment
      * @param LifecycleEventArgs $event
      */
-    public function handle($attachment, LifecycleEventArgs $event)
+    public function handle($attachment, LifecycleEventArgs $event): void
     {
         $attachment->getApplication()->clearAttachments();
     }

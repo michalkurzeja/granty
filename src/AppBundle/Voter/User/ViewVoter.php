@@ -13,7 +13,7 @@ class ViewVoter extends Voter
     /**
      * @return string[]
      */
-    protected function getSupportedTypes()
+    protected function getSupportedTypes(): array
     {
         return [
             User::class,
@@ -23,7 +23,7 @@ class ViewVoter extends Voter
     /**
      * @return string[]
      */
-    protected function getSupportedAttributes()
+    protected function getSupportedAttributes(): array
     {
         return [
             VoterActions::VIEW,
@@ -36,7 +36,7 @@ class ViewVoter extends Voter
      * @param TokenInterface $token
      * @return bool
      */
-    protected function voteOnAttribute($attribute, $user, TokenInterface $token)
+    protected function voteOnAttribute($attribute, $user, TokenInterface $token): bool
     {
         return $this->userHasRole(User::ROLE_SUPER_ADMIN, $token);
     }

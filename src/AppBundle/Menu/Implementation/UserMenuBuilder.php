@@ -11,7 +11,7 @@ class UserMenuBuilder extends MenuBuilder
      * @param array $options
      * @return ItemInterface
      */
-    public function build(array $options)
+    public function build(array $options): ItemInterface
     {
         if (!$this->isUserLogged()) {
             return $this->getMenuForAnonymousUser();
@@ -29,7 +29,10 @@ class UserMenuBuilder extends MenuBuilder
         return $menu;
     }
 
-    private function getMenuForAnonymousUser()
+    /**
+     * @return ItemInterface
+     */
+    private function getMenuForAnonymousUser(): ItemInterface
     {
         $menu = $this->createRootMenuItem();
 

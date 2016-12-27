@@ -9,19 +9,19 @@ abstract class Voter extends BaseVoter
     /**
      * @return string[]
      */
-    abstract protected function getSupportedTypes();
+    abstract protected function getSupportedTypes(): array;
 
     /**
      * @return string[]
      */
-    abstract protected function getSupportedAttributes();
+    abstract protected function getSupportedAttributes(): array;
 
     /**
      * @param string         $checkedRole
      * @param TokenInterface $token
      * @return bool
      */
-    protected function userHasRole($checkedRole, TokenInterface $token)
+    protected function userHasRole(string $checkedRole, TokenInterface $token)
     {
         $roles = $token->getRoles();
 
@@ -39,7 +39,7 @@ abstract class Voter extends BaseVoter
      * @param mixed $subject
      * @return bool
      */
-    protected function supports($attribute, $subject)
+    protected function supports($attribute, $subject): bool
     {
         if (!in_array($attribute, $this->getSupportedAttributes())) {
             return false;
@@ -56,7 +56,7 @@ abstract class Voter extends BaseVoter
      * @param mixed $subject
      * @return bool
      */
-    private function isSubjectSupported($subject)
+    private function isSubjectSupported($subject): bool
     {
         return in_array($this->getType($subject), $this->getSupportedTypes());
     }
@@ -65,7 +65,7 @@ abstract class Voter extends BaseVoter
      * @param mixed $subject
      * @return string
      */
-    private function getType($subject)
+    private function getType($subject): string
     {
         if (is_object($subject)) {
             return get_class($subject);

@@ -1,0 +1,5 @@
+services:
+    app.workflow.application:
+        class: AppBundle\Service\Workflow\Application\ApplicationWorkflow
+        parent: state_machine.application
+        decorates: state_machine.application

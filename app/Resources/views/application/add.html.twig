@@ -18,3 +18,7 @@
         </div>
     {{ form_end(form) }}
 {% endblock %}
+
+{% block actions %}
+    {{ callout_menu('actions.application', {'include_add': false}) }}
+{% endblock %}

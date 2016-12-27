@@ -7,7 +7,7 @@
 {% block body_callout_title %}{{ 'profile.edit' | trans({}, 'page_title') }}{% endblock %}
 
 {% block body_callout %}
-    {{ form_start(form, { 'action': path('fos_user_profile_edit'), 'attr': { 'class': 'fos_user_profile_edit' } }) }}
+    {{ form_start(form, { 'attr': { 'class': 'fos_user_profile_edit' } }) }}
         <div class="row">
             <div class="column">
                 {{ form_widget(form) }}
@@ -20,3 +20,7 @@
         </div>
     {{ form_end(form) }}
 {% endblock body_callout %}
+
+{% block actions %}
+    {{ callout_menu('profile', {'include_edit': false}) }}
+{% endblock %}

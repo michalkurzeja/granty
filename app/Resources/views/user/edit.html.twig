@@ -1,1 +1,5 @@
 {% extends 'FOSUserBundle:Profile:edit.html.twig' %}
+
+{% block actions %}
+    {{ callout_menu('actions.user', {'user': user, 'include_edit': false}) }}
+{% endblock %}

@@ -10,14 +10,20 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class FormTypeExtension extends AbstractTypeExtension
 {
-    public function buildView(FormView $view, FormInterface $form, array $options)
+    /**
+     * {@inheritdoc}
+     */
+    public function buildView(FormView $view, FormInterface $form, array $options): void
     {
         parent::buildView($view, $form, $options);
 
         $view->vars['helper_text'] = $options['helper_text'];
     }
 
-    public function configureOptions(OptionsResolver $resolver)
+    /**
+     * {@inheritdoc}
+     */
+    public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver
             ->setDefault('translation_domain', 'entities')
@@ -27,11 +33,9 @@ class FormTypeExtension extends AbstractTypeExtension
     }
 
     /**
-     * Returns the name of the type being extended.
-     *
-     * @return string The name of the type being extended
+     * {@inheritdoc}
      */
-    public function getExtendedType()
+    public function getExtendedType(): string
     {
         return FormType::class;
     }

@@ -44,10 +44,9 @@ class ApplicationType extends AbstractType implements EventSubscriberInterface
     }
 
     /**
-     * @param FormBuilderInterface $builder
-     * @param array $options
+     * {@inheritdoc}
      */
-    public function buildForm(FormBuilderInterface $builder, array $options)
+    public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
             ->add('year', NumberType::class, [
@@ -57,10 +56,10 @@ class ApplicationType extends AbstractType implements EventSubscriberInterface
             ->add('topic', TextType::class, [
                 'label' => 'application.topic',
             ])
-            ->add('meritoricJustification', TextareaType::class, [
+            ->add('meritoricalJustification', TextareaType::class, [
                 'required' => false,
-                'label' => 'application.meritoricJustification',
-                'helper_text' => 'description.application.meritoricJustification',
+                'label' => 'application.meritoricalJustification',
+                'helper_text' => 'description.application.meritoricalJustification',
             ])
             ->add('currentKnowledge', TextareaType::class, [
                 'required' => false,
@@ -77,10 +76,10 @@ class ApplicationType extends AbstractType implements EventSubscriberInterface
                 'label' => 'application.applicantsProjects',
                 'helper_text' => 'description.application.applicantsProjects',
             ])
-            ->add('forseeableGoals', TextareaType::class, [
+            ->add('foreseeableGoals', TextareaType::class, [
                 'required' => false,
-                'label' => 'application.forseeableGoals',
-                'helper_text' => 'description.application.forseeableGoals',
+                'label' => 'application.foreseeableGoals',
+                'helper_text' => 'description.application.foreseeableGoals',
             ])
             ->add('scheduleOfWork', TextareaType::class, [
                 'required' => false,
@@ -121,7 +120,10 @@ class ApplicationType extends AbstractType implements EventSubscriberInterface
         $builder->addEventSubscriber($this);
     }
 
-    public function configureOptions(OptionsResolver $resolver)
+    /**
+     * {@inheritdoc}
+     */
+    public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
             'data_class' => Application::class
@@ -131,7 +133,7 @@ class ApplicationType extends AbstractType implements EventSubscriberInterface
     /**
      * @return array
      */
-    public static function getSubscribedEvents()
+    public static function getSubscribedEvents(): array
     {
         return [
             FormEvents::POST_SUBMIT => 'postSubmit'
@@ -141,7 +143,7 @@ class ApplicationType extends AbstractType implements EventSubscriberInterface
     /**
      * @param FormEvent $event
      */
-    public function postSubmit(FormEvent $event)
+    public function postSubmit(FormEvent $event): void
     {
         /** @var Application $application */
         $application = $event->getData();
@@ -154,7 +156,7 @@ class ApplicationType extends AbstractType implements EventSubscriberInterface
     /**
      * @return User|null
      */
-    private function getCurrentUser()
+    private function getCurrentUser(): ?User
     {
         return $this->currentUserProvider->getCurrentUser();
     }

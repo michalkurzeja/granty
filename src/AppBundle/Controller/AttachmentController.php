@@ -17,7 +17,7 @@ class AttachmentController extends Controller
      *
      * @Route("/{attachment}/download", name="attachment_download")
      */
-    public function downloadAction(Attachment $attachment)
+    public function downloadAction(Attachment $attachment): Response
     {
         $downloadHandler = $this->get('vich_uploader.download_handler');
 

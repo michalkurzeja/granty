@@ -20,7 +20,7 @@ class CurrentUserProvider
     }
 
     /**
-     * @return User|null
+     * @return User | string | null
      */
     public function getCurrentUser()
     {

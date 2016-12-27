@@ -11,5 +11,8 @@
     <p>{{ 'user.dateOfBirth'|trans }}: {{ user.dateOfBirth | date('j F Y') }}</p>
 </div>
 <div class="callout success">
-    <p>{{ 'text.profile.submittedApplications'|trans({}, 'messages') }}: <strong>0</strong></p>
+    <p>
+        {{ 'text.profile.submittedApplications'|trans({}, 'messages') }}:
+        <strong>{{ submitted_applications(user) | length }}</strong>
+    </p>
 </div>

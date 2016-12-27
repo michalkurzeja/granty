@@ -6,16 +6,17 @@ user:
     lastName: Nazwisko
     degree: Stopień naukowy
     dateOfBirth: Data urodzenia
+    reviewer: Sprawdzający
 
 application:
     author: Autor
     year: Rok
     topic: Temat pracy
-    meritoricJustification: Uzasadnienie merytoryczne
+    meritoricalJustification: Uzasadnienie merytoryczne
     currentKnowledge: Obecny stan wiedzy
     scientificAchievements: Ostatnie osiągnięcia
     applicantsProjects: Poprzednie projekty
-    forseeableGoals: Przewidywane osiągnięcia
+    foreseeableGoals: Przewidywane osiągnięcia
     scheduleOfWork: Harmonogram pracy
     externalFinancing: Inne źródła finansowania
     plannedExpensesTotal: Całkowite nakłady finansowe
@@ -32,11 +33,11 @@ attachment:
 description:
     application:
         year: "Rok, w którym powinien zostać przyznany grant."
-        meritoricJustification: "Jasno sprecyzowany cel naukowy projektu: motywacja, co skłania do podjęcia proponowanego tematu (3-5 zdań), krótki opis metodyki badawczej (max. pół strony)."
+        meritoricalJustification: "Jasno sprecyzowany cel naukowy projektu: motywacja, co skłania do podjęcia proponowanego tematu (3-5 zdań), krótki opis metodyki badawczej (max. pół strony)."
         currentKnowledge: "Informacja o istniejącym stanie wiedzy w zakresie proponowanej tematyki badawczej (z wykazem literatury – max. 8 pozycji)."
         scientificAchievements: "Informacja o ostatnich osiągnięciach naukowych kierownika  projektu: załącznik 1 – patrz poniżej, suma punktów MNiSW oraz liczba publikacji z IF za 4 ostatnie lata kalendarzowe."
         applicantsProjects: "Wykaz projektów, w których wnioskodawca brał udział jako kierownik lub wykonawca. Wskazać: instytucję finansującą projekt, numer i tytuł projektu."
-        forseeableGoals: "Przewidywane osiągnięcia, co będzie wymiernym, udokumentowanym efektem realizowanego projektu, np.: wszczęcie przewodu doktorskiego (T/N), uzyskanie stopnia naukowego doktora (T/N), uzyskanie stopnia doktora habilitowanego (T/N), planowane publikacje (np. tytuły czasopism wraz z IF, oraz nazwy konferencji i terminy czy jest w WoS, patenty), uzyskanie projektów badawczych (jakich?), rozwój specjalności naukowych (jakich?), inne ważne osiągnięcia (jakie?)."
+        foreseeableGoals: "Przewidywane osiągnięcia, co będzie wymiernym, udokumentowanym efektem realizowanego projektu, np.: wszczęcie przewodu doktorskiego (T/N), uzyskanie stopnia naukowego doktora (T/N), uzyskanie stopnia doktora habilitowanego (T/N), planowane publikacje (np. tytuły czasopism wraz z IF, oraz nazwy konferencji i terminy czy jest w WoS, patenty), uzyskanie projektów badawczych (jakich?), rozwój specjalności naukowych (jakich?), inne ważne osiągnięcia (jakie?)."
         scheduleOfWork: "Harmonogram pracy (lista zadań  max. do 3, z ich krótkim uzasadnieniem 3-5 zdań)."
         externalFinancing: "Czy praca była lub jest finansowana z innych źródeł?"
         plannedExpensesTotal: "Planowane nakłady finansowe na całość grantu."

@@ -12,7 +12,7 @@ class UserActionsMenuBuilder extends MenuBuilder
      * @param array $options
      * @return ItemInterface
      */
-    public function build(array $options)
+    public function build(array $options): ItemInterface
     {
         /** @var User $user */
         $user = $options['user'];

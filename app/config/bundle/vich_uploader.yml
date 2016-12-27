@@ -1,0 +1,7 @@
+vich_uploader:
+    db_driver: orm
+    storage: gaufrette
+    mappings:
+        attachment:
+            upload_destination: attachment_fs
+            namer: vich_uploader.namer_uniqid

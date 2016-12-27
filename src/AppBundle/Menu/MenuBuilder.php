@@ -14,7 +14,7 @@ abstract class MenuBuilder
      * @param array $options
      * @return ItemInterface
      */
-    public abstract function build(array $options);
+    public abstract function build(array $options): ItemInterface;
 
     /** @var FactoryInterface */
     private $factory;
@@ -34,7 +34,7 @@ abstract class MenuBuilder
     /**
      * @return FactoryInterface
      */
-    protected function getFactory()
+    protected function getFactory(): FactoryInterface
     {
         return $this->factory;
     }
@@ -42,7 +42,7 @@ abstract class MenuBuilder
     /**
      * @return bool
      */
-    protected function isUserLogged()
+    protected function isUserLogged(): bool
     {
         $user = $this->currentUserProvider->getCurrentUser();
 
@@ -52,7 +52,7 @@ abstract class MenuBuilder
     /**
      * @return User|null
      */
-    protected function getCurrentUser()
+    protected function getCurrentUser(): ?User
     {
         return $this->currentUserProvider->getCurrentUser();
     }
@@ -60,7 +60,7 @@ abstract class MenuBuilder
     /**
      * @return ItemInterface
      */
-    protected function createRootMenuItem()
+    protected function createRootMenuItem(): ItemInterface
     {
         return $this->createRootItem('menu');
     }
@@ -68,7 +68,7 @@ abstract class MenuBuilder
     /**
      * @return ItemInterface
      */
-    protected function createRootListItem()
+    protected function createRootListItem(): ItemInterface
     {
         return $this->createRootItem('unsigned');
     }
@@ -77,7 +77,7 @@ abstract class MenuBuilder
      * @param string $class
      * @return ItemInterface
      */
-    protected function createRootItem($class = '')
+    protected function createRootItem(string $class = ''): ItemInterface
     {
         $menu = $this->getFactory()->createItem('root');
         $menu->setChildrenAttribute('class', $class);
@@ -89,7 +89,7 @@ abstract class MenuBuilder
      * @param array $options
      * @return string
      */
-    protected function getMenuClass(array $options)
+    protected function getMenuClass(array $options): string
     {
         return isset($options['class'])
             ? $options['class']
@@ -102,7 +102,7 @@ abstract class MenuBuilder
      * @param mixed $default
      * @return mixed
      */
-    protected function getOption(array $options, $option, $default)
+    protected function getOption(array $options, string $option, $default)
     {
         return isset($options[$option])
             ? $options[$option]
@@ -116,8 +116,12 @@ abstract class MenuBuilder
      * @param bool         $condition
      * @return ItemInterface | null
      */
-    protected function addChildConditionally(ItemInterface $menu, $child, array $options = array(), $condition)
-    {
+    protected function addChildConditionally(
+        ItemInterface $menu,
+        string $child,
+        array $options = [],
+        bool $condition
+    ): ?ItemInterface {
         if ($condition) {
             return $menu->addChild($child, $options);
         }

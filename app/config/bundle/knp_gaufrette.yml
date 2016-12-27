@@ -1,0 +1,9 @@
+knp_gaufrette:
+    stream_wrapper: ~
+    adapters:
+        attachment_adapter:
+            local:
+                directory: %kernel.root_dir%/../web/upload/attachments
+    filesystems:
+        attachment_fs:
+            adapter: attachment_adapter

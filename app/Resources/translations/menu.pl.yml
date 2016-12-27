@@ -9,6 +9,7 @@ user:
     login: Zaloguj
 
 profile:
+    view: Profil
     edit: Edytuj profil
     changePassword: Zmień hasło
 
@@ -19,6 +20,8 @@ actions:
         edit: Zmień
         remove: Usuń
         submit: Złóż wniosek
+        accept: Zaakceptuj wniosek
+        reject: Odrzuć wniosek
     user:
         index: Użytkownicy
         view: Zobacz

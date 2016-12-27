@@ -93,7 +93,7 @@ class User extends BaseUser
     /**
      * @param string $firstName
      */
-    public function setFirstName($firstName)
+    public function setFirstName(string $firstName)
     {
         $this->firstName = $firstName;
     }
@@ -109,7 +109,7 @@ class User extends BaseUser
     /**
      * @param string $lastName
      */
-    public function setLastName($lastName)
+    public function setLastName(string $lastName)
     {
         $this->lastName = $lastName;
     }
@@ -125,7 +125,7 @@ class User extends BaseUser
     /**
      * @param string $degree
      */
-    public function setDegree($degree)
+    public function setDegree(string $degree)
     {
         $this->degree = $degree;
     }

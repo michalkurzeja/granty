@@ -9,7 +9,7 @@ use Twig_SimpleFunction;
 
 class MenuExtension extends Twig_Extension
 {
-    public function getFunctions()
+    public function getFunctions(): array
     {
         return [
             new Twig_SimpleFunction('menu', [$this, 'menu'], [
@@ -31,7 +31,7 @@ class MenuExtension extends Twig_Extension
      *
      * @return string
      */
-    public function menu(Twig_Environment $env, $menu, array $options = [], $renderer = null)
+    public function menu(Twig_Environment $env, $menu, array $options = [], $renderer = null): string
     {
         $menuGet = $env->getFunction('knp_menu_get')->getCallable();
         $menuRender = $env->getFunction('knp_menu_render')->getCallable();
@@ -47,7 +47,7 @@ class MenuExtension extends Twig_Extension
      *
      * @return string
      */
-    public function calloutMenu(Twig_Environment $env, $menu, array $options = [], $renderer = null)
+    public function calloutMenu(Twig_Environment $env, $menu, array $options = [], $renderer = null): string
     {
         if (!isset($options['class'])) {
             $options['class'] = 'menu separated';
@@ -63,7 +63,7 @@ class MenuExtension extends Twig_Extension
     /**
      * @return string
      */
-    public function getName()
+    public function getName(): string
     {
         return 'menu';
     }

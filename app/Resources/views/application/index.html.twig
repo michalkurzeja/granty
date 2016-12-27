@@ -3,7 +3,7 @@
 {% block title %}{{ 'application.index'|trans({}, 'page_title') }}{% endblock %}
 
 {% block body %}
-    {% if not app.user.isReviewer %}
+    {% if not app.user.superAdmin %}
         <div class="row">
             <div class="column">
                 <a href="{{ path('application_add') }}" class="button success">

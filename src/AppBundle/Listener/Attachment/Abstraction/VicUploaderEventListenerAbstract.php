@@ -6,7 +6,12 @@ use Vich\UploaderBundle\Event\Event as VichUploaderEvent;
 
 abstract class VicUploaderEventListenerAbstract
 {
-    protected function isMappingName($mappingName, VichUploaderEvent $event)
+    /**
+     * @param string            $mappingName
+     * @param VichUploaderEvent $event
+     * @return bool
+     */
+    protected function isMappingName(string $mappingName, VichUploaderEvent $event): bool
     {
         return $this->getMappingName($event) === $mappingName;
     }
@@ -15,7 +20,7 @@ abstract class VicUploaderEventListenerAbstract
      * @param VichUploaderEvent $event
      * @return string
      */
-    protected function getMappingName(VichUploaderEvent $event)
+    protected function getMappingName(VichUploaderEvent $event): string
     {
         return $event->getMapping()->getMappingName();
     }

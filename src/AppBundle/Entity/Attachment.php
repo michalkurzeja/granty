@@ -77,7 +77,7 @@ class Attachment
     /**
      * @param File|UploadedFile $file
      */
-    public function setFile(File $file = null)
+    public function setFile(?File $file)
     {
         $this->file = $file;
 
@@ -99,7 +99,7 @@ class Attachment
     /**
      * @param string $name
      */
-    public function setName($name)
+    public function setName(string $name)
     {
         $this->name = $name;
     }
@@ -115,7 +115,7 @@ class Attachment
     /**
      * @param string $originalName
      */
-    public function setOriginalName($originalName)
+    public function setOriginalName(string $originalName)
     {
         $this->originalName = $originalName;
     }
@@ -131,7 +131,7 @@ class Attachment
     /**
      * @param Application $application
      */
-    public function setApplication(Application $application = null)
+    public function setApplication(?Application $application)
     {
         $this->application = $application;
     }

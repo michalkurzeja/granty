@@ -41,7 +41,7 @@ class Application
      *
      * @ORM\Column(type="text", nullable=true)
      */
-    private $meritoricJustification;
+    private $meritoricalJustification;
 
     /**
      * @var string
@@ -69,7 +69,7 @@ class Application
      *
      * @ORM\Column(type="text", nullable=true)
      */
-    private $forseeableGoals;
+    private $foreseeableGoals;
 
     /**
      * @var string
@@ -146,7 +146,7 @@ class Application
 
     public function __construct()
     {
-        $this->setStatus(ApplicationStatus::CREATED());
+        $this->setStatus(ApplicationStatus::DRAFT());
     }
 
     /**
@@ -168,7 +168,7 @@ class Application
     /**
      * @param int $year
      */
-    public function setYear($year)
+    public function setYear(int $year)
     {
         $this->year = $year;
     }
@@ -184,7 +184,7 @@ class Application
     /**
      * @param string $topic
      */
-    public function setTopic($topic)
+    public function setTopic(string $topic)
     {
         $this->topic = $topic;
     }
@@ -192,17 +192,17 @@ class Application
     /**
      * @return string
      */
-    public function getMeritoricJustification()
+    public function getMeritoricalJustification()
     {
-        return $this->meritoricJustification;
+        return $this->meritoricalJustification;
     }
 
     /**
-     * @param string $meritoricJustification
+     * @param string $meritoricalJustification
      */
-    public function setMeritoricJustification($meritoricJustification)
+    public function setMeritoricalJustification(?string $meritoricalJustification)
     {
-        $this->meritoricJustification = $meritoricJustification;
+        $this->meritoricalJustification = $meritoricalJustification;
     }
 
     /**
@@ -216,7 +216,7 @@ class Application
     /**
      * @param string $currentKnowledge
      */
-    public function setCurrentKnowledge($currentKnowledge)
+    public function setCurrentKnowledge(?string $currentKnowledge)
     {
         $this->currentKnowledge = $currentKnowledge;
     }
@@ -232,7 +232,7 @@ class Application
     /**
      * @param string $scientificAchievements
      */
-    public function setScientificAchievements($scientificAchievements)
+    public function setScientificAchievements(?string $scientificAchievements)
     {
         $this->scientificAchievements = $scientificAchievements;
     }
@@ -248,7 +248,7 @@ class Application
     /**
      * @param string $applicantsProjects
      */
-    public function setApplicantsProjects($applicantsProjects)
+    public function setApplicantsProjects(?string $applicantsProjects)
     {
         $this->applicantsProjects = $applicantsProjects;
     }
@@ -256,17 +256,17 @@ class Application
     /**
      * @return string
      */
-    public function getForseeableGoals()
+    public function getForeseeableGoals()
     {
-        return $this->forseeableGoals;
+        return $this->foreseeableGoals;
     }
 
     /**
-     * @param string $forseeableGoals
+     * @param string $foreseeableGoals
      */
-    public function setForseeableGoals($forseeableGoals)
+    public function setForeseeableGoals(?string $foreseeableGoals)
     {
-        $this->forseeableGoals = $forseeableGoals;
+        $this->foreseeableGoals = $foreseeableGoals;
     }
 
     /**
@@ -280,7 +280,7 @@ class Application
     /**
      * @param string $scheduleOfWork
      */
-    public function setScheduleOfWork($scheduleOfWork)
+    public function setScheduleOfWork(?string $scheduleOfWork)
     {
         $this->scheduleOfWork = $scheduleOfWork;
     }
@@ -296,7 +296,7 @@ class Application
     /**
      * @param boolean $externalFinancing
      */
-    public function setExternalFinancing($externalFinancing)
+    public function setExternalFinancing(bool $externalFinancing)
     {
         $this->externalFinancing = $externalFinancing;
     }
@@ -312,7 +312,7 @@ class Application
     /**
      * @param float $plannedExpensesTotal
      */
-    public function setPlannedExpensesTotal($plannedExpensesTotal)
+    public function setPlannedExpensesTotal(float $plannedExpensesTotal)
     {
         $this->plannedExpensesTotal = $plannedExpensesTotal;
     }
@@ -328,7 +328,7 @@ class Application
     /**
      * @param float $plannedExpensesInCurrentYear
      */
-    public function setPlannedExpensesInCurrentYear($plannedExpensesInCurrentYear)
+    public function setPlannedExpensesInCurrentYear(float $plannedExpensesInCurrentYear)
     {
         $this->plannedExpensesInCurrentYear = $plannedExpensesInCurrentYear;
     }
@@ -344,7 +344,7 @@ class Application
     /**
      * @param string $expensesExplanation
      */
-    public function setExpensesExplanation($expensesExplanation)
+    public function setExpensesExplanation(?string $expensesExplanation)
     {
         $this->expensesExplanation = $expensesExplanation;
     }
@@ -360,7 +360,7 @@ class Application
     /**
      * @param string $projectDirector
      */
-    public function setProjectDirector($projectDirector)
+    public function setProjectDirector(string $projectDirector)
     {
         $this->projectDirector = $projectDirector;
     }
@@ -376,7 +376,7 @@ class Application
     /**
      * @param string $organizationDirector
      */
-    public function setOrganizationDirector($organizationDirector)
+    public function setOrganizationDirector(?string $organizationDirector)
     {
         $this->organizationDirector = $organizationDirector;
     }
@@ -392,17 +392,25 @@ class Application
     /**
      * @param ApplicationStatus $status
      */
-    public function setStatus(ApplicationStatus $status)
+    private function setStatus(ApplicationStatus $status)
     {
         $this->status = $status->getValue();
     }
 
     /**
-     * @return bool
+     * @param string $status
      */
-    public function isEditable()
+    public function setWorkflowStatus(string $status)
     {
-        return $this->getStatus() == ApplicationStatus::CREATED;
+        $this->setStatus(new ApplicationStatus($status));
+    }
+
+    /**
+     * @return string
+     */
+    public function getWorkflowStatus()
+    {
+        return (string) $this->getStatus();
     }
 
     /**
@@ -416,11 +424,14 @@ class Application
     /**
      * @param Attachment $attachment
      */
-    public function setAttachment(Attachment $attachment = null)
+    public function setAttachment(?Attachment $attachment)
     {
         $this->attachment = $attachment;
     }
 
+    /**
+     * @return void
+     */
     public function clearAttachments()
     {
         $this->setAttachment(null);

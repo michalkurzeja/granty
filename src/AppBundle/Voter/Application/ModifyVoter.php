@@ -3,16 +3,28 @@
 namespace AppBundle\Voter\Application;
 
 use AppBundle\Entity\Application;
+use AppBundle\Service\Workflow\Application\ApplicationWorkflow;
 use AppBundle\Voter\Abstraction\Voter;
 use AppBundle\Voter\Actions\VoterActions;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 
 class ModifyVoter extends Voter
 {
+    /** @var ApplicationWorkflow */
+    private $applicationWorkflow;
+
+    /**
+     * @param ApplicationWorkflow $applicationWorkflow
+     */
+    public function __construct(ApplicationWorkflow $applicationWorkflow)
+    {
+        $this->applicationWorkflow = $applicationWorkflow;
+    }
+
     /**
      * @return string[]
      */
-    protected function getSupportedTypes()
+    protected function getSupportedTypes(): array
     {
         return [
             Application::class,
@@ -22,7 +34,7 @@ class ModifyVoter extends Voter
     /**
      * @return string[]
      */
-    protected function getSupportedAttributes()
+    protected function getSupportedAttributes(): array
     {
         return [
             VoterActions::EDIT,
@@ -36,9 +48,18 @@ class ModifyVoter extends Voter
      * @param TokenInterface $token
      * @return bool
      */
-    protected function voteOnAttribute($attribute, $application, TokenInterface $token)
+    protected function voteOnAttribute($attribute, $application, TokenInterface $token): bool
     {
-        return $application->isEditable() && $this->hasUserAccess($application, $token);
+        return $this->isEditable($application) && $this->hasUserAccess($application, $token);
+    }
+
+    /**
+     * @param Application $application
+     * @return bool
+     */
+    private function isEditable(Application $application): bool
+    {
+        return $this->applicationWorkflow->isEditable($application);
     }
 
     /**
@@ -46,7 +67,7 @@ class ModifyVoter extends Voter
      * @param TokenInterface $token
      * @return bool
      */
-    private function hasUserAccess(Application $application, TokenInterface $token)
+    private function hasUserAccess(Application $application, TokenInterface $token): bool
     {
         return $application->isOwner($token->getUser());
     }

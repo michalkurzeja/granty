@@ -25,7 +25,7 @@ class AttachmentExtension extends Twig_Extension
     /**
      * @return array
      */
-    public function getFunctions()
+    public function getFunctions(): array
     {
         return [
             new Twig_SimpleFunction('attachment_link', [$this, 'attachmentLink']),
@@ -44,7 +44,7 @@ class AttachmentExtension extends Twig_Extension
      * @param Attachment $attachment
      * @return string
      */
-    public function attachmentLink(Attachment $attachment)
+    public function attachmentLink(Attachment $attachment): string
     {
         return $this->attachmentLinkProvider->getAttachmentLink($attachment);
     }
@@ -54,7 +54,7 @@ class AttachmentExtension extends Twig_Extension
      * @param Attachment       $attachment
      * @return string
      */
-    public function attachmentDownload(Twig_Environment $env, Attachment $attachment)
+    public function attachmentDownload(Twig_Environment $env, Attachment $attachment): string
     {
         return $env->render('layout/elements/attachment_download.html.twig', [
             'attachment' => $attachment
@@ -64,7 +64,7 @@ class AttachmentExtension extends Twig_Extension
     /**
      * @return string
      */
-    public function getName()
+    public function getName(): string
     {
         return 'attachment';
     }

@@ -6,5 +6,5 @@ use Doctrine\ORM\Event\LifecycleEventArgs;
 
 interface RemoveHandler
 {
-    public function handle($entity, LifecycleEventArgs $event);
+    public function handle($entity, LifecycleEventArgs $event): void;
 }

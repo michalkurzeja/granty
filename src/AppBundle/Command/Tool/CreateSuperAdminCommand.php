@@ -4,7 +4,7 @@ namespace AppBundle\Command\Tool;
 use AppBundle\Command\Abstraction\Command;
 use AppBundle\Entity\User;
 use DateTime;
-use FOS\UserBundle\Model\UserManager;
+use FOS\UserBundle\Model\UserManagerInterface;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -24,7 +24,7 @@ class CreateSuperAdminCommand extends Command
     /**
      * @return void
      */
-    protected function configure()
+    protected function configure(): void
     {
         $this
             ->setName('app:tool:create-super-admin')
@@ -42,7 +42,7 @@ class CreateSuperAdminCommand extends Command
      * @param OutputInterface $output
      * @return int|null|void
      */
-    protected function execute(InputInterface $input, OutputInterface $output)
+    protected function execute(InputInterface $input, OutputInterface $output): void
     {
         $admin = $this->findSuperAdmin();
 
@@ -56,9 +56,9 @@ class CreateSuperAdminCommand extends Command
     }
 
     /**
-     * @return User
+     * @return User | null
      */
-    private function findSuperAdmin()
+    private function findSuperAdmin(): ?User
     {
         return $this->getUserManager()->findUserByUsername(static::SUPER_ADMIN_USERNAME);
     }
@@ -66,7 +66,7 @@ class CreateSuperAdminCommand extends Command
     /**
      * @return User
      */
-    private function createSuperAdmin()
+    private function createSuperAdmin(): User
     {
         /** @var User $admin */
         $admin = $this->getUserManager()->createUser();
@@ -75,7 +75,7 @@ class CreateSuperAdminCommand extends Command
         $admin->setEmail(static::SUPER_ADMIN_EMAIL);
         $admin->setFirstName(static::SUPER_ADMIN_FIRST_NAME);
         $admin->setLastName(static::SUPER_ADMIN_FIRST_NAME);
-        $admin->setDegree('');
+        $admin->setDegree(static::SUPER_ADMIN_USERNAME);
         $admin->setDateOfBirth(new DateTime);
         $admin->addRole(static::SUPER_ADMIN_ROLE);
         $admin->setEnabled(true);
@@ -87,7 +87,7 @@ class CreateSuperAdminCommand extends Command
      * @param User $admin
      * @param string        $password
      */
-    private function setSuperAdminPassword(User $admin, $password)
+    private function setSuperAdminPassword(User $admin, string $password): void
     {
         $admin->setPlainPassword($password);
     }
@@ -95,15 +95,15 @@ class CreateSuperAdminCommand extends Command
     /**
      * @param User $admin
      */
-    private function saveSuperAdmin(User $admin)
+    private function saveSuperAdmin(User $admin): void
     {
         $this->getUserManager()->updateUser($admin);
     }
 
     /**
-     * @return UserManager
+     * @return UserManagerInterface
      */
-    private function getUserManager()
+    private function getUserManager(): UserManagerInterface
     {
         return $this->getContainer()->get('fos_user.user_manager');
     }

@@ -12,7 +12,7 @@ class ViewVoter extends Voter
     /**
      * @return string[]
      */
-    protected function getSupportedTypes()
+    protected function getSupportedTypes(): array
     {
         return [
             Application::class,
@@ -22,7 +22,7 @@ class ViewVoter extends Voter
     /**
      * @return string[]
      */
-    protected function getSupportedAttributes()
+    protected function getSupportedAttributes(): array
     {
         return [
             VoterActions::VIEW,
@@ -35,7 +35,7 @@ class ViewVoter extends Voter
      * @param TokenInterface $token
      * @return bool
      */
-    protected function voteOnAttribute($attribute, $application, TokenInterface $token)
+    protected function voteOnAttribute($attribute, $application, TokenInterface $token): bool
     {
         return $this->hasUserAccess($application, $token);
     }
@@ -45,7 +45,7 @@ class ViewVoter extends Voter
      * @param TokenInterface $token
      * @return bool
      */
-    private function hasUserAccess(Application $application, TokenInterface $token)
+    private function hasUserAccess(Application $application, TokenInterface $token): bool
     {
         return $application->isOwner($token->getUser());
     }

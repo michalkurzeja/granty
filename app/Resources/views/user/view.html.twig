@@ -4,6 +4,9 @@
 
 {% block body_callout_title %}
     {{ 'user.view'|trans({}, 'page_title') }}: <em>{{ user.username }}</em>
+    {% if user.reviewer %}
+        <span class="label large float-right">{{ ('user.reviewer')|trans({}, 'entities') }}</span>
+    {% endif %}
 {% endblock %}
 
 {%- block body_callout -%}

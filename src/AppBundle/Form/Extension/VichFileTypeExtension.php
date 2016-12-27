@@ -12,9 +12,7 @@ use Vich\UploaderBundle\Form\Type\VichFileType;
 
 class VichFileTypeExtension extends AbstractTypeExtension
 {
-    /**
-     * @var AttachmentLinkProvider
-     */
+    /** @var AttachmentLinkProvider */
     private $attachmentLinkProvider;
 
     /**
@@ -25,7 +23,10 @@ class VichFileTypeExtension extends AbstractTypeExtension
         $this->attachmentLinkProvider = $attachmentLinkProvider;
     }
 
-    public function buildView(FormView $view, FormInterface $form, array $options)
+    /**
+     * {@inheritdoc}
+     */
+    public function buildView(FormView $view, FormInterface $form, array $options): void
     {
         if ($this->canDisplayDownloadLink($form, $options)) {
             /** @var Attachment $attachment */
@@ -36,9 +37,12 @@ class VichFileTypeExtension extends AbstractTypeExtension
         }
     }
 
-    private function canDisplayDownloadLink(FormInterface $form, array $options)
+    private function canDisplayDownloadLink(FormInterface $form, array $options): bool
     {
-        return $form->getParent()->getData() instanceof Attachment
+        $attachment = $form->getParent()->getData();
+
+        return $attachment instanceof Attachment
+            && $attachment->getId()
             && $options['download_link'];
     }
 
@@ -47,7 +51,7 @@ class VichFileTypeExtension extends AbstractTypeExtension
      *
      * @return string The name of the type being extended
      */
-    public function getExtendedType()
+    public function getExtendedType(): string
     {
         return VichFileType::class;
     }

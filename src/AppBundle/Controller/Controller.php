@@ -14,7 +14,7 @@ class Controller extends BaseController
     /**
      * @param string $message
      */
-    protected function addInfoFlash($message)
+    protected function addInfoFlash(string $message): void
     {
         $this->addFlash('primary', $message);
     }
@@ -22,7 +22,7 @@ class Controller extends BaseController
     /**
      * @param string $message
      */
-    protected function addSuccessFlash($message)
+    protected function addSuccessFlash(string $message): void
     {
         $this->addFlash('success', $message);
     }
@@ -30,7 +30,7 @@ class Controller extends BaseController
     /**
      * @param string $message
      */
-    protected function addWarningFlash($message)
+    protected function addWarningFlash(string $message): void
     {
         $this->addFlash('warning', $message);
     }
@@ -38,46 +38,49 @@ class Controller extends BaseController
     /**
      * @param string $message
      */
-    protected function addErrorFlash($message)
+    protected function addErrorFlash(string $message): void
     {
         $this->addFlash('alert', $message);
     }
 
     /**
-     * @param $entity
+     * @param mixed $entity
      */
-    protected function persistAndFlush($entity)
+    protected function persistAndFlush($entity): void
     {
         $this->persist($entity);
         $this->flush();
     }
 
     /**
-     * @param $entity
+     * @param mixed $entity
      */
-    protected function removeAndFlush($entity)
+    protected function removeAndFlush($entity): void
     {
         $this->remove($entity);
         $this->flush();
     }
 
     /**
-     * @param $entity
+     * @param mixed $entity
      */
-    protected function persist($entity)
+    protected function persist($entity): void
     {
         $this->getManager()->persist($entity);
     }
 
     /**
-     * @param $entity
+     * @param mixed $entity
      */
-    protected function remove($entity)
+    protected function remove($entity): void
     {
         $this->getManager()->remove($entity);
     }
 
-    protected function flush()
+    /**
+     * @return void
+     */
+    protected function flush(): void
     {
         $this->getManager()->flush();
     }
@@ -85,7 +88,7 @@ class Controller extends BaseController
     /**
      * @return EntityManagerInterface
      */
-    protected function getManager()
+    protected function getManager(): EntityManagerInterface
     {
         return $this->getDoctrine()->getManager();
     }

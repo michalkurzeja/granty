@@ -8,6 +8,8 @@ use AppBundle\Voter\Actions\VoterActions;
 use Doctrine\Common\Persistence\ObjectRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
+use Symfony\Component\Form\Form;
+use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -23,7 +25,7 @@ class UserController extends Controller
      *
      * @Route("/", name="user_index")
      */
-    public function indexAction()
+    public function indexAction(): Response
     {
         return $this->render('user/index.html.twig', [
             'users' => $this->getUserRepository()->findAllExcept($this->getUser())
@@ -36,38 +38,12 @@ class UserController extends Controller
      *
      * @Route("/{user}/view", name="user_view")
      */
-    public function viewAction(User $user)
+    public function viewAction(User $user): Response
     {
         $this->denyAccessUnlessGranted(VoterActions::VIEW, $user);
 
         return $this->render('user/view.html.twig', [
             'user' => $user,
-        ]);
-    }
-
-    /**
-     * @param Request $request
-     * @return Response
-     *
-     * @Route("/add", name="user_add")
-     */
-    public function addAction(Request $request)
-    {
-        $application = new User;
-
-        $form = $this->createForm(ApplicationType::class, $application);
-
-        if ($form->handleRequest($request)->isValid()) {
-            $this->persistAndFlush($application);
-
-            $this->addSuccessFlash('application.added');
-
-            return $this->redirectToView($application);
-
-        }
-
-        return $this->render('application/add.html.twig', [
-            'form' => $form->createView(),
         ]);
     }
 
@@ -78,7 +54,7 @@ class UserController extends Controller
      *
      * @Route("/{user}/edit", name="user_edit")
      */
-    public function editAction(User $user, Request $request)
+    public function editAction(User $user, Request $request): Response
     {
         $this->denyAccessUnlessGranted(VoterActions::EDIT, $user);
 
@@ -98,9 +74,13 @@ class UserController extends Controller
         ]);
     }
 
-    private function createEditForm(User $user)
+    /**
+     * @param User $user
+     * @return FormInterface
+     */
+    private function createEditForm(User $user): FormInterface
     {
-        return $this->createForm(UserType::class,$user, [
+        return $this->createForm(UserType::class, $user, [
             'require_password' => !$this->getUser()->isSuperAdmin()
         ]);
     }
@@ -111,7 +91,7 @@ class UserController extends Controller
      *
      * @Route("/{user}/remove", name="user_remove")
      */
-    public function removeAction(User $user)
+    public function removeAction(User $user): Response
     {
         $this->denyAccessUnlessGranted(VoterActions::REMOVE, $user);
 
@@ -123,18 +103,18 @@ class UserController extends Controller
     }
 
     /**
-     * @return UserRepository | ObjectRepository
+     * @return UserRepository
      */
-    private function getUserRepository()
+    private function getUserRepository(): UserRepository
     {
         return $this->getManager()->getRepository(User::class);
     }
 
     /**
      * @param User $user
-     * @return RedirectResponse
+     * @return Response
      */
-    private function redirectToView(User $user)
+    private function redirectToView(User $user): Response
     {
         return $this->redirectToRoute('user_view', [
             'user' => $user->getId(),

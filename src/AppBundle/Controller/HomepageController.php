@@ -12,7 +12,7 @@ class HomepageController extends Controller
      *
      * @return Response
      */
-    public function indexAction()
+    public function indexAction(): Response
     {
         return $this->redirectToRoute('application_index');
     }

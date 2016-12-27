@@ -3,15 +3,6 @@
 {% block title %}{{ 'user.index'|trans({}, 'page_title') }}{% endblock %}
 
 {% block body %}
-    <div class="row">
-        <div class="column">
-            <a href="{{ path('user_add') }}" class="button success">
-                <i class="fa fa-plus" aria-hidden="true"></i>
-                {{ 'buttons.user.add'|trans }}
-            </a>
-        </div>
-    </div>
-
     {% if users | length %}
         <div class="row">
             <div class="column">
@@ -23,6 +14,7 @@
                         <th>{{ 'user.email'|trans({}, 'entities') }}</th>
                         <th>{{ 'user.firstName'|trans({}, 'entities') }}</th>
                         <th>{{ 'user.lastName'|trans({}, 'entities') }}</th>
+                        <th>{{ 'user.reviewer'|trans({}, 'entities') }}</th>
                         <th>{{ 'actions.actions'|trans() }}</th>
                     </tr>
                     </thead>
@@ -34,6 +26,7 @@
                             <td>{{ user.email }}</td>
                             <td>{{ user.firstName }}</td>
                             <td>{{ user.lastName }}</td>
+                            <td>{{ user.reviewer | bool | trans }}</td>
                             <td>{{ menu('actions.user', {'user': user, 'include_index': false}) }}</td>
                         </tr>
                     {% endfor %}
@@ -44,9 +37,7 @@
     {% else %}
         <div class="callout secondary">
             <i class="fa fa-info-circle" aria-hidden="true"></i>
-            {{ 'text.user.noItems'|trans }}
-            <a href="{{ path('user_add') }}">{{ 'actions.clickHere'|trans }}</a>
-            {{ 'text.user.toApply'|trans }}.
+            {{ 'text.user.noItems'|trans }}.
         </div>
     {% endif %}
 {% endblock %}

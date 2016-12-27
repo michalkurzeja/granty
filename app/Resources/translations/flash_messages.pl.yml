@@ -5,6 +5,8 @@ application:
     added: Utworzono wniosek!
     removed: Usunięto wniosek!
     submitted: Wniosek został złożony!
+    accepted: Wniosek został zaakceptowany!
+    rejected: Wniosek został odrzucony!
 
 user:
     added: Utworzono użytkownika!

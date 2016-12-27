@@ -13,7 +13,7 @@ class UserApplicationsSetter implements AssociationSetterInterface
      * @param Application $application
      * @return void
      */
-    public function set($user, $application)
+    public function set($user, $application): void
     {
         $user->addApplication($application);
         $application->setUser($user);

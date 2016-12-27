@@ -16,7 +16,7 @@ class AttachmentFileRemoveListener extends VicUploaderEventListenerAbstract
         $this->manager = $manager;
     }
 
-    public function removeAttachment(VichUploaderEvent $event)
+    public function removeAttachment(VichUploaderEvent $event): void
     {
         if (!$this->isMappingName('attachment', $event)) {
             return;
