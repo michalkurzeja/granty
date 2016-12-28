@@ -1,6 +1,7 @@
 @import "../../../../../bower_components/foundation-sites/scss/global";
 @import "../../../../../bower_components/foundation-sites/scss/util/color";
 @import "../../../../../bower_components/foundation-sites/scss/components/callout";
+@import "../../../../../bower_components/foundation-sites/scss/components/card";
 @import "../../../../../bower_components/foundation-sites/scss/components/menu";
 @import "variables";
 
@@ -11,6 +12,14 @@
     tr, td {
       &.#{$name} {
         @include callout-style($color);
+      }
+    }
+  }
+
+  @each $name, $color in $foundation-palette {
+    .card-divider {
+      &.#{$name} {
+        @include card-divider(scale-color($color, $lightness: $callout-background-fade));
       }
     }
   }
@@ -53,6 +62,12 @@
 
 /** Rules **/
 
+.filters {
+  .button {
+    margin-bottom: 0;
+  }
+}
+
 nav.top-bar {
   margin-bottom: $global-margin-large;
   color: $topbar-text-color;
@@ -63,6 +78,10 @@ nav.top-bar {
     &:hover {
       color: $topbar-text-color-hover;
     }
+  }
+
+  .badge {
+    line-height: 1.5;
   }
 }
 
@@ -85,6 +104,15 @@ ul {
   &.unsigned {
     list-style-type: none;
     margin-left: 0;
+  }
+
+  li {
+    form {
+      .button {
+        margin-bottom: 0;
+        min-width: 7rem;
+      }
+    }
   }
 }
 
@@ -129,6 +157,14 @@ ul {
   &.separated {
     li + li {
       border-left: $callout-border;
+    }
+  }
+}
+
+table {
+  th {
+    &.fit {
+      width: 1px
     }
   }
 }

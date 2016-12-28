@@ -32,9 +32,19 @@
 
         <div class="row">
             <div class="column">
-                <h1>{%- block page_header -%}{%- endblock -%}</h1>
+                <h4 class="clearfix">{%- block page_header -%}{%- endblock -%}</h4>
             </div>
         </div>
+
+        {% if show_filters is defined and show_filters %}
+        <div class="row">
+            <div class="column filters">
+                <div class="callout">
+                    {%- block page_filters -%}{%- endblock -%}
+                </div>
+            </div>
+        </div>
+        {% endif %}
 
         <main class="row">
             <div class="column">

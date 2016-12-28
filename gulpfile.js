@@ -27,6 +27,7 @@ gulp.task('compile-js', function() {
                 'bower_components/foundation-sites/dist/js/foundation.min.js'
             ]),
             minifyJsInline(['app/Resources/public/js/reveal-confirm.js']),
+            minifyJsInline(['app/Resources/public/js/clear-filters.js']),
             minifyJsInline(['app/Resources/public/js/main.js'])
         )
         .pipe(sourcemaps.init({loadMaps: true}))

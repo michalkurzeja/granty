@@ -7,10 +7,12 @@ use AppBundle\Enums\ApplicationTransition;
 use AppBundle\Form\Type\ApplicationRejectionType;
 use AppBundle\Form\Type\ApplicationType;
 use AppBundle\Repository\ApplicationRepository;
+use AppBundle\Service\Filters\Filters;
 use AppBundle\Service\Workflow\Application\ApplicationWorkflow;
 use AppBundle\Voter\Actions\VoterActions;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Doctrine\ORM\Query;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -21,29 +23,33 @@ use Symfony\Component\HttpFoundation\Response;
 class ApplicationController extends Controller
 {
     /**
+     * @param Filters $filters
      * @return Response
-     *
      * @Route("/", name="application_index")
      */
-    public function indexAction(): Response
+    public function indexAction(Filters $filters): Response
     {
         return $this->render('application/index.html.twig', [
-            'applications' => $this->getApplications()
+            'applications' => $this->paginate(
+                $this->getApplicationRepository()->findAllByUserQuery($this->getUser(), $filters)
+            ),
+            'my_applications' => true,
         ]);
     }
 
     /**
-     * @return Application[] | Collection
+     * @param Filters $filters
+     * @return Response
+     * @Route("/review-list", name="application_review_list")
      */
-    private function getApplications(): Collection
+    public function reviewListAction(Filters $filters): Response
     {
-        $user = $this->getUser();
-
-        if ($user->isReviewer()) {
-            return new ArrayCollection($this->getApplicationRepository()->findAllReviewableAndOfUser($user));
-        }
-
-        return $user->getApplications();
+        return $this->render('application/index.html.twig', [
+            'applications' => $this->paginate(
+                $this->getApplicationRepository()->findAllReviewableQuery($this->getUser(), $filters)
+            ),
+            'my_applications' => false,
+        ]);
     }
 
     /**

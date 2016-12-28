@@ -1,6 +1,7 @@
 main:
     home: Strona domowa
-    applications: Wnioski
+    applications: Moje wnioski
+    review_list: Wnioski do sprawdzenia
     users: Użytkownicy
 
 user:

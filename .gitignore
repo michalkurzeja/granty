@@ -21,6 +21,7 @@ node_modules/
 # web
 web/bundles/
 web/assets/
+web/upload/
 
 # vendors
 vendor

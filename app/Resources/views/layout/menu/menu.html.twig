@@ -10,18 +10,24 @@
 
 {% block linkElement %}
     {% if item.attribute('form', false) %}
-        <form action="{{ item.uri }}" method="post" data-confirm>
+        <form action="{{ item.uri }}" method="post" {{ item.attribute('form-confirm', true) ? 'data-confirm' : '' }}>
             <button type="submit" class="button {{ item.attribute('form_btn_type', '') }} {{ item.attribute('form_btn_size', 'tiny') }}">
                 {% if item.attribute('icon-pre', false) %}<i class="{{ item.attribute('icon-pre') }}"></i>{% endif %}
-                {{ block('label') }}
+                {{ block('label') }} {{ item.attribute('label-post', '') }}
                 {% if item.attribute('icon-post', false) %}<i class="{{ item.attribute('icon-post') }}"></i>{% endif %}
+                {% if item.attribute('badge-post', false) %}
+                    <span class="badge {{ item.attribute('badge-class', 'primary') }}">{{ item.attribute('badge-post') }}</span>
+                {% endif %}
             </button>
         </form>
     {% else %}
         <a href="{{ item.uri }}"{{ knp_menu.attributes(item.linkAttributes) }}>
             {% if item.attribute('icon-pre', false) %}<i class="{{ item.attribute('icon-pre') }}"></i>{% endif %}
-            <span class="title">{{ block('label') }}</span>
+            <span class="title">{{ block('label') }} {{ item.attribute('label-post', '') }}</span>
             {% if item.attribute('icon-post', false) %}<i class="{{ item.attribute('icon-post') }}"></i>{% endif %}
+            {% if item.attribute('badge-post', false) %}
+                <span class="badge {{ item.attribute('badge-class', 'primary') }}">{{ item.attribute('badge-post') }}</span>
+            {% endif %}
         </a>
     {% endif %}
 {% endblock %}

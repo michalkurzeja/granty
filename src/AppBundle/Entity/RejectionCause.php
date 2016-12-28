@@ -1,14 +1,18 @@
 <?php
 namespace AppBundle\Entity;
 
+use AppBundle\Entity\Interfaces\TraceableInterface;
+use AppBundle\Entity\Traits\TraceableTrait;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity
  */
-class RejectionCause
+class RejectionCause implements TraceableInterface
 {
+    use TraceableTrait;
+
     /**
      * @ORM\Id
      * @ORM\Column(type="integer")

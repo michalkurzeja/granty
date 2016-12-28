@@ -17,6 +17,15 @@ services:
         tags:
             - { name: twig.extension }
 
+    app.twig.extension.filters:
+        class: AppBundle\Twig\FiltersExtension
+        arguments:
+            - "@translator"
+            - "@request_stack"
+            - "@sensio_framework_extra.converter.manager"
+        tags:
+            - { name: twig.extension }
+
     app.twig.extension.application:
         class: AppBundle\Twig\ApplicationExtension
         arguments:
@@ -26,5 +35,13 @@ services:
 
     app.twig.extension.menu:
         class: AppBundle\Twig\MenuExtension
+        tags:
+            - { name: twig.extension }
+
+    app.twig.extension.traceable:
+        class: AppBundle\Twig\TraceableExtension
+        arguments:
+            - "@translator"
+            - "@app.util.current_user_provider"
         tags:
             - { name: twig.extension }

@@ -10,7 +10,8 @@ profile:
     reset: Reset hasła
 
 application:
-    index: Wnioski
+    index: Moje wnioski
+    review_list: Wnioski do sprawdzenia
     view: Wniosek
     add: Utwórz wniosek
     edit: Zmień wniosek

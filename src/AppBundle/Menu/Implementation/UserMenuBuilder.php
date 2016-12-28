@@ -20,10 +20,12 @@ class UserMenuBuilder extends MenuBuilder
         $menu = $this->createRootMenuItem();
 
         $menu
-            ->addChild('user.profile', ['route' => 'fos_user_profile_show']);
+            ->addChild('user.profile', ['route' => 'fos_user_profile_show'])
+            ->setAttribute('icon-pre', 'fa fa-user-circle-o');
 
         $menu
             ->addChild('user.logout', ['route' => 'fos_user_security_logout'])
+            ->setAttribute('label-post', sprintf('(%s)', $this->getCurrentUser()->getUsername()))
             ->setAttribute('icon-post', 'fa fa-sign-out');
 
         return $menu;

@@ -1,0 +1,5 @@
+services:
+    app.filters.param_converter:
+        class: AppBundle\Service\Filters\FiltersParamConverter
+        tags:
+            - { name: request.param_converter, priority: 1, converter: filters }

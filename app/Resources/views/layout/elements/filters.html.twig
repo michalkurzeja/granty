@@ -1,0 +1,25 @@
+{% macro get_filter(name) %}
+
+{% endmacro %}
+
+<form>
+    <div class="row">
+        <div class="column">
+            {% block filters %}{% endblock %}
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="column">
+            {% block submit %}
+                <button class="button small" type="submit"><i class="fa fa-filter"></i> {{ 'actions.filter' | trans }}</button>
+            {% endblock %}
+            {% block clear %}
+                <button class="button small alert" type="button" data-clear-filters>
+                    <i class="fa fa-times"></i>
+                    {{ 'actions.clear' | trans }}
+                </button>
+            {% endblock %}
+        </div>
+    </div>
+</form>

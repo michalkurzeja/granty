@@ -3,7 +3,10 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\User;
+use AppBundle\Service\Paginator\Paginator;
 use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\ORM\Query;
+use Knp\Component\Pager\Pagination\PaginationInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller as BaseController;
 
 /**
@@ -91,5 +94,27 @@ class Controller extends BaseController
     protected function getManager(): EntityManagerInterface
     {
         return $this->getDoctrine()->getManager();
+    }
+
+    /**
+     * @param Query $query
+     * @param int   $limit
+     * @param array $options
+     * @return PaginationInterface
+     */
+    protected function paginate(
+        Query $query,
+        int $limit = Paginator::LIMIT_DEFAULT,
+        array $options = []
+    ): PaginationInterface {
+        return $this->getPaginator()->paginate($query, $limit, $options);
+    }
+
+    /**
+     * @return Paginator
+     */
+    protected function getPaginator(): Paginator
+    {
+        return $this->get('app.paginator');
     }
 }

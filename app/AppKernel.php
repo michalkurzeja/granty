@@ -20,6 +20,8 @@ class AppKernel extends Kernel
             new Knp\Bundle\MenuBundle\KnpMenuBundle(),
             new Vich\UploaderBundle\VichUploaderBundle(),
             new Knp\Bundle\GaufretteBundle\KnpGaufretteBundle(),
+            new Knp\Bundle\PaginatorBundle\KnpPaginatorBundle(),
+            new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
             new AppBundle\AppBundle(),
         ];
 

@@ -1,11 +1,10 @@
 $global-margin-large: 1.5rem;
 
 $application-status-class-map: (
-  created: primary,
-  submitted: secondary,
+  draft: primary,
+  submitted: warning,
   accepted: success,
-  rejected: alert,
-  appealed: warning,
+  rejected: alert
 ) !default;
 
 $sides: (

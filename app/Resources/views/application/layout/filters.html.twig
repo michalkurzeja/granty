@@ -1,0 +1,18 @@
+{% extends 'layout/elements/filters.html.twig' %}
+
+{% block filters %}
+    {{ filter_text('#', 'id') }}
+    {{ filter_text('application.topic' | trans({}, 'entities'), 'topic') }}
+
+    {% if my_applications %}
+        {{ filter_select(
+            translate_options(application_statuses(), 'applicationStatus', 'enums'),
+            'application.status' | trans({}, 'entities'),
+            'status'
+        ) }}
+    {% endif %}
+
+    {% if not my_applications %}
+        {{ filter_text('application.author' | trans({}, 'entities'), 'createdBy') }}
+    {% endif %}
+{% endblock %}

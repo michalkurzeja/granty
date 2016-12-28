@@ -47,8 +47,14 @@ description:
         plannedExpensesInCurrentYear: "Planowane nakłady finansowe na rok bieżący."
         expensesExplanation: "Kalkulacja wraz z krótkim uzasadnieniem merytorycznym każdej pozycji kosztorysu pod kątem wspierania realizacji zadań projektu oraz rozwoju naukowego wnioskodawcy."
 
+timestampable:
+    created: Utworzono
+    updated: Zmieniono
+
 misc:
     selectValue: Wybierz wartość
     day: Dzień
     month: Miesiąc
     year: Rok
+    never: Nigdy
+    you: Ty

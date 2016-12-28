@@ -60,21 +60,6 @@ class User extends BaseUser
     private $dateOfBirth;
 
     /**
-     * @var Collection
-     *
-     * @ORM\OneToMany(targetEntity="Application", mappedBy="user", orphanRemoval=true)
-     * @ORM\OrderBy({"id": "asc"})
-     */
-    private $applications;
-
-    public function __construct()
-    {
-        $this->setApplications(new ArrayCollection());
-
-        parent::__construct();
-    }
-
-    /**
      * @return int
      */
     public function getId()
@@ -144,40 +129,6 @@ class User extends BaseUser
     public function setDateOfBirth(DateTime $dateOfBirth)
     {
         $this->dateOfBirth = $dateOfBirth;
-    }
-
-    /**
-     * @return Collection
-     */
-    public function getApplications()
-    {
-        return $this->applications;
-    }
-
-    /**
-     * @param Application $application
-     */
-    public function addApplication(Application $application)
-    {
-        if (!$this->applications->contains($application)) {
-            $this->applications->add($application);
-        }
-    }
-
-    /**
-     * @param Application $application
-     */
-    public function removeApplication(Application $application)
-    {
-        $this->applications->removeElement($application);
-    }
-
-    /**
-     * @param Collection $applications
-     */
-    public function setApplications(Collection $applications)
-    {
-        $this->applications = $applications;
     }
 
     /**

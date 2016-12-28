@@ -2,6 +2,8 @@
 
 namespace AppBundle\Entity;
 
+use AppBundle\Entity\Interfaces\TraceableInterface;
+use AppBundle\Entity\Traits\TraceableTrait;
 use AppBundle\Enums\ApplicationStatus;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -11,8 +13,10 @@ use Symfony\Component\Validator\Constraints as Assert;
 /**
  * @ORM\Entity(repositoryClass="AppBundle\Repository\ApplicationRepository")
  */
-class Application
+class Application implements TraceableInterface
 {
+    use TraceableTrait;
+
     /**
      * @var int
      *
@@ -140,13 +144,6 @@ class Application
     private $attachment;
 
     /**
-     * @var User
-     *
-     * @ORM\ManyToOne(targetEntity="User", inversedBy="applications")
-     */
-    private $user;
-
-    /**
      * @var Collection
      *
      * @ORM\OneToMany(
@@ -155,7 +152,7 @@ class Application
      *     orphanRemoval=true,
      *     cascade={"persist", "remove"}
      * )
-     * @ORM\OrderBy({"id": "desc"})
+     * @ORM\OrderBy({"created": "desc"})
      */
     private $rejectionCauses;
 
@@ -454,28 +451,12 @@ class Application
     }
 
     /**
-     * @return User
-     */
-    public function getUser()
-    {
-        return $this->user;
-    }
-
-    /**
-     * @param User $user
-     */
-    public function setUser(User $user)
-    {
-        $this->user = $user;
-    }
-
-    /**
      * @param User $user
      * @return bool
      */
     public function isOwner(User $user)
     {
-        return $this->user === $user;
+        return $this->createdBy === $user;
     }
 
     /**

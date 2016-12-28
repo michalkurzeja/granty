@@ -1,0 +1,13 @@
+{% set filter_value = get_filter_value(name) %}
+
+<label for="{{ name }}">
+    {{ label }}:
+    <select title="{{ name }}" name="filters[{{ name }}]">
+        <option value="">---</option>
+        {% for value, option in options %}
+            <option value="{{ value }}" {% if filter_value == value %}selected{% endif %}>
+                {{ option }}
+            </option>
+        {% endfor %}
+    </select>
+</label>

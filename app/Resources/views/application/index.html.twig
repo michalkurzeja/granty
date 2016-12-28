@@ -1,6 +1,16 @@
 {% extends 'layout/base.html.twig' %}
 
+{% set show_filters = true %}
+
 {% block title %}{{ 'application.index'|trans({}, 'page_title') }}{% endblock %}
+
+{% block page_header %}
+   {{ (my_applications ? 'application.index' : 'application.review_list') | trans({}, 'page_title') }}
+{% endblock %}
+
+{%- block page_filters -%}
+    {% include 'application/layout/filters.html.twig' with {'my_applications': my_applications} %}
+{%- endblock -%}
 
 {% block body %}
     {% if not app.user.superAdmin %}
@@ -20,10 +30,11 @@
                 <table class="hover">
                     <thead>
                         <tr>
-                            <th>#</th>
-                            <th>{{ 'application.author'|trans({}, 'entities') }}</th>
+                            <th class="fit">#</th>
+                            {% if not my_applications %}<th>{{ 'application.author'|trans({}, 'entities') }}</th>{% endif %}
                             <th>{{ 'application.topic'|trans({}, 'entities') }}</th>
-                            <th>{{ 'application.status'|trans({}, 'entities') }}</th>
+                            <th>{{ 'timestampable.created'|trans({}, 'entities') }}</th>
+                            <th class="fit">{{ 'application.status'|trans({}, 'entities') }}</th>
                             <th>{{ 'actions.actions'|trans() }}</th>
                         </tr>
                     </thead>
@@ -31,14 +42,21 @@
                         {% for application in applications %}
                             <tr>
                                 <td>{{ application.id }}</td>
-                                <td>{{ application.user }}</td>
+                                {% if not my_applications %}<td> {{ created_by(application) }}</td>{% endif %}
                                 <td>{{ application.topic }}</td>
+                                <td>{{ created(application) }}</td>
                                 <td><span class="label {{ application.status }}">{{ ('applicationStatus.' ~ application.status)|trans({}, 'enums') }}</span></td>
                                 <td>{{ menu('actions.application', {'application': application, 'include_index': false}) }}</td>
                             </tr>
                         {% endfor %}
                     </tbody>
                 </table>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="column">
+                {{ knp_pagination_render(applications) }}
             </div>
         </div>
     {% else %}

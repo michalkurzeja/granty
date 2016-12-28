@@ -8,6 +8,8 @@ services:
     app.menu.builder.main:
         class: AppBundle\Menu\Implementation\MainMenuBuilder
         parent: app.menu.builder
+        arguments:
+            - "@app.repository.application"
         tags:
             - { name: knp_menu.menu_builder, method: build, alias: main }
 

@@ -2,6 +2,7 @@
 namespace AppBundle\Twig;
 
 use AppBundle\Entity\User;
+use AppBundle\Enums\ApplicationStatus;
 use AppBundle\Service\Application\SubmittedApplicationsRetriever;
 use Doctrine\Common\Collections\Collection;
 use Twig_Extension;
@@ -27,6 +28,7 @@ class ApplicationExtension extends Twig_Extension
     {
         return [
             new Twig_SimpleFunction('submitted_applications', [$this, 'getSubmittedApplications']),
+            new Twig_SimpleFunction('application_statuses', [$this, 'getApplicationStatuses']),
         ];
     }
 
@@ -37,6 +39,14 @@ class ApplicationExtension extends Twig_Extension
     public function getSubmittedApplications(User $user): Collection
     {
         return $this->submittedApplicationsRetriever->getSubmittedApplications($user);
+    }
+
+    /**
+     * @return array
+     */
+    public function getApplicationStatuses(): array
+    {
+        return ApplicationStatus::values();
     }
 
     public function getName(): string

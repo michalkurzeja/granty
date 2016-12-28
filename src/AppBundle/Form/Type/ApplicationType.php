@@ -21,25 +21,14 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class ApplicationType extends AbstractType implements EventSubscriberInterface
 {
-    /** @var CurrentUserProvider */
-    private $currentUserProvider;
-    /** @var UserApplicationsSetter */
-    private $userApplicationsSetter;
     /** @var ApplicationAttachmentsSetter */
     private $applicationAttachmentsSetter;
 
     /**
-     * @param CurrentUserProvider $currentUserProvider
-     * @param UserApplicationsSetter $userApplicationsSetter
      * @param ApplicationAttachmentsSetter $applicationAttachmentsSetter
      */
-    public function __construct(
-        CurrentUserProvider $currentUserProvider,
-        UserApplicationsSetter $userApplicationsSetter,
-        ApplicationAttachmentsSetter $applicationAttachmentsSetter
-    ) {
-        $this->currentUserProvider = $currentUserProvider;
-        $this->userApplicationsSetter = $userApplicationsSetter;
+    public function __construct(ApplicationAttachmentsSetter $applicationAttachmentsSetter)
+    {
         $this->applicationAttachmentsSetter = $applicationAttachmentsSetter;
     }
 
@@ -147,17 +136,7 @@ class ApplicationType extends AbstractType implements EventSubscriberInterface
     {
         /** @var Application $application */
         $application = $event->getData();
-        $user = $this->getCurrentUser();
 
-        $this->userApplicationsSetter->set($user, $application);
         $this->applicationAttachmentsSetter->set($application, $application->getAttachment());
-    }
-
-    /**
-     * @return User|null
-     */
-    private function getCurrentUser(): ?User
-    {
-        return $this->currentUserProvider->getCurrentUser();
     }
 }

@@ -4,6 +4,8 @@ imports:
     - { resource: bundle/framework.yml }
     - { resource: bundle/knp_gaufrette.yml }
     - { resource: bundle/knp_menu.yml }
+    - { resource: bundle/knp_paginator.yml }
+    - { resource: bundle/stof_doctrine_extensions.yml }
     - { resource: bundle/swiftmailer.yml }
     - { resource: bundle/twig.yml }
     - { resource: bundle/vich_uploader.yml }

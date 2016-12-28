@@ -44,7 +44,7 @@ class ApplicationActionsMenuBuilder extends MenuBuilder
         $this->addChildConditionally(
             $menu,
             'actions.application.index',
-            ['route' => 'application_index'],
+            ['route' => $this->getListRoute($application)],
             $this->getOption($options, 'include_index', true)
         );
 
@@ -115,6 +115,7 @@ class ApplicationActionsMenuBuilder extends MenuBuilder
                 if ($item instanceof ItemInterface) {
                     $item
                         ->setAttribute('form', true)
+                        ->setAttribute('form-confirm', false)
                         ->setAttribute('form_btn_type', 'alert');
                 }
             }
@@ -168,6 +169,21 @@ class ApplicationActionsMenuBuilder extends MenuBuilder
      */
     private function isOwnedByCurrentUser(Application $application): bool
     {
-        return $application->getUser() === $this->getCurrentUser();
+        return $application->isOwner($this->getCurrentUser());
+    }
+
+    /**
+     * @param Application $application
+     * @return string
+     */
+    private function getListRoute(?Application $application): string
+    {
+        if ($application instanceof Application) {
+            return $this->isOwnedByCurrentUser($application)
+                ? 'application_index'
+                : 'application_review_list';
+        }
+
+        return 'application_index';
     }
 }

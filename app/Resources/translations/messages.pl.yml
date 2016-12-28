@@ -10,6 +10,8 @@ actions:
     register: Załóż konto
     clickHere: Kliknij tutaj
     actions: Akcje
+    filter: Filtruj
+    clear: Wyczyść
 
 buttons:
     general:
@@ -19,6 +21,10 @@ buttons:
         reject: Odrzuć wniosek
     user:
         add: Dodaj użytkownika
+
+pagination:
+    previous: Wstecz
+    next: Dalej
 
 text:
     agh: Akademia Górniczo-Hutnicza im. Stanisława Staszica w Krakowie

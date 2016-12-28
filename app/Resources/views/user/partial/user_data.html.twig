@@ -1,14 +1,14 @@
 {% trans_default_domain 'entities' %}
 
 <div class="callout primary">
-    <p>{{ 'user.username'|trans }}: {{ user.username }}</p>
-    <p>{{ 'user.email'|trans }}: {{ user.email }}</p>
+    <p><strong>{{ 'user.username'|trans }}:</strong> {{ user.username }}</p>
+    <p><strong>{{ 'user.email'|trans }}:</strong> {{ user.email }}</p>
 </div>
 <div class="callout secondary">
-    <p>{{ 'user.firstName'|trans }}: {{ user.firstName }}</p>
-    <p>{{ 'user.lastName'|trans }}: {{ user.lastName }}</p>
-    <p>{{ 'user.degree'|trans }}: {{ user.degree }}</p>
-    <p>{{ 'user.dateOfBirth'|trans }}: {{ user.dateOfBirth | date('j F Y') }}</p>
+    <p><strong>{{ 'user.firstName'|trans }}:</strong> {{ user.firstName }}</p>
+    <p><strong>{{ 'user.lastName'|trans }}:</strong> {{ user.lastName }}</p>
+    <p><strong>{{ 'user.degree'|trans }}:</strong> {{ user.degree }}</p>
+    <p><strong>{{ 'user.dateOfBirth'|trans }}:</strong> {{ user.dateOfBirth | date('j F Y') }}</p>
 </div>
 <div class="callout success">
     <p>
