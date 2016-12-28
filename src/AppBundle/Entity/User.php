@@ -69,7 +69,7 @@ class User extends BaseUser
 
     public function __construct()
     {
-        $this->applications = new ArrayCollection;
+        $this->setApplications(new ArrayCollection());
 
         parent::__construct();
     }

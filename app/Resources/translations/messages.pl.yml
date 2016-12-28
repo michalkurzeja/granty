@@ -16,6 +16,7 @@ buttons:
         save: Zapisz zmiany
     application:
         add: Utwórz wniosek
+        reject: Odrzuć wniosek
     user:
         add: Dodaj użytkownika
 
@@ -31,5 +32,7 @@ text:
             noItems: Nie ma żadnych wniosków do sprawdzenia!
         noItems: Nie złożyłeś jescze żadnego wniosku!
         toApply: aby złożyć wniosek
+    rejectionCause:
+        rejected_times: Odrzucono 1 raz | Odrzucono %count% razy
     user:
         noItems: Poza Tobą nie ma jeszcze innych użytkowników!

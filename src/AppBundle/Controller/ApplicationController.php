@@ -4,6 +4,7 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\Application;
 use AppBundle\Enums\ApplicationTransition;
+use AppBundle\Form\Type\ApplicationRejectionType;
 use AppBundle\Form\Type\ApplicationType;
 use AppBundle\Repository\ApplicationRepository;
 use AppBundle\Service\Workflow\Application\ApplicationWorkflow;
@@ -160,13 +161,25 @@ class ApplicationController extends Controller
 
     /**
      * @param Application $application
+     * @param Request     $request
      * @return Response
      *
-     * @Route("/{application}/accept", name="application_reject")
+     * @Route("/{application}/reject", name="application_reject")
      */
-    public function rejectAction(Application $application): Response
+    public function rejectAction(Application $application, Request $request): Response
     {
-        return $this->changeState($application, ApplicationTransition::ACCEPT(), 'application.accepted');
+        $this->denyAccessUnlessGranted(ApplicationTransition::REJECT, $application);
+
+        $form = $this->createForm(ApplicationRejectionType::class, $application);
+
+        if ($form->handleRequest($request)->isValid()) {
+            return $this->changeState($application, ApplicationTransition::REJECT(), 'application.rejected');
+        }
+
+        return $this->render('application/reject.html.twig', [
+            'form' => $form->createView(),
+            'application' => $application,
+        ]);
     }
 
     /**
@@ -181,7 +194,7 @@ class ApplicationController extends Controller
 
         $this->getApplicationWorkflow()->apply($application, (string) $transition);
 
-        $this->flush();
+        $this->persistAndFlush($application);
 
         $this->addInfoFlash($message);
 

@@ -18,8 +18,20 @@ services:
         tags:
             - { name: form.type }
 
+    app.form_type.application_rejection:
+        class: AppBundle\Form\Type\ApplicationRejectionType
+        arguments:
+            - "@app.association_setter.application_rejection_causes"
+        tags:
+            - { name: form.type }
+
     app.form_type.attachment:
         class: AppBundle\Form\Type\AttachmentType
+        tags:
+            - { name: form.type }
+
+    app.form_type.rejection_cause:
+        class: AppBundle\Form\Type\RejectionCauseType
         tags:
             - { name: form.type }
 

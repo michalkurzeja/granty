@@ -75,23 +75,48 @@ class ApplicationActionsMenuBuilder extends MenuBuilder
             }
 
             if ($this->isSubmittable($application)) {
-                $menu
-                    ->addChild('actions.application.submit', [
-                        'route' => 'application_submit',
-                        'routeParameters' => ['application' => $application->getId()],
-                    ])
-                    ->setAttribute('form', true)
-                    ->setAttribute('form_btn_type', 'warning');
+                $item = $this->addChildConditionally(
+                    $menu,
+                    'actions.application.submit',
+                    ['route' => 'application_submit', 'routeParameters' => ['application' => $application->getId()]],
+                    $this->getOption($options, 'include_submit', true)
+                );
+
+                if ($item instanceof ItemInterface) {
+                    $item
+                        ->setAttribute('form', true)
+                        ->setAttribute('form_btn_type', 'warning');
+                }
             }
 
             if ($this->isAcceptable($application)) {
-                $menu
-                    ->addChild('actions.application.accept', [
-                        'route' => 'application_accept',
-                        'routeParameters' => ['application' => $application->getId()],
-                    ])
-                    ->setAttribute('form', true)
-                    ->setAttribute('form_btn_type', 'success');
+                $item = $this->addChildConditionally(
+                    $menu,
+                    'actions.application.accept',
+                    ['route' => 'application_accept', 'routeParameters' => ['application' => $application->getId()]],
+                    $this->getOption($options, 'include_accept', true)
+                );
+
+                if ($item instanceof ItemInterface) {
+                    $item
+                        ->setAttribute('form', true)
+                        ->setAttribute('form_btn_type', 'success');
+                }
+            }
+
+            if ($this->isRejectable($application)) {
+                $item = $this->addChildConditionally(
+                    $menu,
+                    'actions.application.reject',
+                    ['route' => 'application_reject', 'routeParameters' => ['application' => $application->getId()]],
+                    $this->getOption($options, 'include_reject', true)
+                );
+
+                if ($item instanceof ItemInterface) {
+                    $item
+                        ->setAttribute('form', true)
+                        ->setAttribute('form_btn_type', 'alert');
+                }
             }
         }
 
@@ -113,7 +138,8 @@ class ApplicationActionsMenuBuilder extends MenuBuilder
      */
     private function isSubmittable(Application $application): bool
     {
-        return $this->applicationWorkflow->isSubmittable($application);
+        return $this->applicationWorkflow->isSubmittable($application)
+            && $this->isOwnedByCurrentUser($application);
     }
 
     /**

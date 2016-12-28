@@ -27,7 +27,7 @@ class RejectionCause
     private $message;
 
     /**
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Application")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Application", inversedBy="rejectionCauses")
      *
      * @var Application
      */

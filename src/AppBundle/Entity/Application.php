@@ -3,6 +3,8 @@
 namespace AppBundle\Entity;
 
 use AppBundle\Enums\ApplicationStatus;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -144,9 +146,23 @@ class Application
      */
     private $user;
 
+    /**
+     * @var Collection
+     *
+     * @ORM\OneToMany(
+     *     targetEntity="AppBundle\Entity\RejectionCause",
+     *     mappedBy="application",
+     *     orphanRemoval=true,
+     *     cascade={"persist", "remove"}
+     * )
+     * @ORM\OrderBy({"id": "desc"})
+     */
+    private $rejectionCauses;
+
     public function __construct()
     {
         $this->setStatus(ApplicationStatus::DRAFT());
+        $this->setRejectionCauses(new ArrayCollection());
     }
 
     /**
@@ -460,5 +476,56 @@ class Application
     public function isOwner(User $user)
     {
         return $this->user === $user;
+    }
+
+    /**
+     * @return Collection
+     */
+    public function getRejectionCauses()
+    {
+        return $this->rejectionCauses;
+    }
+
+    /**
+     * @param RejectionCause $rejectionCause
+     * @return $this
+     */
+    public function addRejectionCause(RejectionCause $rejectionCause)
+    {
+        if (!$this->rejectionCauses->contains($rejectionCause)) {
+            $this->rejectionCauses->add($rejectionCause);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @param RejectionCause $rejectionCause
+     * @return $this
+     */
+    public function removeRejectionCause(RejectionCause $rejectionCause)
+    {
+        $this->rejectionCauses->removeElement($rejectionCause);
+
+        return $this;
+    }
+
+    /**
+     * @param Collection $rejectionCauses
+     * @return Application
+     */
+    public function setRejectionCauses(Collection $rejectionCauses)
+    {
+        $this->rejectionCauses = $rejectionCauses;
+
+        return $this;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isRejected()
+    {
+        return $this->getStatus()->equals(ApplicationStatus::REJECTED());
     }
 }

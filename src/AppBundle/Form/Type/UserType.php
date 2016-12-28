@@ -15,11 +15,12 @@ class UserType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder->add(
-            $builder->create('roles', CheckboxType::class, [
-                'required' => false,
-                'label' => 'user.reviewer'
-            ])
-            ->addModelTransformer(new RolesToReviewerBoolTransformer)
+            $builder
+                ->create('roles', CheckboxType::class, [
+                    'required' => false,
+                    'label' => 'user.reviewer'
+                ])
+                ->addModelTransformer(new RolesToReviewerBoolTransformer())
         );
 
         if (!$this->isPasswordRequired($options)) {

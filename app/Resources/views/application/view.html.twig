@@ -11,7 +11,7 @@
 
 {%- block body_callout -%}
     <div class="callout">
-        <h6><strong>{{ ('application.author') |trans({}, 'entities') }}:</strong></h6>
+        <h6><strong>{{ ('application.author') | trans({}, 'entities') }}:</strong></h6>
         <p>{{ application.user }}</p>
     </div>
 
@@ -20,7 +20,7 @@
 
         {% if propertyValue %}
             <div class="callout">
-                <h6><strong>{{ ('application.' ~ property) |trans({}, 'entities') }}:</strong></h6>
+                <h6><strong>{{ ('application.' ~ property) | trans({}, 'entities') }}:</strong></h6>
                 <p> {{ attribute(application, property) | nl2br }}</p>
             </div>
         {% endif %}
@@ -28,9 +28,26 @@
 
     {% if application.attachment %}
     <div class="callout">
-        <h6><strong>{{ ('application.attachment') |trans({}, 'entities') }}:</strong></h6>
+        <h6><strong>{{ ('application.attachment') | trans({}, 'entities') }}:</strong></h6>
         <p>{{ attachment_download(application.attachment) }}</p>
     </div>
+    {% endif %}
+{%- endblock -%}
+
+{%- block post_body -%}
+    {% if application.rejected %}
+        <div class="callout">
+            <h6>
+                <strong>
+                    {{ ('rejection_cause.message') | transchoice(application.rejectionCauses.count, {}, 'entities') }}
+                    ({{ ('text.rejectionCause.rejected_times') | transchoice(application.rejectionCauses.count, {}, 'messages') }}):
+                </strong>
+            </h6>
+
+            {% for rejectionCause in application.rejectionCauses %}
+                <div class="callout alert">{{ rejectionCause.message | nl2br }}</div>
+            {% endfor %}
+        </div>
     {% endif %}
 {%- endblock -%}
 

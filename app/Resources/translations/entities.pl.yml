@@ -30,6 +30,9 @@ application:
 attachment:
     file: Wybierz plik
 
+rejection_cause:
+    message: "Powód odrzucenia | Powody odrzucenia"
+
 description:
     application:
         year: "Rok, w którym powinien zostać przyznany grant."

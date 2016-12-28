@@ -3,3 +3,6 @@ form:
 
 registration_type:
     repeat_password: Powtórz hasło
+
+rejection_cause_type:
+    message: Powód odrzucenia
