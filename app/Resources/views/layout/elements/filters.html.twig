@@ -1,11 +1,9 @@
-{% macro get_filter(name) %}
-
-{% endmacro %}
-
 <form>
     <div class="row">
         <div class="column">
-            {% block filters %}{% endblock %}
+            {% block filters %}
+                {{ form_row(form) }}
+            {% endblock %}
         </div>
     </div>
 

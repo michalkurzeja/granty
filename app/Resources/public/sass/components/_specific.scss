@@ -23,3 +23,11 @@
 .vich-file {
   margin-bottom: $global-margin;
 }
+
+.filter-field {
+  display: inline-block;
+
+  select {
+    margin: 0;
+  }
+}

@@ -1,4 +1,11 @@
 services:
+    app.filters.form_creator:
+        class: AppBundle\Service\Filters\FiltersFormCreator
+        arguments:
+            - "@form.factory"
+            - "@request_stack"
+            - "@sensio_framework_extra.converter.manager"
+
     app.filters.param_converter:
         class: AppBundle\Service\Filters\FiltersParamConverter
         tags:

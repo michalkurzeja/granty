@@ -4,13 +4,17 @@ namespace AppBundle\Form\Type;
 
 use AppBundle\Entity\Application;
 use AppBundle\Entity\User;
+use AppBundle\Enums\ApplicationCategory;
+use AppBundle\Form\Type\Simple\EnumType;
 use AppBundle\Service\AssociationSetter\AssociationSetterInterface;
 use AppBundle\Service\AssociationSetter\Implementation\ApplicationAttachmentsSetter;
 use AppBundle\Service\AssociationSetter\Implementation\UserApplicationsSetter;
+use AppBundle\Service\EnumChoices\EnumChoicesBuilder;
 use AppBundle\Service\Util\CurrentUserProvider\CurrentUserProvider;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -23,13 +27,19 @@ class ApplicationType extends AbstractType implements EventSubscriberInterface
 {
     /** @var ApplicationAttachmentsSetter */
     private $applicationAttachmentsSetter;
+    /** @var EnumChoicesBuilder */
+    private $enumChoicesBuilder;
 
     /**
      * @param ApplicationAttachmentsSetter $applicationAttachmentsSetter
+     * @param EnumChoicesBuilder           $enumChoicesBuilder
      */
-    public function __construct(ApplicationAttachmentsSetter $applicationAttachmentsSetter)
-    {
+    public function __construct(
+        ApplicationAttachmentsSetter $applicationAttachmentsSetter,
+        EnumChoicesBuilder $enumChoicesBuilder
+    ) {
         $this->applicationAttachmentsSetter = $applicationAttachmentsSetter;
+        $this->enumChoicesBuilder = $enumChoicesBuilder;
     }
 
     /**
@@ -41,6 +51,11 @@ class ApplicationType extends AbstractType implements EventSubscriberInterface
             ->add('year', NumberType::class, [
                 'label' => 'application.year',
                 'helper_text' => 'description.application.year',
+            ])
+            ->add('category', EnumType::class, [
+                'label' => 'application.category',
+                'enum' => ApplicationCategory::class,
+                'placeholder' => false,
             ])
             ->add('topic', TextType::class, [
                 'label' => 'application.topic',

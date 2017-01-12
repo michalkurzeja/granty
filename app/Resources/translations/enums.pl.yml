@@ -3,3 +3,8 @@ applicationStatus:
     submitted: Złożony
     accepted: Zaakceptowany
     rejected: Odrzucony
+
+applicationCategory:
+    doctoral: Doktorskie
+    postdoctoral: Habilitacyjne
+    specialty: Rozwój specjalizacji

@@ -10,6 +10,7 @@ user:
 
 application:
     author: Autor
+    category: Kategoria
     year: Rok
     topic: Temat pracy
     meritoricalJustification: Uzasadnienie merytoryczne

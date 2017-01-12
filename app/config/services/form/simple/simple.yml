@@ -1,0 +1,7 @@
+services:
+    app.form.simple.enum:
+        class: AppBundle\Form\Type\Simple\EnumType
+        arguments:
+            - "@app.enum_choices.builder"
+        tags:
+            - { name: form.type }

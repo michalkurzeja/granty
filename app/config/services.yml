@@ -2,6 +2,7 @@ imports:
     - { resource: services/application.yml }
     - { resource: services/association_setter.yml }
     - { resource: services/attachment.yml }
+    - { resource: services/enum_choices.yml }
     - { resource: services/filters.yml }
     - { resource: services/form.yml }
     - { resource: services/listener.yml }

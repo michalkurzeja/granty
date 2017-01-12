@@ -1,0 +1,11 @@
+services:
+    app.form.filters:
+        class: AppBundle\Form\Type\Filters\Base\FiltersType
+
+    app.form.filters.application:
+        class: AppBundle\Form\Type\Filters\ApplicationFiltersType
+        parent: app.form.filters
+        arguments:
+            - "@translator"
+        tags:
+            - { name: form.type }

@@ -1,16 +1,10 @@
 {% extends 'layout/base.html.twig' %}
 
-{% set show_filters = true %}
-
 {% block title %}{{ 'application.index'|trans({}, 'page_title') }}{% endblock %}
 
 {% block page_header %}
    {{ (my_applications ? 'application.index' : 'application.review_list') | trans({}, 'page_title') }}
 {% endblock %}
-
-{%- block page_filters -%}
-    {% include 'application/layout/filters.html.twig' with {'my_applications': my_applications} %}
-{%- endblock -%}
 
 {% block body %}
     {% if not app.user.superAdmin %}
@@ -45,7 +39,7 @@
                                 {% if not my_applications %}<td> {{ created_by(application) }}</td>{% endif %}
                                 <td>{{ application.topic }}</td>
                                 <td>{{ created(application) }}</td>
-                                <td><span class="label {{ application.status }}">{{ ('applicationStatus.' ~ application.status)|trans({}, 'enums') }}</span></td>
+                                <td><span class="label application-status {{ application.status }}">{{ ('applicationStatus.' ~ application.status)|trans({}, 'enums') }}</span></td>
                                 <td>{{ menu('actions.application', {'application': application, 'include_index': false}) }}</td>
                             </tr>
                         {% endfor %}

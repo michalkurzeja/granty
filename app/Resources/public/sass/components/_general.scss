@@ -168,3 +168,15 @@ table {
     }
   }
 }
+
+.label {
+  &.application-status {
+    min-width: 7rem;
+    text-align: center;
+    font-weight: bold;
+  }
+}
+
+.text-secondary {
+  color: dimgray;
+}

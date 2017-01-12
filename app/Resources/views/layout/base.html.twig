@@ -36,11 +36,13 @@
             </div>
         </div>
 
-        {% if show_filters is defined and show_filters %}
+        {% if filter_form_type is defined and filter_form_type is not empty %}
         <div class="row">
             <div class="column filters">
                 <div class="callout">
-                    {%- block page_filters -%}{%- endblock -%}
+                    {%- block page_filters -%}
+                        {{ filters_form(filter_form_type) }}
+                    {%- endblock -%}
                 </div>
             </div>
         </div>

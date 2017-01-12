@@ -1,0 +1,13 @@
+{% block filters_widget %}
+    <div {{ block('widget_container_attributes') }}>
+        {%- if form.parent is empty -%}
+            {{ form_errors(form) }}
+        {%- endif -%}
+        {% for child in form %}
+            <div class="filter-field">
+                {{- form_row(child) -}}
+            </div>
+        {% endfor %}
+        {{- form_rest(form) -}}
+    </div>
+{% endblock %}

@@ -6,13 +6,11 @@ use AppBundle\Entity\Application;
 use AppBundle\Enums\ApplicationTransition;
 use AppBundle\Form\Type\ApplicationRejectionType;
 use AppBundle\Form\Type\ApplicationType;
+use AppBundle\Form\Type\Filters\ApplicationFiltersType;
 use AppBundle\Repository\ApplicationRepository;
 use AppBundle\Service\Filters\Filters;
 use AppBundle\Service\Workflow\Application\ApplicationWorkflow;
 use AppBundle\Voter\Actions\VoterActions;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
-use Doctrine\ORM\Query;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -34,6 +32,7 @@ class ApplicationController extends Controller
                 $this->getApplicationRepository()->findAllByUserQuery($this->getUser(), $filters)
             ),
             'my_applications' => true,
+            'filter_form_type' => ApplicationFiltersType::class
         ]);
     }
 
@@ -49,6 +48,7 @@ class ApplicationController extends Controller
                 $this->getApplicationRepository()->findAllReviewableQuery($this->getUser(), $filters)
             ),
             'my_applications' => false,
+            'filter_form_type' => ApplicationFiltersType::class
         ]);
     }
 

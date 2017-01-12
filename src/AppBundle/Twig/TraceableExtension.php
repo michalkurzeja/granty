@@ -85,9 +85,9 @@ class TraceableExtension extends Twig_Extension
         if ($dateTime instanceof DateTime) {
             return sprintf(
                 '%s %s %s %s',
-                '<i class="fa fa-calendar-o" aria-hidden="true"></i>',
+                '<i class="fa fa-calendar-o text-secondary" aria-hidden="true"></i>',
                 $dateTime->format(self::DATE_FORMAT),
-                '<i class="fa fa-clock-o" aria-hidden="true"></i>',
+                '<i class="fa fa-clock-o text-secondary" aria-hidden="true"></i>',
                 $dateTime->format(self::TIME_FORMAT)
             );
         }
@@ -115,7 +115,7 @@ class TraceableExtension extends Twig_Extension
         if ($user instanceof User) {
             return sprintf(
                 '%s %s',
-                '<i class="fa fa-user-o" aria-hidden="true"></i>',
+                '<i class="fa fa-user-o text-secondary" aria-hidden="true"></i>',
                 $this->getUserName($user)
             );
         }

@@ -20,9 +20,7 @@ services:
     app.twig.extension.filters:
         class: AppBundle\Twig\FiltersExtension
         arguments:
-            - "@translator"
-            - "@request_stack"
-            - "@sensio_framework_extra.converter.manager"
+            - "@app.filters.form_creator"
         tags:
             - { name: twig.extension }
 

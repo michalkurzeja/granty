@@ -6,7 +6,7 @@
 
 {% block body_callout_title %}
     {{ 'application.view'|trans({}, 'page_title') }}: <em>{{ application.topic }}</em>
-    <span class="label large {{ application.status }} float-right">{{ ('applicationStatus.' ~ application.status)|trans({}, 'enums') }}</span>
+    <span class="label application-status large {{ application.status }} float-right">{{ ('applicationStatus.' ~ application.status)|trans({}, 'enums') }}</span>
 {% endblock %}
 
 {%- block body_callout -%}

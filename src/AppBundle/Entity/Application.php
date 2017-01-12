@@ -4,6 +4,7 @@ namespace AppBundle\Entity;
 
 use AppBundle\Entity\Interfaces\TraceableInterface;
 use AppBundle\Entity\Traits\TraceableTrait;
+use AppBundle\Enums\ApplicationCategory;
 use AppBundle\Enums\ApplicationStatus;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -25,6 +26,14 @@ class Application implements TraceableInterface
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(type="string")
+     * @Assert\NotBlank
+     */
+    private $category;
 
     /**
      * @var int
@@ -168,6 +177,30 @@ class Application implements TraceableInterface
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * @return null | ApplicationCategory
+     */
+    public function getCategory()
+    {
+        if (!$this->category) {
+            return null;
+        }
+
+        return new ApplicationCategory($this->category);
+    }
+
+    /**
+     * @param ApplicationCategory $category
+     *
+     * @return Application
+     */
+    public function setCategory(ApplicationCategory $category)
+    {
+        $this->category = $category;
+
+        return $this;
     }
 
     /**

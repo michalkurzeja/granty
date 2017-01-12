@@ -1,3 +1,7 @@
+imports:
+    - { resource: filters/filters.yml }
+    - { resource: simple/simple.yml }
+
 services:
     app.form_type.registration:
         class: AppBundle\Form\Type\RegistrationType
@@ -13,6 +17,7 @@ services:
         class: AppBundle\Form\Type\ApplicationType
         arguments:
             - "@app.association_setter.application_attachments"
+            - "@app.enum_choices.builder"
         tags:
             - { name: form.type }
 

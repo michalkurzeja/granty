@@ -1,0 +1,5 @@
+services:
+    app.enum_choices.builder:
+        class: AppBundle\Service\EnumChoices\EnumChoicesBuilder
+        arguments:
+            - "@translator"
