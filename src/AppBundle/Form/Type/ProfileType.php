@@ -22,7 +22,7 @@ class ProfileType extends AbstractType
         $builder
             ->add('firstName', TextType::class, ['label' => 'user.firstName'])
             ->add('lastName', TextType::class, ['label' => 'user.lastName'])
-            ->add('degree', TextType::class, ['label' => 'user.degree'])
+            ->add('department', TextType::class, ['label' => 'user.department'])
             ->add('dateOfBirth', DateType::class, [
                 'label' => 'user.dateOfBirth',
                 'years' => $this->getYears(),

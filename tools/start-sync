@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-unison . socket://localhost:5000/ -ignore 'Path .git' -ignore 'Path var/*' -ignore 'Path .idea' -auto -batch -silent -perms 0
+unison . socket://localhost:5000/ -ignore 'Path .git' -ignore 'Path var/*' -ignore 'Path .idea' -auto -batch -silent -perms 0 -prefer .
 
 docker exec -it granty_php_fpm /set-acl.sh
 

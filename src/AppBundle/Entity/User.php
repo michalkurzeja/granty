@@ -48,7 +48,7 @@ class User extends BaseUser
      * @ORM\Column(type="string")
      * @Assert\NotBlank
      */
-    private $degree;
+    private $department;
 
     /**
      * @var DateTime
@@ -102,17 +102,17 @@ class User extends BaseUser
     /**
      * @return string
      */
-    public function getDegree()
+    public function getDepartment()
     {
-        return $this->degree;
+        return $this->department;
     }
 
     /**
-     * @param string $degree
+     * @param string $department
      */
-    public function setDegree(string $degree)
+    public function setDepartment(string $department)
     {
-        $this->degree = $degree;
+        $this->department = $department;
     }
 
     /**

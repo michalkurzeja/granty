@@ -30,6 +30,10 @@ class EnumToChoicesTransformer implements DataTransformerInterface
      */
     public function reverseTransform($value)
     {
+        if (empty($value)) {
+            return null;
+        }
+
         return new $this->enumClass($value);
     }
 }

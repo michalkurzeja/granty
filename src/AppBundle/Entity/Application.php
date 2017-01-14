@@ -196,7 +196,7 @@ class Application implements TraceableInterface
      *
      * @return Application
      */
-    public function setCategory(ApplicationCategory $category)
+    public function setCategory(?ApplicationCategory $category)
     {
         $this->category = $category;
 

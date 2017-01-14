@@ -75,7 +75,7 @@ class CreateSuperAdminCommand extends Command
         $admin->setEmail(static::SUPER_ADMIN_EMAIL);
         $admin->setFirstName(static::SUPER_ADMIN_FIRST_NAME);
         $admin->setLastName(static::SUPER_ADMIN_FIRST_NAME);
-        $admin->setDegree(static::SUPER_ADMIN_USERNAME);
+        $admin->setDepartment(static::SUPER_ADMIN_USERNAME);
         $admin->setDateOfBirth(new DateTime);
         $admin->addRole(static::SUPER_ADMIN_ROLE);
         $admin->setEnabled(true);

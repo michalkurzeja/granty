@@ -1,6 +1,6 @@
 {% extends 'layout/base.html.twig' %}
 
-{% set applicationProperties = ['topic', 'year', 'meritoricalJustification', 'currentKnowledge', 'scientificAchievements', 'applicantsProjects', 'foreseeableGoals', 'scheduleOfWork', 'externalFinancing', 'plannedExpensesTotal', 'plannedExpensesInCurrentYear', 'expensesExplanation', 'projectDirector', 'organizationDirector'] %}
+{% set applicationProperties = ['category', 'topic', 'year', 'meritoricalJustification', 'currentKnowledge', 'scientificAchievements', 'applicantsProjects', 'foreseeableGoals', 'scheduleOfWork', 'externalFinancing', 'plannedExpensesTotal', 'plannedExpensesInCurrentYear', 'expensesExplanation', 'projectDirector', 'organizationDirector'] %}
 
 {% block title %}{{ 'application.view'|trans({}, 'page_title') }}: {{ application.topic }}{% endblock %}
 
@@ -28,9 +28,19 @@
         {% if propertyValue %}
             <div class="card">
                 <div class="card-divider">
-                    <strong><small>{{ ('application.' ~ property) | trans({}, 'entities') }}:</small></strong>
+                    <strong>
+                        <small>
+                            {{ ('application.' ~ property) | trans({}, 'entities') }}:
+                        </small>
+                    </strong>
                 </div>
-                <div class="card-section">{{ attribute(application, property) | nl2br }}</div>
+                <div class="card-section">
+                    {% if property == 'category'  %}
+                        {{ ('applicationCategory.' ~ attribute(application, property)) | trans({}, 'enums') }}
+                    {% else %}
+                        {{ attribute(application, property) | nl2br }}
+                    {% endif %}
+                </div>
             </div>
         {% endif %}
     {% endfor %}

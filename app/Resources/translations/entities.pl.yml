@@ -4,7 +4,7 @@ user:
     email: E-mail
     firstName: Imię
     lastName: Nazwisko
-    degree: Stopień naukowy
+    department: Katedra
     dateOfBirth: Data urodzenia
     reviewer: Sprawdzający
 

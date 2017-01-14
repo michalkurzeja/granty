@@ -7,7 +7,7 @@
 {% endblock %}
 
 {% block body %}
-    {% if not app.user.superAdmin %}
+    {% if not app.user.superAdmin and my_applications %}
         <div class="row">
             <div class="column">
                 <a href="{{ path('application_add') }}" class="button success">

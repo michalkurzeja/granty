@@ -55,7 +55,6 @@ class ApplicationType extends AbstractType implements EventSubscriberInterface
             ->add('category', EnumType::class, [
                 'label' => 'application.category',
                 'enum' => ApplicationCategory::class,
-                'placeholder' => false,
             ])
             ->add('topic', TextType::class, [
                 'label' => 'application.topic',
