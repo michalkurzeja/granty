@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+tools/sf ca:cl --no-warmup
+tools/sf ca:w
+tools/set-acl
+
+echo "Cache cleared and warmed up!"

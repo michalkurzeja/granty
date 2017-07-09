@@ -24,3 +24,5 @@ RUN echo "xdebug.remote_port=9001" >> /usr/local/etc/php/conf.d/docker-php-ext-x
     && echo "xdebug.remote_host=192.168.65.1" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
 
 ADD template/set-acl.sh /set-acl.sh
+
+WORKDIR /usr/share/nginx/granty

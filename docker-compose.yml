@@ -20,29 +20,33 @@ services:
         links:
             - php-fpm
         volumes_from:
-            - php-fpm
+            - code
         volumes:
             - ./var/logs/nginx:/var/log/nginx
 
     php-fpm:
         container_name: granty_php_fpm
-        build: docker/php-fpm
+        build: docker/php
         expose:
             - "9000"
             - "9001"
         links:
             - database
         depends_on:
-            - code_data
+            - code
         volumes_from:
-            - code_data
+            - code
 
-    code_data:
-        container_name: granty_code_data
-        build: docker/code_data
-        ports:
-            - "5000:5000"
-        environment:
-            - UNISON_WORKING_DIR=/usr/share/nginx/granty
+    code:
+        container_name: granty_code
+        build: docker/code
+#        ports:
+#            - "5000:5000"
+#        environment:
+#            - UNISON_WORKING_DIR=/usr/share/nginx/granty
         volumes:
-            - /usr/share/nginx/granty
+            - granty-sync:/usr/share/nginx/granty:nocopy
+
+volumes:
+    granty-sync:
+        external: true

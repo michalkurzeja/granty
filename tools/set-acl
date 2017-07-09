@@ -1,0 +1,2 @@
+#!/usr/bin/env bash
+tools/container --entrypoint=sh php-fpm /set-acl.sh

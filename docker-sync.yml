@@ -1,0 +1,16 @@
+version: "2"
+options:
+    compose-file-path: 'docker-compose.yml'
+    verbose: false
+    unison_image: 'eugenmayer/unison'
+    cli_mode: 'auto'
+
+syncs:
+    granty-sync:
+        src: '.'
+        sync_host_ip: '127.0.0.1'
+        sync_prefer: 'src'
+        sync_excludes: ['./var/cache/']
+        watch_excludes: ['.git/', '.gitignore', './var/sessions/', './var/cache/']
+        watch_args: '-v'
+        watch_strategy: 'fswatch'

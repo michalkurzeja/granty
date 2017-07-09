@@ -3,24 +3,31 @@ version: '2'
 services:
     composer:
         container_name: granty_composer
-        build: docker/composer
+        build: docker/php
+        entrypoint: composer --ansi
         command: install
         links:
             - database
+        depends_on:
+            - code
         volumes_from:
-            - php-fpm
+            - code
 
     php-cli:
         container_name: granty_php_cli
-        build: docker/php-cli
+        build: docker/php
+        entrypoint: php
         links:
-            - php-fpm
             - database
+        depends_on:
+            - code
         volumes_from:
-            - php-fpm
+            - code
 
     node:
         container_name: granty_node
         build: docker/node
+        depends_on:
+            - code
         volumes_from:
-            - php-fpm
+            - code
