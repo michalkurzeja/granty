@@ -27,6 +27,7 @@ class TransitionVoter extends BaseTransitionVoter
             ApplicationTransition::SUBMIT,
             ApplicationTransition::ACCEPT,
             ApplicationTransition::REJECT,
+            ApplicationTransition::APPEAL,
         ];
     }
 
@@ -38,7 +39,7 @@ class TransitionVoter extends BaseTransitionVoter
      */
     protected function voteOnAdditionalConditions(string $attribute, $application, TokenInterface $token): bool
     {
-        if (ApplicationTransition::SUBMIT === $attribute) {
+        if (in_array($attribute, [ApplicationTransition::SUBMIT, ApplicationTransition::APPEAL])) {
             return $this->hasUserAccess($application, $token);
         }
 

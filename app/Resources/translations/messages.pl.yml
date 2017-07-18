@@ -1,5 +1,6 @@
-'true': Tak
-'false': Nie
+bool:
+    'true': Tak
+    'false': Nie
 
 app:
     name: Granty
@@ -19,6 +20,7 @@ buttons:
     application:
         add: Utwórz wniosek
         reject: Odrzuć wniosek
+        appeal: Złóż odwołanie
     user:
         add: Dodaj użytkownika
 
@@ -40,5 +42,7 @@ text:
         toApply: aby złożyć wniosek
     rejectionCause:
         rejected_times: Odrzucono 1 raz | Odrzucono %count% razy
+    appeal:
+        appealed_times: Odwołano się 1 raz | Odwołano się %count% razy
     user:
         noItems: Poza Tobą nie ma jeszcze innych użytkowników!

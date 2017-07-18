@@ -28,6 +28,13 @@ services:
         tags:
             - { name: form.type }
 
+    app.form_type.application_appeal:
+        class: AppBundle\Form\Type\ApplicationAppealType
+        arguments:
+            - "@app.association_setter.application_appeals"
+        tags:
+            - { name: form.type }
+
     app.form_type.attachment:
         class: AppBundle\Form\Type\AttachmentType
         tags:
@@ -35,6 +42,11 @@ services:
 
     app.form_type.rejection_cause:
         class: AppBundle\Form\Type\RejectionCauseType
+        tags:
+            - { name: form.type }
+
+    app.form_type.appeal:
+        class: AppBundle\Form\Type\AppealType
         tags:
             - { name: form.type }
 

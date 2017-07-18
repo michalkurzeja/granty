@@ -9,7 +9,7 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 
-class CreateSuperAdminCommand extends Command
+class SetUpSuperAdminCommand extends Command
 {
     const OPTION_PASSWORD           = 'password';
     const OPTION_SHORT_PASSWORD     = 'p';
@@ -27,7 +27,7 @@ class CreateSuperAdminCommand extends Command
     protected function configure(): void
     {
         $this
-            ->setName('app:tool:create-super-admin')
+            ->setName('app:tool:set-up-super-admin')
             ->setDescription('Creates a Super Admin user if one does not exist or changes the existing Super Admin\'s password.')
             ->addOption(
                 static::OPTION_PASSWORD,
@@ -47,12 +47,15 @@ class CreateSuperAdminCommand extends Command
         $admin = $this->findSuperAdmin();
 
         if (!$admin instanceof User) {
+            $output->writeln('<comment>Creating Superadmin user...</comment>');
             $admin = $this->createSuperAdmin();
         }
 
         $this->setSuperAdminPassword($admin, $input->getOption('password'));
 
         $this->saveSuperAdmin($admin);
+
+        $output->writeln('<info>Superadmin password successfully set!</info>');
     }
 
     /**

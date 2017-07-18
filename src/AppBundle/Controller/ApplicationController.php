@@ -4,6 +4,7 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\Application;
 use AppBundle\Enums\ApplicationTransition;
+use AppBundle\Form\Type\ApplicationAppealType;
 use AppBundle\Form\Type\ApplicationRejectionType;
 use AppBundle\Form\Type\ApplicationType;
 use AppBundle\Form\Type\Filters\ApplicationFiltersType;
@@ -183,6 +184,29 @@ class ApplicationController extends Controller
         }
 
         return $this->render('application/reject.html.twig', [
+            'form' => $form->createView(),
+            'application' => $application,
+        ]);
+    }
+
+    /**
+     * @param Application $application
+     * @param Request     $request
+     * @return Response
+     *
+     * @Route("/{application}/appeal", name="application_appeal")
+     */
+    public function appealAction(Application $application, Request $request): Response
+    {
+        $this->denyAccessUnlessGranted(ApplicationTransition::APPEAL, $application);
+
+        $form = $this->createForm(ApplicationAppealType::class, $application);
+
+        if ($form->handleRequest($request)->isValid()) {
+            return $this->changeState($application, ApplicationTransition::APPEAL(), 'application.appealed');
+        }
+
+        return $this->render('application/appeal.html.twig', [
             'form' => $form->createView(),
             'application' => $application,
         ]);

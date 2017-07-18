@@ -6,3 +6,6 @@ registration_type:
 
 rejection_cause_type:
     message: Powód odrzucenia
+
+appeal_type:
+    message: Treść odwołania

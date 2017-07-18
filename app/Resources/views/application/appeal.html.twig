@@ -1,0 +1,27 @@
+{% extends 'layout/base.html.twig' %}
+
+{% block title %}{{ 'application.appeal'|trans({}, 'page_title') }}{% endblock %}
+
+{% block body_callout_title %}{{ 'application.appeal'|trans({}, 'page_title') }}{% endblock %}
+
+{% block body_callout %}
+    {{ form_start(form) }}
+        <div class="row">
+            <div class="column">
+                {{ form_widget(form) }}
+            </div>
+        </div>
+        <div class="row">
+            <div class="column">
+                <button type="submit" class="button">{{ 'buttons.application.appeal'|trans }}</button>
+            </div>
+        </div>
+    {{ form_end(form) }}
+{% endblock %}
+
+{% block actions %}
+    {{ callout_menu(
+        'actions.application',
+        {'application': application, 'include_appeal': false}
+    ) }}
+{% endblock %}

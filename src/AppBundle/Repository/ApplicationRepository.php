@@ -38,7 +38,8 @@ class ApplicationRepository extends EntityRepository
         $builder = $this->createQueryBuilder('a');
 
         return $builder
-            ->andWhere('a.status = :reviewableStatus')->setParameter('reviewableStatus', ApplicationStatus::SUBMITTED())
+            ->andWhere('a.status IN (:reviewableStatuses)')
+            ->setParameter('reviewableStatuses', [ApplicationStatus::SUBMITTED(), ApplicationStatus::APPEALED()])
             ->andWhere('a.createdBy != :user')->setParameter('user', $user);
     }
 

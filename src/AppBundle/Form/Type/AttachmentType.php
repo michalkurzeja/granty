@@ -20,7 +20,9 @@ class AttachmentType extends AbstractType
                 'required' => $options['required'],
                 'allow_delete' => $options['allow_delete'],
                 'download_link' => $options['download_link'],
-                'label' => 'attachment.file'
+                'label' => 'attachment.file',
+                'delete_label' => 'attachment.delete',
+                'translation_domain' => $options['translation_domain']
             ]);
     }
 

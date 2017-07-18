@@ -9,6 +9,7 @@ use MyCLabs\Enum\Enum;
  * @method static ApplicationStatus SUBMITTED
  * @method static ApplicationStatus ACCEPTED
  * @method static ApplicationStatus REJECTED
+ * @method static ApplicationStatus APPEALED
  */
 class ApplicationStatus extends Enum
 {
@@ -16,4 +17,5 @@ class ApplicationStatus extends Enum
     public const SUBMITTED = 'submitted';
     public const ACCEPTED  = 'accepted';
     public const REJECTED  = 'rejected';
+    public const APPEALED  = 'appealed';
 }

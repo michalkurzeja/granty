@@ -20,11 +20,11 @@ class BoolExtension extends Twig_Extension
      * @param mixed $value
      * @return bool
      */
-    public function bool($value): bool
+    public function bool($value): string
     {
         return $value
-            ? 'true'
-            : 'false';
+            ? 'bool.true'
+            : 'bool.false';
     }
 
     public function getName(): string

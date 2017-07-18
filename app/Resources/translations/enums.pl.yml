@@ -3,6 +3,7 @@ applicationStatus:
     submitted: Złożony
     accepted: Zaakceptowany
     rejected: Odrzucony
+    appealed: Odwołany
 
 applicationCategory:
     doctoral: Doktorskie

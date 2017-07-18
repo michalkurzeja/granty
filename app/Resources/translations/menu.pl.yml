@@ -23,8 +23,9 @@ actions:
         submit: Złóż wniosek
         accept: Zaakceptuj wniosek
         reject: Odrzuć wniosek
+        appeal: Złóż odwołanie
     user:
         index: Użytkownicy
         view: Zobacz
-        edit: Zmeń
+        edit: Zmień
         remove: Usuń

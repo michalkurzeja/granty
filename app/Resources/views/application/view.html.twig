@@ -54,7 +54,27 @@
 {%- endblock -%}
 
 {%- block post_body -%}
-    {% if application.rejected %}
+    {% if not application.appeals.empty %}
+        <div class="callout">
+            <h6>
+                <strong>
+                    {{ ('appeal.message') | transchoice(application.appeals.count, {}, 'entities') }}
+                    ({{ ('text.appeal.appealed_times') | transchoice(application.appeals.count, {}, 'messages') }}):
+                </strong>
+            </h6>
+
+            {% for appeal in application.appeals %}
+                <div class="card">
+                    <div class="card-divider warning">
+                        <small>{{ created(appeal) }}</small>
+                    </div>
+                    <div class="card-section">{{ appeal.message | nl2br }}</div>
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+
+    {% if not application.rejectionCauses.empty %}
         <div class="callout">
             <h6>
                 <strong>

@@ -30,9 +30,13 @@ application:
 
 attachment:
     file: Wybierz plik
+    delete: Usunąć?
 
 rejection_cause:
     message: "Powód odrzucenia | Powody odrzucenia"
+
+appeal:
+    message: "Odwołanie | Odwołania"
 
 description:
     application:

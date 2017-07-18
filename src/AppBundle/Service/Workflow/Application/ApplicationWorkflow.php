@@ -42,4 +42,13 @@ class ApplicationWorkflow extends Workflow
     {
         return $this->can($application, ApplicationTransition::REJECT);
     }
+
+    /**
+     * @param Application $application
+     * @return bool
+     */
+    public function isAppealable(Application $application): bool
+    {
+        return $this->can($application, ApplicationTransition::APPEAL);
+    }
 }

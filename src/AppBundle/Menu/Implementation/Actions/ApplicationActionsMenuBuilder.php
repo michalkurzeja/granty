@@ -119,6 +119,22 @@ class ApplicationActionsMenuBuilder extends MenuBuilder
                         ->setAttribute('form_btn_type', 'alert');
                 }
             }
+
+            if ($this->isAppealable($application)) {
+                $item = $this->addChildConditionally(
+                    $menu,
+                    'actions.application.appeal',
+                    ['route' => 'application_appeal', 'routeParameters' => ['application' => $application->getId()]],
+                    $this->getOption($options, 'include_appeal', true)
+                );
+
+                if ($item instanceof ItemInterface) {
+                    $item
+                        ->setAttribute('form', true)
+                        ->setAttribute('form-confirm', false)
+                        ->setAttribute('form_btn_type', 'warning');
+                }
+            }
         }
 
         return $menu;
@@ -140,6 +156,16 @@ class ApplicationActionsMenuBuilder extends MenuBuilder
     private function isSubmittable(Application $application): bool
     {
         return $this->applicationWorkflow->isSubmittable($application)
+            && $this->isOwnedByCurrentUser($application);
+    }
+
+    /**
+     * @param Application $application
+     * @return bool
+     */
+    private function isAppealable(Application $application): bool
+    {
+        return $this->applicationWorkflow->isAppealable($application)
             && $this->isOwnedByCurrentUser($application);
     }
 

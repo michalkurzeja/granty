@@ -37,15 +37,19 @@ framework:
             places:
                 - draft
                 - submitted
+                - appealed
                 - accepted
                 - rejected
             transitions:
                 submit:
-                    from: [draft, rejected]
+                    from: draft
                     to: submitted
                 accept:
-                    from: submitted
+                    from: [submitted, appealed]
                     to: accepted
                 reject:
-                    from: submitted
+                    from: [submitted, appealed]
                     to: rejected
+                appeal:
+                    from: rejected
+                    to: appealed

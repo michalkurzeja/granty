@@ -165,6 +165,19 @@ class Application implements TraceableInterface
      */
     private $rejectionCauses;
 
+    /**
+     * @var Collection
+     *
+     * @ORM\OneToMany(
+     *     targetEntity="AppBundle\Entity\Appeal",
+     *     mappedBy="application",
+     *     orphanRemoval=true,
+     *     cascade={"persist", "remove"}
+     * )
+     * @ORM\OrderBy({"created": "desc"})
+     */
+    private $appeals;
+
     public function __construct()
     {
         $this->setStatus(ApplicationStatus::DRAFT());
@@ -541,5 +554,49 @@ class Application implements TraceableInterface
     public function isRejected()
     {
         return $this->getStatus()->equals(ApplicationStatus::REJECTED());
+    }
+
+    /**
+     * @return Collection
+     */
+    public function getAppeals()
+    {
+        return $this->appeals;
+    }
+
+    /**
+     * @param Appeal $appeal
+     * @return Application
+     */
+    public function addAppeal(Appeal $appeal)
+    {
+        if (!$this->appeals->contains($appeal)) {
+            $this->appeals->add($appeal);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @param Appeal $appeal
+     * @return Application
+     */
+    public function removeAppeal(Appeal $appeal)
+    {
+        $this->appeals->removeElement($appeal);
+
+        return $this;
+    }
+
+    /**
+     * @param Collection $appeals
+     *
+     * @return Application
+     */
+    public function setAppeals(Collection $appeals)
+    {
+        $this->appeals = $appeals;
+
+        return $this;
     }
 }

@@ -4,7 +4,8 @@ $application-status-class-map: (
   draft: primary,
   submitted: warning,
   accepted: success,
-  rejected: alert
+  rejected: alert,
+  appealed: warning
 ) !default;
 
 $sides: (
