@@ -4,6 +4,7 @@ services:
     database:
         container_name: granty_database
         build: docker/database
+        restart: always
         ports:
             - "5432:5432"
         environment:
@@ -14,6 +15,7 @@ services:
     server:
         container_name: granty_server
         build: docker/nginx
+        restart: always
         ports:
             - "80:80"
             - "443:443"
@@ -27,6 +29,7 @@ services:
     php-fpm:
         container_name: granty_php_fpm
         build: docker/php
+        restart: always
         expose:
             - "9000"
             - "9001"

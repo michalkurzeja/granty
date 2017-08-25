@@ -2,8 +2,6 @@ version: "2"
 options:
     compose-file-path: 'docker-compose.yml'
     verbose: false
-    unison_image: 'eugenmayer/unison'
-    cli_mode: 'auto'
 
 syncs:
     granty-sync:

@@ -1,6 +1,9 @@
 <?php
-namespace AppBundle\Entity;
+declare(strict_types=1);
 
+namespace AppBundle\Entity\ApplicationResponse;
+
+use AppBundle\Entity\Application;
 use AppBundle\Entity\Interfaces\TraceableInterface;
 use AppBundle\Entity\Traits\TraceableTrait;
 use Doctrine\ORM\Mapping as ORM;
@@ -8,8 +11,16 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity
+ * @ORM\Table(name="application_response")
+ * @ORM\InheritanceType("SINGLE_TABLE")
+ * @ORM\DiscriminatorColumn(name="type", type="string")
+ * @ORM\DiscriminatorMap({
+ *  "acceptance" = "Acceptance",
+ *  "appeal" = "Appeal",
+ *  "rejection_cause" = "RejectionCause",
+ * })
  */
-class RejectionCause implements TraceableInterface
+abstract class AbstractApplicationResponse implements TraceableInterface
 {
     use TraceableTrait;
 
@@ -31,11 +42,16 @@ class RejectionCause implements TraceableInterface
     private $message;
 
     /**
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Application", inversedBy="rejectionCauses")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Application", inversedBy="responses")
      *
      * @var Application
      */
     private $application;
+
+    /**
+     * @return string
+     */
+    abstract public function getType(): string;
 
     /**
      * @return int
@@ -55,7 +71,7 @@ class RejectionCause implements TraceableInterface
 
     /**
      * @param string $message
-     * @return RejectionCause
+     * @return $this
      */
     public function setMessage(string $message)
     {
@@ -74,7 +90,7 @@ class RejectionCause implements TraceableInterface
 
     /**
      * @param Application $application
-     * @return RejectionCause
+     * @return $this
      */
     public function setApplication(Application $application)
     {

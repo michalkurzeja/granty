@@ -2,6 +2,9 @@
 
 namespace AppBundle\Entity;
 
+use AppBundle\Entity\ApplicationResponse\AbstractApplicationResponse;
+use AppBundle\Entity\ApplicationResponse\Appeal;
+use AppBundle\Entity\ApplicationResponse\RejectionCause;
 use AppBundle\Entity\Interfaces\TraceableInterface;
 use AppBundle\Entity\Traits\TraceableTrait;
 use AppBundle\Enums\ApplicationCategory;
@@ -156,32 +159,20 @@ class Application implements TraceableInterface
      * @var Collection
      *
      * @ORM\OneToMany(
-     *     targetEntity="AppBundle\Entity\RejectionCause",
+     *     targetEntity="AppBundle\Entity\ApplicationResponse\AbstractApplicationResponse",
      *     mappedBy="application",
      *     orphanRemoval=true,
      *     cascade={"persist", "remove"}
      * )
      * @ORM\OrderBy({"created": "desc"})
+     * @Assert\Valid
      */
-    private $rejectionCauses;
-
-    /**
-     * @var Collection
-     *
-     * @ORM\OneToMany(
-     *     targetEntity="AppBundle\Entity\Appeal",
-     *     mappedBy="application",
-     *     orphanRemoval=true,
-     *     cascade={"persist", "remove"}
-     * )
-     * @ORM\OrderBy({"created": "desc"})
-     */
-    private $appeals;
+    private $responses;
 
     public function __construct()
     {
         $this->setStatus(ApplicationStatus::DRAFT());
-        $this->setRejectionCauses(new ArrayCollection());
+        $this->setResponses(new ArrayCollection());
     }
 
     /**
@@ -506,49 +497,6 @@ class Application implements TraceableInterface
     }
 
     /**
-     * @return Collection
-     */
-    public function getRejectionCauses()
-    {
-        return $this->rejectionCauses;
-    }
-
-    /**
-     * @param RejectionCause $rejectionCause
-     * @return $this
-     */
-    public function addRejectionCause(RejectionCause $rejectionCause)
-    {
-        if (!$this->rejectionCauses->contains($rejectionCause)) {
-            $this->rejectionCauses->add($rejectionCause);
-        }
-
-        return $this;
-    }
-
-    /**
-     * @param RejectionCause $rejectionCause
-     * @return $this
-     */
-    public function removeRejectionCause(RejectionCause $rejectionCause)
-    {
-        $this->rejectionCauses->removeElement($rejectionCause);
-
-        return $this;
-    }
-
-    /**
-     * @param Collection $rejectionCauses
-     * @return Application
-     */
-    public function setRejectionCauses(Collection $rejectionCauses)
-    {
-        $this->rejectionCauses = $rejectionCauses;
-
-        return $this;
-    }
-
-    /**
      * @return bool
      */
     public function isRejected()
@@ -559,43 +507,43 @@ class Application implements TraceableInterface
     /**
      * @return Collection
      */
-    public function getAppeals()
+    public function getResponses()
     {
-        return $this->appeals;
+        return $this->responses;
     }
 
     /**
-     * @param Appeal $appeal
+     * @param AbstractApplicationResponse $response
      * @return Application
      */
-    public function addAppeal(Appeal $appeal)
+    public function addResponse(AbstractApplicationResponse $response)
     {
-        if (!$this->appeals->contains($appeal)) {
-            $this->appeals->add($appeal);
+        if (!$this->responses->contains($response)) {
+            $this->responses->add($response);
         }
 
         return $this;
     }
 
     /**
-     * @param Appeal $appeal
+     * @param AbstractApplicationResponse $response
      * @return Application
      */
-    public function removeAppeal(Appeal $appeal)
+    public function removeResponse(AbstractApplicationResponse $response)
     {
-        $this->appeals->removeElement($appeal);
+        $this->responses->removeElement($response);
 
         return $this;
     }
 
     /**
-     * @param Collection $appeals
+     * @param Collection $responses
      *
      * @return Application
      */
-    public function setAppeals(Collection $appeals)
+    public function setResponses(Collection $responses)
     {
-        $this->appeals = $appeals;
+        $this->responses = $responses;
 
         return $this;
     }

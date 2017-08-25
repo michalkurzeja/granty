@@ -1,8 +1,8 @@
 {% extends 'layout/base.html.twig' %}
 
-{% block title %}{{ 'application.appeal'|trans({}, 'page_title') }}{% endblock %}
+{% block title %}{{ 'application.accept'|trans({}, 'page_title') }}{% endblock %}
 
-{% block body_callout_title %}{{ 'application.appeal'|trans({}, 'page_title') }}{% endblock %}
+{% block body_callout_title %}{{ 'application.accept'|trans({}, 'page_title') }}{% endblock %}
 
 {% block body_callout %}
     {{ form_start(form) }}
@@ -13,7 +13,7 @@
         </div>
         <div class="row">
             <div class="column">
-                <button type="submit" class="button">{{ 'buttons.application.appeal'|trans }}</button>
+                <button type="submit" class="button">{{ 'buttons.application.accept'|trans }}</button>
             </div>
         </div>
     {{ form_end(form) }}
@@ -22,6 +22,6 @@
 {% block actions %}
     {{ callout_menu(
         'actions.application',
-        {'application': application}
+        {'application': application, 'include_accept': false, 'include_reject': false}
     ) }}
 {% endblock %}

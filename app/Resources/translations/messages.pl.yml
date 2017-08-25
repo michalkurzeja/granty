@@ -19,8 +19,9 @@ buttons:
         save: Zapisz zmiany
     application:
         add: Utwórz wniosek
-        reject: Odrzuć wniosek
+        accept: Zaakceptuj wniosek
         appeal: Złóż odwołanie
+        reject: Odrzuć wniosek
     user:
         add: Dodaj użytkownika
 

@@ -2,11 +2,8 @@ services:
     app.association_setter.application_attachments:
         class: AppBundle\Service\AssociationSetter\Implementation\ApplicationAttachmentsSetter
 
-    app.association_setter.application_rejection_causes:
-        class: AppBundle\Service\AssociationSetter\Implementation\ApplicationRejectionCausesSetter
-
-    app.association_setter.application_appeals:
-        class: AppBundle\Service\AssociationSetter\Implementation\ApplicationAppealsSetter
+    app.association_setter.application_responses:
+        class: AppBundle\Service\AssociationSetter\Implementation\ApplicationResponsesSetter
 
     app.association_setter.user_applications:
         class: AppBundle\Service\AssociationSetter\Implementation\UserApplicationsSetter

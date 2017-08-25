@@ -54,45 +54,24 @@
 {%- endblock -%}
 
 {%- block post_body -%}
-    {% if not application.appeals.empty %}
-        <div class="callout">
-            <h6>
-                <strong>
-                    {{ ('appeal.message') | transchoice(application.appeals.count, {}, 'entities') }}
-                    ({{ ('text.appeal.appealed_times') | transchoice(application.appeals.count, {}, 'messages') }}):
-                </strong>
-            </h6>
-
-            {% for appeal in application.appeals %}
-                <div class="card">
-                    <div class="card-divider warning">
-                        <small>{{ created(appeal) }}</small>
-                    </div>
-                    <div class="card-section">{{ appeal.message | nl2br }}</div>
+    <div class="callout">
+        {% for response in application.responses %}
+            <div class="card">
+                <div class="card-divider {{ application_response_class(response) }}">
+                    <strong>{{ (response.type ~ '.name') | trans({}, 'entities') }}</strong>
+                    <small>{{ created(response) }}</small>
                 </div>
-            {% endfor %}
-        </div>
-    {% endif %}
-
-    {% if not application.rejectionCauses.empty %}
-        <div class="callout">
-            <h6>
-                <strong>
-                    {{ ('rejection_cause.message') | transchoice(application.rejectionCauses.count, {}, 'entities') }}
-                    ({{ ('text.rejectionCause.rejected_times') | transchoice(application.rejectionCauses.count, {}, 'messages') }}):
-                </strong>
-            </h6>
-
-            {% for rejectionCause in application.rejectionCauses %}
-                <div class="card">
-                    <div class="card-divider alert">
-                        <small>{{ created(rejectionCause) }}</small>
-                    </div>
-                    <div class="card-section">{{ rejectionCause.message | nl2br }}</div>
+                <div class="card-section">
+                    {% if response.type == 'acceptance' %}
+                        <div>
+                            <strong>{{ 'acceptance.granted' | trans({}, 'entities') }}: {{ response.granted }} PLN</strong>
+                        </div>
+                    {% endif %}
+                    {{ response.message | nl2br }}
                 </div>
-            {% endfor %}
-        </div>
-    {% endif %}
+            </div>
+        {% endfor %}
+    </div>
 {%- endblock -%}
 
 {% block actions %}

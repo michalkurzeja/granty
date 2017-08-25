@@ -1,7 +1,7 @@
 <?php
 namespace AppBundle\Form\Transformer;
 
-use AppBundle\Entity\RejectionCause;
+use AppBundle\Entity\ApplicationResponse\RejectionCause;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Symfony\Component\Form\DataTransformerInterface;

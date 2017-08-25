@@ -9,3 +9,7 @@ rejection_cause_type:
 
 appeal_type:
     message: Treść odwołania
+
+acceptance_type:
+    granted: Przyznana kwota
+    message: Treść akceptacji

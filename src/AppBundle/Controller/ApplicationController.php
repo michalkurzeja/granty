@@ -4,6 +4,7 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\Application;
 use AppBundle\Enums\ApplicationTransition;
+use AppBundle\Form\Type\ApplicationAcceptanceType;
 use AppBundle\Form\Type\ApplicationAppealType;
 use AppBundle\Form\Type\ApplicationRejectionType;
 use AppBundle\Form\Type\ApplicationType;
@@ -23,59 +24,64 @@ class ApplicationController extends Controller
 {
     /**
      * @param Filters $filters
+     *
      * @return Response
      * @Route("/", name="application_index")
      */
     public function indexAction(Filters $filters): Response
     {
-        return $this->render('application/index.html.twig', [
-            'applications' => $this->paginate(
-                $this->getApplicationRepository()->findAllByUserQuery($this->getUser(), $filters)
-            ),
-            'my_applications' => true,
-            'filter_form_type' => ApplicationFiltersType::class
-        ]);
+        return $this->render(
+            'application/index.html.twig',
+            [
+                'applications'     => $this->paginate(
+                    $this->getApplicationRepository()->findAllByUserQuery($this->getUser(), $filters)
+                ),
+                'my_applications'  => true,
+                'filter_form_type' => ApplicationFiltersType::class,
+            ]
+        );
     }
 
     /**
      * @param Filters $filters
+     *
      * @return Response
      * @Route("/review-list", name="application_review_list")
      */
     public function reviewListAction(Filters $filters): Response
     {
-        return $this->render('application/index.html.twig', [
-            'applications' => $this->paginate(
-                $this->getApplicationRepository()->findAllReviewableQuery($this->getUser(), $filters)
-            ),
-            'my_applications' => false,
-            'filter_form_type' => ApplicationFiltersType::class
-        ]);
-    }
-
-    /**
-     * @return ApplicationRepository
-     */
-    private function getApplicationRepository(): ApplicationRepository
-    {
-        return $this->get('app.repository.application');
+        return $this->render(
+            'application/index.html.twig',
+            [
+                'applications'     => $this->paginate(
+                    $this->getApplicationRepository()->findAllReviewableQuery($this->getUser(), $filters)
+                ),
+                'my_applications'  => false,
+                'filter_form_type' => ApplicationFiltersType::class,
+            ]
+        );
     }
 
     /**
      * @param Application $application
+     *
      * @return Response
      *
      * @Route("/{application}/view", name="application_view")
      */
     public function viewAction(Application $application): Response
     {
-        return $this->render('application/view.html.twig', [
-            'application' => $application,
-        ]);
+        return $this->render(
+            'application/view.html.twig',
+            [
+                'application' => $application,
+            ]
+        );
     }
 
     /**
      * @param Request $request
+     *
      * @return Response
      *
      * @Route("/add", name="application_add")
@@ -92,17 +98,20 @@ class ApplicationController extends Controller
             $this->addSuccessFlash('application.added');
 
             return $this->redirectToView($application);
-
         }
 
-        return $this->render('application/add.html.twig', [
-            'form' => $form->createView(),
-        ]);
+        return $this->render(
+            'application/add.html.twig',
+            [
+                'form' => $form->createView(),
+            ]
+        );
     }
 
     /**
      * @param Application $application
-     * @param Request $request
+     * @param Request     $request
+     *
      * @return Response
      *
      * @Route("/{application}/edit", name="application_edit")
@@ -121,14 +130,18 @@ class ApplicationController extends Controller
             return $this->redirectToView($application);
         }
 
-        return $this->render('application/edit.html.twig', [
-            'form' => $form->createView(),
-            'application' => $application,
-        ]);
+        return $this->render(
+            'application/edit.html.twig',
+            [
+                'form'        => $form->createView(),
+                'application' => $application,
+            ]
+        );
     }
 
     /**
      * @param Application $application
+     *
      * @return Response
      *
      * @Route("/{application}/remove", name="application_remove", methods={"post"})
@@ -146,6 +159,7 @@ class ApplicationController extends Controller
 
     /**
      * @param Application $application
+     *
      * @return Response
      *
      * @Route("/{application}/submit", name="application_submit", methods={"post"})
@@ -157,18 +171,35 @@ class ApplicationController extends Controller
 
     /**
      * @param Application $application
+     * @param Request     $request
+     *
      * @return Response
      *
      * @Route("/{application}/accept", name="application_accept", methods={"post"})
      */
-    public function acceptAction(Application $application): Response
+    public function acceptAction(Application $application, Request $request): Response
     {
-        return $this->changeState($application, ApplicationTransition::ACCEPT(), 'application.accepted');
+        $this->denyAccessUnlessGranted(ApplicationTransition::ACCEPT, $application);
+
+        $form = $this->createForm(ApplicationAcceptanceType::class, $application);
+
+        if ($form->handleRequest($request)->isValid()) {
+            return $this->changeState($application, ApplicationTransition::ACCEPT(), 'application.accepted');
+        }
+
+        return $this->render(
+            'application/accept.html.twig',
+            [
+                'form'        => $form->createView(),
+                'application' => $application,
+            ]
+        );
     }
 
     /**
      * @param Application $application
      * @param Request     $request
+     *
      * @return Response
      *
      * @Route("/{application}/reject", name="application_reject")
@@ -183,15 +214,19 @@ class ApplicationController extends Controller
             return $this->changeState($application, ApplicationTransition::REJECT(), 'application.rejected');
         }
 
-        return $this->render('application/reject.html.twig', [
-            'form' => $form->createView(),
-            'application' => $application,
-        ]);
+        return $this->render(
+            'application/reject.html.twig',
+            [
+                'form'        => $form->createView(),
+                'application' => $application,
+            ]
+        );
     }
 
     /**
      * @param Application $application
      * @param Request     $request
+     *
      * @return Response
      *
      * @Route("/{application}/appeal", name="application_appeal")
@@ -206,16 +241,28 @@ class ApplicationController extends Controller
             return $this->changeState($application, ApplicationTransition::APPEAL(), 'application.appealed');
         }
 
-        return $this->render('application/appeal.html.twig', [
-            'form' => $form->createView(),
-            'application' => $application,
-        ]);
+        return $this->render(
+            'application/appeal.html.twig',
+            [
+                'form'        => $form->createView(),
+                'application' => $application,
+            ]
+        );
+    }
+
+    /**
+     * @return ApplicationRepository
+     */
+    private function getApplicationRepository(): ApplicationRepository
+    {
+        return $this->get('app.repository.application');
     }
 
     /**
      * @param Application           $application
      * @param ApplicationTransition $transition
      * @param string                $message
+     *
      * @return Response
      */
     private function changeState(Application $application, ApplicationTransition $transition, string $message): Response
@@ -228,20 +275,27 @@ class ApplicationController extends Controller
 
         $this->addInfoFlash($message);
 
-        return $this->redirectToRoute('application_view', [
-            'application' => $application->getId()
-        ]);
+        return $this->redirectToRoute(
+            'application_view',
+            [
+                'application' => $application->getId(),
+            ]
+        );
     }
 
     /**
      * @param Application $application
+     *
      * @return Response
      */
     private function redirectToView(Application $application): Response
     {
-        return $this->redirectToRoute('application_view', [
-            'application' => $application->getId(),
-        ]);
+        return $this->redirectToRoute(
+            'application_view',
+            [
+                'application' => $application->getId(),
+            ]
+        );
     }
 
     /**

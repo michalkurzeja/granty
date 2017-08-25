@@ -1,6 +1,7 @@
 <?php
 namespace AppBundle\Twig;
 
+use AppBundle\Entity\Application;
 use AppBundle\Entity\User;
 use AppBundle\Enums\ApplicationStatus;
 use AppBundle\Service\Application\SubmittedApplicationsRetriever;
@@ -49,6 +50,9 @@ class ApplicationExtension extends Twig_Extension
         return ApplicationStatus::values();
     }
 
+    /**
+     * @return string
+     */
     public function getName(): string
     {
         return 'application';

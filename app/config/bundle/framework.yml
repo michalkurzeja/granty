@@ -11,7 +11,8 @@ framework:
         strict_requirements: ~
     form:            ~
     csrf_protection: ~
-    validation:      { enable_annotations: true }
+    validation:
+        enable_annotations: true
     templating:
         engines: ['twig']
     default_locale:  "%locale%"
@@ -51,5 +52,5 @@ framework:
                     from: [submitted, appealed]
                     to: rejected
                 appeal:
-                    from: rejected
+                    from: [accepted, rejected]
                     to: appealed

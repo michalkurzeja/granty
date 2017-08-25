@@ -1,7 +1,7 @@
 <?php
 namespace AppBundle\Form\Transformer;
 
-use AppBundle\Entity\Appeal;
+use AppBundle\Entity\ApplicationResponse\Appeal;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Symfony\Component\Form\DataTransformerInterface;

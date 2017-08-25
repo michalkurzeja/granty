@@ -1,7 +1,7 @@
 <?php
 namespace AppBundle\Form\Type;
 
-use AppBundle\Entity\Appeal;
+use AppBundle\Entity\ApplicationResponse\Appeal;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormBuilderInterface;

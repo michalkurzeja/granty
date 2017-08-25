@@ -2,7 +2,8 @@
 namespace AppBundle\Form\Type;
 
 use AppBundle\Entity\Application;
-use AppBundle\Form\Transformer\ApplicationRejectionDataTransformer;
+use AppBundle\Entity\ApplicationResponse\Acceptance;
+use AppBundle\Form\Transformer\ApplicationAcceptanceDataTransformer;
 use AppBundle\Service\AssociationSetter\Implementation\ApplicationResponsesSetter;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\Form\AbstractType;
@@ -11,7 +12,7 @@ use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class ApplicationRejectionType extends AbstractType implements EventSubscriberInterface
+class ApplicationAcceptanceType extends AbstractType implements EventSubscriberInterface
 {
     /** @var ApplicationResponsesSetter */
     private $applicationResponsesSetter;
@@ -29,12 +30,16 @@ class ApplicationRejectionType extends AbstractType implements EventSubscriberIn
      */
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
+        $nextIndex = $builder->getData()->getResponses()->count();
+
         $builder->add(
             $builder
-                ->create('responses', RejectionCauseType::class, [
-                    'label' => false
+                ->create('responses', AcceptanceType::class, [
+                    'label' => false,
+                    'error_bubbling' => false,
+                    'property_path' => "responses[$nextIndex]",
                 ])
-                ->addModelTransformer(new ApplicationRejectionDataTransformer())
+                ->addModelTransformer(new ApplicationAcceptanceDataTransformer())
         );
 
         $builder->addEventSubscriber($this);
@@ -70,8 +75,8 @@ class ApplicationRejectionType extends AbstractType implements EventSubscriberIn
     {
         /** @var Application $application */
         $application = $event->getData();
-        $newRejectionCause = $application->getResponses()->last();
+        $newAppeal = $application->getResponses()->last();
 
-        $this->applicationResponsesSetter->set($application, $newRejectionCause);
+        $this->applicationResponsesSetter->set($application, $newAppeal);
     }
 }

@@ -32,11 +32,19 @@ attachment:
     file: Wybierz plik
     delete: Usunąć?
 
-rejection_cause:
-    message: "Powód odrzucenia | Powody odrzucenia"
+acceptance:
+    name: "Akceptacja"
+    message: "Akceptacja | Akceptacje"
+    granted: "Przyznano"
 
 appeal:
+    name: "Odwołanie"
     message: "Odwołanie | Odwołania"
+
+rejection_cause:
+    name: "Odrzucenie"
+    message: "Powód odrzucenia | Powody odrzucenia"
+
 
 description:
     application:

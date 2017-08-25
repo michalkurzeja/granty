@@ -15,8 +15,9 @@ application:
     view: Wniosek
     add: Utwórz wniosek
     edit: Zmień wniosek
-    reject: Odrzuć wniosek
+    accept: Zaakceptuj wniosek
     appeal: Złóż odwołanie
+    reject: Odrzuć wniosek
 
 user:
     index: Użytkownicy

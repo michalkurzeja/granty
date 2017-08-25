@@ -100,6 +100,7 @@ class ApplicationActionsMenuBuilder extends MenuBuilder
                 if ($item instanceof ItemInterface) {
                     $item
                         ->setAttribute('form', true)
+                        ->setAttribute('form-confirm', false)
                         ->setAttribute('form_btn_type', 'success');
                 }
             }

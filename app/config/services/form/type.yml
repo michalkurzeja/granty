@@ -21,17 +21,25 @@ services:
         tags:
             - { name: form.type }
 
-    app.form_type.application_rejection:
-        class: AppBundle\Form\Type\ApplicationRejectionType
+    app.form_type.application_response.abstract:
+        abstract: true
         arguments:
-            - "@app.association_setter.application_rejection_causes"
+            - "@app.association_setter.application_responses"
+    app.form_type.application_acceptance:
+        class: AppBundle\Form\Type\ApplicationAcceptanceType
+        parent: app.form_type.application_response.abstract
         tags:
             - { name: form.type }
 
     app.form_type.application_appeal:
         class: AppBundle\Form\Type\ApplicationAppealType
-        arguments:
-            - "@app.association_setter.application_appeals"
+        parent: app.form_type.application_response.abstract
+        tags:
+            - { name: form.type }
+
+    app.form_type.application_rejection:
+        class: AppBundle\Form\Type\ApplicationRejectionType
+        parent: app.form_type.application_response.abstract
         tags:
             - { name: form.type }
 
@@ -42,6 +50,11 @@ services:
 
     app.form_type.rejection_cause:
         class: AppBundle\Form\Type\RejectionCauseType
+        tags:
+            - { name: form.type }
+
+    app.form_type.acceptance:
+        class: AppBundle\Form\Type\AcceptanceType
         tags:
             - { name: form.type }
 

@@ -3,7 +3,7 @@ namespace AppBundle\Form\Type;
 
 use AppBundle\Entity\Application;
 use AppBundle\Form\Transformer\ApplicationAppealDataTransformer;
-use AppBundle\Service\AssociationSetter\Implementation\ApplicationAppealsSetter;
+use AppBundle\Service\AssociationSetter\Implementation\ApplicationResponsesSetter;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -13,15 +13,15 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class ApplicationAppealType extends AbstractType implements EventSubscriberInterface
 {
-    /** @var ApplicationAppealsSetter */
-    private $applicationAppealsSetter;
+    /** @var ApplicationResponsesSetter */
+    private $applicationResponsesSetter;
 
     /**
-     * @param ApplicationAppealsSetter $applicationAppealsSetter
+     * @param ApplicationResponsesSetter $applicationResponsesSetter
      */
-    public function __construct(ApplicationAppealsSetter $applicationAppealsSetter)
+    public function __construct(ApplicationResponsesSetter $applicationResponsesSetter)
     {
-        $this->applicationAppealsSetter = $applicationAppealsSetter;
+        $this->applicationResponsesSetter = $applicationResponsesSetter;
     }
 
     /**
@@ -31,7 +31,7 @@ class ApplicationAppealType extends AbstractType implements EventSubscriberInter
     {
         $builder->add(
             $builder
-                ->create('appeals', AppealType::class, [
+                ->create('responses', AppealType::class, [
                     'label' => false
                 ])
                 ->addModelTransformer(new ApplicationAppealDataTransformer())
@@ -70,8 +70,8 @@ class ApplicationAppealType extends AbstractType implements EventSubscriberInter
     {
         /** @var Application $application */
         $application = $event->getData();
-        $newAppeal = $application->getAppeals()->last();
+        $newAppeal = $application->getResponses()->last();
 
-        $this->applicationAppealsSetter->set($application, $newAppeal);
+        $this->applicationResponsesSetter->set($application, $newAppeal);
     }
 }
